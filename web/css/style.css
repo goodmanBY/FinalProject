@@ -1,0 +1,39 @@
+body {
+    font-family: 'Indie Flower', cursive;
+}
+
+p::selection {
+    background: #ffb7b7;
+}
+
+label {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: #5a5a5a;
+}
+
+.fa {
+    padding-left: 1%;
+}
+
+.containerTopPadding {
+    padding-top: 100px;
+}
+
+.centring {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divCentre {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about {
+    float: right;
+}
