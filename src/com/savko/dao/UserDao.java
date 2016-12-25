@@ -1,6 +1,5 @@
 package com.savko.dao;
 
-
 import com.savko.constant.DBConstants;
 import com.savko.entity.User;
 import org.apache.log4j.Logger;
@@ -14,7 +13,7 @@ public class UserDao {
     private static final String SQL_DELETE_USER = "DELETE FROM client WHERE login = ?";
     private static final String SQL_CHECK_USER = "SELECT login, password FROM client WHERE " +
             "login = ? AND password = ?;";
-    private static final String SQL_GET_USER = "SELECT name, last_name FROM client WHERE login = ?";
+    private static final String SQL_TAKE_USER = "SELECT name, last_name FROM client WHERE login = ?";
     private static Connection connection;
 
     public User createUser(String name, String lastName, String login, String password) {
@@ -44,12 +43,12 @@ public class UserDao {
         }
     }
 
-    public User getUser(String login) {
+    public User takeUser(String login) {
         User user = new User();
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             connection = DriverManager.getConnection(DBConstants.DB_URL, DBConstants.NAME, DBConstants.PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_GET_USER);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_TAKE_USER);
             preparedStatement.setString(1, login);
 
         } catch (SQLException e) {

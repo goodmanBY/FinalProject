@@ -64,8 +64,7 @@
 
 <%@ include file="include/footer.jsp" %>
 
-<script src="js/jq.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<%@ include file="include/script.jsp"%>
 
 </body>
 </html>

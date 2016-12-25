@@ -46,7 +46,7 @@
                         </c:when>
                         <c:otherwise>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/index.jsp"><fmt:message key="profile"/></a></li>
+                                <li><a href="/profile.jsp"><fmt:message key="profile"/></a></li>
                                 <li><a href="${pageContext.request.contextPath}/do?action=userLogOut"><fmt:message
                                         key="log.out"/></a></li>
                             </ul>
