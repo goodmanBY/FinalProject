@@ -43,7 +43,6 @@ public class UserDao {
         }
     }
 
-
     public boolean checkUser(String login, String password) {
         boolean statement = false;
         try {

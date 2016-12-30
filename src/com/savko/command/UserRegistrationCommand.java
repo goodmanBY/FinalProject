@@ -26,5 +26,4 @@ public class UserRegistrationCommand implements Command {
             return new ForwardAction("/registration.jsp");
         }
     }
-
 }

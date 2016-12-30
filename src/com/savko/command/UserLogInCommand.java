@@ -24,6 +24,5 @@ public class UserLogInCommand implements Command {
             request.setAttribute("error", "Incorrect login or password");
             return new ForwardAction("/logIn.jsp");
         }
-        
     }
 }
