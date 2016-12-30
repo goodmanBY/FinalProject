@@ -18,11 +18,11 @@ public class UserLogInCommand implements Command {
         HttpSession session = request.getSession();
         UserDao userDao = new UserDao();
         if (userDao.checkUser(login, password)) {
-            request.setAttribute("message", "Welcome, " + login);
             session.setAttribute("login", login);
+            return new ForwardAction("/index.jsp");
         } else {
-            request.setAttribute("message", "Wrong login or password");
+            request.setAttribute("error", "Incorrect login or password");
+            return new ForwardAction("/logIn.jsp");
         }
-        return new ForwardAction("/index.jsp");
     }
 }

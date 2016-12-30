@@ -11,10 +11,10 @@
 
 <%@ include file="include/navigation.jsp" %>
 
-<div class="container containerTopPadding">
+<div class="container container-top-padding">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="get" action="${pageContext.request.contextPath}/do">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
                 <input type="hidden" name="action" value="userLogIn">
                 <div class="form-group">
                     <span class="centring"><fmt:message key="log.in"/></span>
@@ -38,13 +38,14 @@
                     </div>
                 </div>
             </form>
+            <%@ include file="include/message.jsp" %>
         </div>
     </div>
 </div>
 
 <%@ include file="include/footer.jsp" %>
 
-<%@ include file="include/script.jsp"%>
+<%@ include file="include/script.jsp" %>
 
 </body>
 </html>

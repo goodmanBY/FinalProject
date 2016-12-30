@@ -11,9 +11,9 @@
 
 <%@ include file="include/navigation.jsp" %>
 
-<div class="container containerTopPadding">
+<div class="container container-top-padding">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-2">
             <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
                 <input type="hidden" name="action" value="userRegistration">
                 <div class="form-group">
@@ -58,6 +58,7 @@
                     </div>
                 </div>
             </form>
+            <%@ include file="include/message.jsp" %>
         </div>
     </div>
 </div>

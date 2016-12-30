@@ -17,9 +17,16 @@ public class UserRegistrationCommand implements Command {
         String password = Hex.md5Custom(request.getParameter("password"));
 
         UserDao userDao = new UserDao();
-        userDao.addUser(userDao.createUser(name, lastName, login, password));
+        if (userDao.checkUserLogin(login)) {
+            request.setAttribute("error", "User with such login exists");
+            return new ForwardAction("/registration.jsp");
+        } else {
+            userDao.addUser(userDao.createUser(name, lastName, login, password));
+            request.setAttribute("registered", "You successfully registered");
+            return new ForwardAction("/registration.jsp");
+        }
 
-        return new ForwardAction("/index.jsp");
+
     }
 
 }

@@ -13,8 +13,9 @@
 <%@ include file="include/navigation.jsp"%>
 
 <div style="height: 500px">
-${}
+
 </div>
+Hello, ${sessionScope.login} !
 
 <%@ include file="include/footer.jsp"%>
 

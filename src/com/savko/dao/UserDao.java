@@ -13,7 +13,7 @@ public class UserDao {
     private static final String SQL_DELETE_USER = "DELETE FROM client WHERE login = ?";
     private static final String SQL_CHECK_USER = "SELECT login, password FROM client WHERE " +
             "login = ? AND password = ?;";
-    private static final String SQL_TAKE_USER = "SELECT name, last_name FROM client WHERE login = ?";
+    private static final String SQL_CHECK_USER_LOGIN = "SELECT login FROM client WHERE login = ?;";
     private static Connection connection;
 
     public User createUser(String name, String lastName, String login, String password) {
@@ -43,20 +43,6 @@ public class UserDao {
         }
     }
 
-    public User takeUser(String login) {
-        User user = new User();
-        try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            connection = DriverManager.getConnection(DBConstants.DB_URL, DBConstants.NAME, DBConstants.PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL_TAKE_USER);
-            preparedStatement.setString(1, login);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public boolean checkUser(String login, String password) {
         boolean statement = false;
         try {
@@ -65,6 +51,21 @@ public class UserDao {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHECK_USER);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            statement = resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return statement;
+    }
+
+    public boolean checkUserLogin(String login) {
+        boolean statement = false;
+        try {
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            Connection connection = DriverManager.getConnection(DBConstants.DB_URL, DBConstants.NAME, DBConstants.PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHECK_USER_LOGIN);
+            preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             statement = resultSet.next();
         } catch (SQLException e) {
