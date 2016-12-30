@@ -25,8 +25,6 @@ public class UserRegistrationCommand implements Command {
             request.setAttribute("registered", "You successfully registered");
             return new ForwardAction("/registration.jsp");
         }
-
-
     }
 
 }

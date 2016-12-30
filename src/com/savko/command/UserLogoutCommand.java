@@ -14,5 +14,6 @@ public class UserLogoutCommand implements Command {
         HttpSession session = request.getSession();
         session.removeAttribute("login");
         return new ForwardAction("/index.jsp");
+
     }
 }

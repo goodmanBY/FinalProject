@@ -7,4 +7,3 @@
 <c:if test="${not empty registered}">
     <span class="registered centring">${registered}</span>
 </c:if>
-
