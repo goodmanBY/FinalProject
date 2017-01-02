@@ -4,6 +4,7 @@ package com.savko.command;
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.dao.UserDao;
+import com.savko.entity.User;
 import com.savko.util.Hex;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,8 @@ public class UserLogInCommand implements Command {
         HttpSession session = request.getSession();
         UserDao userDao = new UserDao();
         if (userDao.checkUser(login, password)) {
-            session.setAttribute("login", login);
+            User currentUser = userDao.takeUser(login);
+            session.setAttribute("user", currentUser);
             return new ForwardAction("/index.jsp");
         } else {
             request.setAttribute("error", "Incorrect login or password");

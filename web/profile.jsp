@@ -5,21 +5,38 @@
 <fmt:setBundle basename="com.savko.i18n.text"/>
 <html>
 <head>
-    <%@ include file="include/head.jsp"%>
+    <%@ include file="include/head.jsp" %>
     <title>Profile</title>
 </head>
 <body>
 
-<%@ include file="include/navigation.jsp"%>
+<%@ include file="include/navigation.jsp" %>
 
-<div style="height: 500px">
-
+<div class="container container-top-padding">
+    <div class="row">
+        <div>
+            <span class="centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <div class="form-group">
+                <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="name"/></label>
+                <span>${sessionScope.user.name}</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="last.name"/></label>
+                <span>${sessionScope.user.lastName}</span>
+            </div>
+            <div class="form-group">
+                <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="login"/></label>
+                <span>${sessionScope.user.login}</span>
+            </div>
+        </div>
+    </div>
 </div>
-Hello, ${sessionScope.login} !
 
-<%@ include file="include/footer.jsp"%>
+<%@ include file="include/footer.jsp" %>
 
-<%@ include file="include/script.jsp"%>
+<%@ include file="include/script.jsp" %>
 
 </body>
 </html>

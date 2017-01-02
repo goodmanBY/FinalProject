@@ -8,16 +8,6 @@
                 </p>
             </div>
         </div>
-        <%--
-        <div class="col-md-4">
-            <p class="centring"><fmt:message key="language"/></p>
-            <div class="centring">
-                <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=en_EN">en</a>
-                <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=de_DE">de</a>
-                <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=fr_FRS">fr</a>
-            </div>
-        </div>
-        --%>
         <div class="col-md-6">
             <p class="centring"><fmt:message key="follow.the.hostel"/></p>
             <div class="col-md-12 centring">

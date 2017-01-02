@@ -38,7 +38,7 @@
                         </li>
                     </ul>
                     <c:choose>
-                        <c:when test="${empty sessionScope.login}">
+                        <c:when test="${empty sessionScope.user}">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="/logIn.jsp"><fmt:message key="log.in"/></a></li>
                                 <li><a href="/registration.jsp"><fmt:message key="registration"/></a></li>
