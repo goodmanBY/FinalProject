@@ -13,8 +13,10 @@ public class CommandHolder {
 
         commands.put("userRegistration", new UserRegistrationCommand());
         commands.put("userLogIn", new UserLogInCommand());
-        commands.put("userLogOut", new UserLogoutCommand());
+        commands.put("userLogOut", new UserLogOutCommand());
         commands.put("changeLanguage", new LanguageChangeCommand());
+        commands.put("adminLogIn", new AdminLogInCommand());
+        commands.put("adminLogOut", new AdminLogOutCommand());
 
     }
 

@@ -1,6 +1,5 @@
 package com.savko.entity;
 
-
 public class User {
 
     private String name;
@@ -74,13 +73,4 @@ public class User {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }
