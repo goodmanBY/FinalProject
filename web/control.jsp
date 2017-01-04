@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
 <fmt:setBundle basename="com.savko.i18n.text"/>
 <html>
@@ -8,8 +9,20 @@
     <title>Control Panel</title>
 </head>
 <body>
-Cheers, ${sessionScope.adminLogin}!
-<li><a href="${pageContext.request.contextPath}/do?action=adminLogOut"><fmt:message
-        key="log.out"/></a></li>
+<c:if test="${not empty sessionScope.adminLogin}">
+    <div class="col-md-12 centring">Cheers, ${sessionScope.adminLogin}!</div>
+
+    <div class="col-md-6 centring">
+        <a href="${pageContext.request.contextPath}/do?action=takeAllUsers"><h2>Users<h2</a>
+    </div>
+    <div class="col-md-6 centring">
+        <a><h2>Requests</h2></a>
+    </div>
+
+    <div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/do?action=adminLogOut"><fmt:message key="log.out"/></a></div>
+</c:if>
+
+<%@ include file="include/script.jsp" %>
+
 </body>
 </html>

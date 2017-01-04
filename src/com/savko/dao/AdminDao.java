@@ -6,6 +6,8 @@ import com.savko.entity.User;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDao {
 
@@ -13,7 +15,8 @@ public class AdminDao {
 
     private static final String SQL_CHECK_ADMIN = "SELECT login, password FROM admin WHERE " +
             "login = ? AND password = ?;";
-    private static final String SQL_INSERT_ADMIN= "INSERT INTO admin(login, password) VALUES(?, ?)";
+    private static final String SQL_INSERT_ADMIN = "INSERT INTO admin(login, password) VALUES(?, ?)";
+    private static final String SQL_TAKE_ALL_USERS = "SELECT * FROM client";
 
     private static Connection connection;
 
@@ -60,6 +63,39 @@ public class AdminDao {
             }
         }
         return statement;
+    }
+
+    public List<User> takeAllUsers() {
+        try {
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            connection = DriverManager.getConnection(DBConstants.DB_URL, DBConstants.NAME, DBConstants.PASSWORD);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_TAKE_ALL_USERS);
+            List<User> users = new ArrayList<>();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("client_id"));
+                user.setName(resultSet.getString("name"));
+                user.setLastName(resultSet.getString("last_name"));
+                user.setLogin(resultSet.getString("login"));
+                user.setPassword(resultSet.getString("password"));
+                user.setBanned(resultSet.getByte("banned"));
+                user.setDiscountId(resultSet.getShort("discount_id"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            LOGGER.error("Some SQL issue!" + e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    LOGGER.error("Some SQL issue!" + e);
+                }
+            }
+        }
+        return null;
     }
 
 }

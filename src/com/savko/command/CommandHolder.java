@@ -17,6 +17,7 @@ public class CommandHolder {
         commands.put("changeLanguage", new LanguageChangeCommand());
         commands.put("adminLogIn", new AdminLogInCommand());
         commands.put("adminLogOut", new AdminLogOutCommand());
+        commands.put("takeAllUsers", new AllUsersCommand());
 
     }
 
