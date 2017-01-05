@@ -21,12 +21,11 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String name, String lastName, String login, String password, byte banned, short discountId) {
+    public User(int id, String name, String lastName, String login, byte banned, short discountId) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.login = login;
-        this.password = password;
         this.banned = banned;
         this.discountId = discountId;
     }

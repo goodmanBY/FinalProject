@@ -1,8 +1,9 @@
 package com.savko.dao;
 
-import com.savko.constant.DBConstants;
 import com.savko.entity.Admin;
 import com.savko.entity.User;
+import com.savko.pool.ConnectionPool;
+import com.savko.pool.ConnectionProxy;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -18,34 +19,30 @@ public class AdminDao {
     private static final String SQL_INSERT_ADMIN = "INSERT INTO admin(login, password) VALUES(?, ?)";
     private static final String SQL_TAKE_ALL_USERS = "SELECT * FROM client";
 
-    private static Connection connection;
 
     public void addAdmin(Admin admin) {
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            connection = DriverManager.getConnection(DBConstants.DB_URL, DBConstants.NAME, DBConstants.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_ADMIN);
             preparedStatement.setString(1, admin.getLogin());
             preparedStatement.setString(2, admin.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.error("Some SQL issue!" + e);
+            LOGGER.error("Some SQL issue!" + e);//DAO Exception!!!!!!!!!!!
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    LOGGER.error("Some SQL issue!" + e);
-                }
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
     public boolean checkAdmin(String login, String password) {
         boolean statement = false;
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            Connection connection = DriverManager.getConnection(DBConstants.DB_URL, DBConstants.NAME, DBConstants.PASSWORD);
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CHECK_ADMIN);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
@@ -66,9 +63,11 @@ public class AdminDao {
     }
 
     public List<User> takeAllUsers() {
+
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+
         try {
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            connection = DriverManager.getConnection(DBConstants.DB_URL, DBConstants.NAME, DBConstants.PASSWORD);
+           
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_TAKE_ALL_USERS);
             List<User> users = new ArrayList<>();
@@ -78,7 +77,6 @@ public class AdminDao {
                 user.setName(resultSet.getString("name"));
                 user.setLastName(resultSet.getString("last_name"));
                 user.setLogin(resultSet.getString("login"));
-                user.setPassword(resultSet.getString("password"));
                 user.setBanned(resultSet.getByte("banned"));
                 user.setDiscountId(resultSet.getShort("discount_id"));
                 users.add(user);

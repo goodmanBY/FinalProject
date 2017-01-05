@@ -4,8 +4,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Hex {
-    public static String md5Custom(String st) {
+public class HashUtils {
+
+    public static String getMd5Hash(String st) {
 
         MessageDigest messageDigest;
         byte[] digest = new byte[0];
