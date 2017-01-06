@@ -1,8 +1,9 @@
-package com.savko.command;
+package com.savko.command.client;
 
 
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
+import com.savko.command.Command;
 import com.savko.dao.UserDao;
 import com.savko.entity.User;
 import com.savko.util.HashUtils;

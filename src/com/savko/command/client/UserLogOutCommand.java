@@ -1,7 +1,8 @@
-package com.savko.command;
+package com.savko.command.client;
 
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
+import com.savko.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

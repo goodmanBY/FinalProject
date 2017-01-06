@@ -1,7 +1,8 @@
-package com.savko.command;
+package com.savko.command.admin;
 
 import com.savko.action.Action;
 import com.savko.action.RedirectAction;
+import com.savko.command.Command;
 import com.savko.dao.AdminDao;
 import com.savko.entity.User;
 

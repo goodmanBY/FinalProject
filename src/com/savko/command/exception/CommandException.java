@@ -1,11 +1,11 @@
-package com.savko.command;
+package com.savko.command.exception;
 
 
 import javax.servlet.ServletException;
 
 public class CommandException extends ServletException {
 
-    CommandException(String exception){
+    public CommandException(String exception){
         super(exception);
     }
 

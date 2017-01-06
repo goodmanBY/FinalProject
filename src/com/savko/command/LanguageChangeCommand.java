@@ -2,6 +2,7 @@ package com.savko.command;
 
 import com.savko.action.Action;
 import com.savko.action.RedirectAction;
+import com.savko.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

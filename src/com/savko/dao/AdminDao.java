@@ -28,7 +28,7 @@ public class AdminDao {
             preparedStatement.setString(2, admin.getPassword());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.error("Some SQL issue!" + e);//DAO Exception!!!!!!!!!!!
+            LOGGER.error("Some SQL issue!" + e);
         } finally {
             try {
                 connection.close();
