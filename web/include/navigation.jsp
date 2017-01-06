@@ -40,13 +40,13 @@
                     <c:choose>
                         <c:when test="${empty sessionScope.user}">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/logIn.jsp"><fmt:message key="log.in"/></a></li>
-                                <li><a href="/registration.jsp"><fmt:message key="registration"/></a></li>
+                                <li><a href="/userLogIn.jsp"><fmt:message key="log.in"/></a></li>
+                                <li><a href="/userRegistration.jsp"><fmt:message key="registration"/></a></li>
                             </ul>
                         </c:when>
                         <c:otherwise>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/profile.jsp"><fmt:message key="profile"/></a></li>
+                                <li><a href="/userProfile.jsp"><fmt:message key="profile"/></a></li>
                                 <li><a href="${pageContext.request.contextPath}/do?action=userLogOut"><fmt:message
                                         key="log.out"/></a></li>
                             </ul>

@@ -13,7 +13,7 @@ public class AdminLogOutCommand implements Command {
     public Action execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute("adminLogin");
-        return new ForwardAction("admin.jsp");
+        return new ForwardAction("adminLogIn.jsp");
     }
 
 }

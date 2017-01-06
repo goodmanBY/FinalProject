@@ -6,7 +6,7 @@ import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.dao.UserDao;
 import com.savko.entity.User;
-import com.savko.util.HashUtils;
+import com.savko.util.HashUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,7 +16,7 @@ public class UserLogInCommand implements Command {
     @Override
     public Action execute(HttpServletRequest request) {
         String login = request.getParameter("login");
-        String password = HashUtils.getMd5Hash(request.getParameter("password"));
+        String password = HashUtil.getMd5Hash(request.getParameter("password"));
         HttpSession session = request.getSession();
         UserDao userDao = new UserDao();
         if (userDao.checkUser(login, password)) {
@@ -25,7 +25,7 @@ public class UserLogInCommand implements Command {
             return new ForwardAction("/index.jsp");
         } else {
             request.setAttribute("error", "Incorrect login or password");
-            return new ForwardAction("/logIn.jsp");
+            return new ForwardAction("/userLogIn.jsp");
         }
     }
 }

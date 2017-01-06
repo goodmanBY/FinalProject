@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class HashUtils {
+public class HashUtil {
 
     public static String getMd5Hash(String st) {
 

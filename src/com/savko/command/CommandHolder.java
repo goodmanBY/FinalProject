@@ -1,12 +1,9 @@
 package com.savko.command;
 
-
 import com.savko.command.admin.AdminLogInCommand;
 import com.savko.command.admin.AdminLogOutCommand;
 import com.savko.command.admin.AllUsersCommand;
-import com.savko.command.client.UserLogInCommand;
-import com.savko.command.client.UserLogOutCommand;
-import com.savko.command.client.UserRegistrationCommand;
+import com.savko.command.client.*;
 import com.savko.command.exception.CommandException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +23,8 @@ public class CommandHolder {
         commands.put("adminLogIn", new AdminLogInCommand());
         commands.put("adminLogOut", new AdminLogOutCommand());
         commands.put("takeAllUsers", new AllUsersCommand());
+        commands.put("userRequest", new UserRequestCommand());
+        commands.put("userRequestInfo", new UserRequestInfoCommand());
 
     }
 

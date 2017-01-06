@@ -6,9 +6,9 @@
                 <span class="centring"><fmt:message key="make.a.room.reservation"/></span>
             </div>
             <div class="form-group">
-                <label for="inputPlaceNumber" class="col-sm-3 control-label"><fmt:message key="place.number"/></label>
+                <label for="inputAmountOfPlaces" class="col-sm-3 control-label"><fmt:message key="place.number"/></label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" name="placeNumber" id="inputPlaceNumber" placeholder="Number" min="1" max="5">
+                    <input type="number" class="form-control" name="amountOfPlaces" id="inputAmountOfPlaces" placeholder="Number" min="1" max="5">
                 </div>
             </div>
             <div class="form-group">
@@ -21,11 +21,6 @@
                 <label for="inputDateTo" class="col-sm-3 control-label"><fmt:message key="date.to"/></label>
                 <div class="col-sm-9">
                     <input type="date" class="form-control" name="dateTo" id="inputDateTo" placeholder="To">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-9">
-                    <button type="button" class="btn btn-primary"><fmt:message key="check.reservation"/></button>
                 </div>
             </div>
             <div class="form-group">

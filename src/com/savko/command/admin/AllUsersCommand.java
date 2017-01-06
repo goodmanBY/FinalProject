@@ -18,6 +18,6 @@ public class AllUsersCommand implements Command {
         HttpSession session = request.getSession();
         session.setAttribute("users", users);
 
-        return new RedirectAction("/users.jsp");
+        return new RedirectAction("allUsers.jsp");
     }
 }
