@@ -33,10 +33,6 @@ a {
     float: right;
 }
 
-#validation-error {
-    color: #cf0000;
-}
-
 .error-message {
     color: #cf0000;
 }
