@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </form>
-            <span id="validation-error" class="centring"></span>
+            <span id="validation-error" class="error-message centring"></span>
             <%@ include file="include/message.jsp" %>
         </div>
     </div>
