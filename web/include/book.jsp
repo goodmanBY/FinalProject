@@ -8,19 +8,23 @@
             <div class="form-group">
                 <label for="inputAmountOfPlaces" class="col-sm-3 control-label"><fmt:message key="place.number"/></label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" name="amountOfPlaces" id="inputAmountOfPlaces" placeholder="Number" min="1" max="5">
+                    <input type="number" class="form-control" name="amountOfPlaces"
+                           id="inputAmountOfPlaces" placeholder="Number" min="1" max="5"
+                           <c:if test="${empty sessionScope.user}">readonly</c:if>>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputDateFrom" class="col-sm-3 control-label"><fmt:message key="date.from"/></label>
                 <div class="col-sm-9">
-                    <input type="date" class="form-control" name="dateFrom" id="inputDateFrom" placeholder="From">
+                    <input type="date" class="form-control" name="dateFrom"
+                           id="inputDateFrom" placeholder="From" <c:if test="${empty sessionScope.user}">readonly</c:if>>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputDateTo" class="col-sm-3 control-label"><fmt:message key="date.to"/></label>
                 <div class="col-sm-9">
-                    <input type="date" class="form-control" name="dateTo" id="inputDateTo" placeholder="To">
+                    <input type="date" class="form-control" name="dateTo"
+                           id="inputDateTo" placeholder="To" <c:if test="${empty sessionScope.user}">readonly</c:if>>
                 </div>
             </div>
             <div class="form-group">

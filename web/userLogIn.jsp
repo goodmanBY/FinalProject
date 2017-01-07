@@ -20,16 +20,15 @@
                     <span class="centring"><fmt:message key="log.in"/></span>
                 </div>
                 <div class="form-group">
-                    <label for="inputLogin" class="col-md-2 control-label"><fmt:message key="login"/></label>
+                    <label for="login" class="col-md-2 control-label"><fmt:message key="login"/></label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="login" id="inputLogin" placeholder="Login">
+                        <input type="text" class="form-control" name="login" id="login" placeholder="Login">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-md-2 control-label"><fmt:message key="password"/></label>
+                    <label for="password" class="col-md-2 control-label"><fmt:message key="password"/></label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" name="password" id="inputPassword"
-                               placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="password">
                     </div>
                 </div>
                 <div class="form-group">

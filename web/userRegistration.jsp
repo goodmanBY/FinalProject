@@ -14,42 +14,39 @@
 <div class="container container-top-padding">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onsubmit="return validateUserRegistrationForm()">
                 <input type="hidden" name="action" value="userRegistration">
                 <div class="form-group">
                     <span class="centring">Register</span>
                 </div>
                 <div class="form-group">
-                    <label for="inputName" class="col-md-2 control-label"><fmt:message key="name"/></label>
+                    <label for="name" class="col-md-2 control-label"><fmt:message key="name"/></label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="name" id="inputName" placeholder="Name">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputLastName" class="col-md-2 control-label"><fmt:message key="last.name"/></label>
+                    <label for="lastName" class="col-md-2 control-label"><fmt:message key="last.name"/></label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="lastName" id="inputLastName"
-                               placeholder="Last Name">
+                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputLogin" class="col-md-2 control-label"><fmt:message key="login"/></label>
+                    <label for="login" class="col-md-2 control-label"><fmt:message key="login"/></label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="login" id="inputLogin" placeholder="Login">
+                        <input type="text" class="form-control" name="login" id="login" placeholder="Login">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-md-2 control-label"><fmt:message key="password"/></label>
+                    <label for="password" class="col-md-2 control-label"><fmt:message key="password"/></label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" name="password" id="inputPassword"
-                               placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputConfirmPassword" class="col-md-2 control-label"><fmt:message key="confirm"/></label>
+                    <label for="confirmPassword" class="col-md-2 control-label"><fmt:message key="confirm"/></label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" name="confirmPassword" id="inputConfirmPassword"
-                               placeholder="Password">
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -58,6 +55,7 @@
                     </div>
                 </div>
             </form>
+            <span id="validation-error" class="centring"></span>
             <%@ include file="include/message.jsp" %>
         </div>
     </div>
