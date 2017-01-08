@@ -5,11 +5,11 @@
 <fmt:setBundle basename="com.savko.i18n.text"/>
 <html>
 <head>
-    <%@ include file="include/head.jsp" %>
+    <%@ include file="/include/head.jsp" %>
     <title>Users</title>
 </head>
 <body>
-<c:if test="${not empty sessionScope.adminLogin}">
+<c:if test="${not empty sessionScope.admin}">
 <table class="table table-hover">
     <tr>
         <th>ID</th>
@@ -33,7 +33,7 @@
     </c:if>
 </table>
 
-<%@ include file="include/script.jsp"%>
+<%@ include file="/include/script.jsp"%>
 
 </body>
 </html>

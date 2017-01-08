@@ -3,6 +3,7 @@ package com.savko.controller;
 import com.savko.action.Action;
 import com.savko.command.Command;
 import com.savko.command.CommandHolder;
+import com.savko.command.exception.CommandException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletConfig;

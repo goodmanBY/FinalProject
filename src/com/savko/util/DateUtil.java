@@ -7,28 +7,26 @@ import java.util.concurrent.TimeUnit;
 
 public class DateUtil {
 
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-    public static int calculateAmountOfDays(String stringDateFrom, String stringDateTo) {
+    public static int calculateAmountOfDays(String stringDateFrom, String stringDateTo) throws UtilException {
         try {
-            Date dateFrom = simpleDateFormat.parse(stringDateFrom);
-            Date dateTo = simpleDateFormat.parse(stringDateTo);
+            Date dateFrom = DATE_FORMAT.parse(stringDateFrom);
+            Date dateTo = DATE_FORMAT.parse(stringDateTo);
             long difference = dateTo.getTime() - dateFrom.getTime();
             return (int) TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS);
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new UtilException("Unable to calculate amount of days between dates.", e);
         }
 
-        return 0;
     }
 
-    public static Date castToDate(String stringDate) {
+    public static Date castToDate(String stringDate) throws UtilException {
         try {
-            return simpleDateFormat.parse(stringDate);
+            return DATE_FORMAT.parse(stringDate);
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new UtilException("Unable to cast String to Date format.", e);
         }
-        return null;
     }
 
 }

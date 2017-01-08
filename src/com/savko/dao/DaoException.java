@@ -1,12 +1,13 @@
 package com.savko.dao;
 
-
-import javax.servlet.ServletException;
-
-public class DaoException extends ServletException {
+public class DaoException extends Exception {
 
     public DaoException(String exception){
         super(exception);
+    }
+
+    public DaoException(String message, Throwable rootCause) {
+        super(message, rootCause);
     }
 
 }

@@ -19,8 +19,6 @@
     <%@ include file="include/about.jsp"%>
 </div>
 
-<%@ include file="include/event.jsp"%>
-
 <%@ include file="include/footer.jsp"%>
 
 <%@ include file="include/script.jsp"%>

@@ -38,25 +38,31 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputAmountOfPlaces" class="col-sm-3 control-label"><fmt:message key="place.number"/></label>
+            <label for="amountOfPlaces" class="col-sm-3 control-label">Amount of places</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="amountOfPlaces" id="inputAmountOfPlaces" value="${requestScope.amountOfPlaces}" readonly>
+                <input type="text" class="form-control" name="amountOfPlaces" id="amountOfPlaces" value="${requestScope.amountOfPlaces}" readonly>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputDateFrom" class="col-sm-3 control-label"><fmt:message key="date.from"/></label>
+            <label for="amountOfDays" class="col-sm-3 control-label">Amount of days</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="dateFrom" id="inputDateFrom" value="${requestScope.dateFrom}" readonly>
+                <input type="text" class="form-control" name="amountOfDays" id="amountOfDays" value="${requestScope.amountOfDays}" readonly>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputDateTo" class="col-sm-3 control-label"><fmt:message key="date.to"/></label>
+            <label for="dateFrom" class="col-sm-3 control-label"><fmt:message key="date.from"/></label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="dateTo" id="inputDateTo" value="${requestScope.dateTo}" readonly>
+                <input type="text" class="form-control" name="dateFrom" id="dateFrom" value="${requestScope.dateFrom}" readonly>
             </div>
         </div>
         <div class="form-group">
-            <label for="cost" class="col-sm-3 control-label">Cost</label>
+            <label for="dateTo" class="col-sm-3 control-label"><fmt:message key="date.to"/></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="dateTo" id="dateTo" value="${requestScope.dateTo}" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cost" class="col-sm-3 control-label">Cost, $</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="cost" id="cost" value="${requestScope.cost}" readonly>
             </div>

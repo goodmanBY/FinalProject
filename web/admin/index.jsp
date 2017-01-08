@@ -4,7 +4,7 @@
 <fmt:setBundle basename="com.savko.i18n.text"/>
 <html>
 <head>
-    <%@ include file="include/head.jsp" %>
+    <%@ include file="/include/head.jsp" %>
     <title>Admin</title>
 </head>
 <body>

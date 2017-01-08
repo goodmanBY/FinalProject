@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<c:if test="${not empty sessionScope.user}">
+
 <%@ include file="include/navigation.jsp" %>
 
 <div class="container container-top-padding">
@@ -18,6 +20,10 @@
             <span class="centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
         </div>
         <div class="col-md-6 col-md-offset-2">
+            <div class="form-group">
+                <label class="col-md-offset-6 col-md-2 control-label">Your ID</label>
+                <span>${sessionScope.user.id}</span>
+            </div>
             <div class="form-group">
                 <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="name"/></label>
                 <span>${sessionScope.user.name}</span>
@@ -38,5 +44,6 @@
 
 <%@ include file="include/script.jsp" %>
 
+</c:if>
 </body>
 </html>

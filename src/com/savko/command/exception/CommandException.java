@@ -9,4 +9,8 @@ public class CommandException extends ServletException {
         super(exception);
     }
 
+    public CommandException(String message, Throwable rootCause) {
+        super(message, rootCause);
+    }
+
 }

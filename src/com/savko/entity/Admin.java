@@ -39,7 +39,6 @@ public class Admin {
 
         if (login != null ? !login.equals(admin.login) : admin.login != null) return false;
         return password != null ? password.equals(admin.password) : admin.password == null;
-
     }
 
     @Override
