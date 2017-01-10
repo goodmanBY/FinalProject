@@ -27,7 +27,9 @@ public class AdminLogInCommand implements Command {
         AdminDao adminDao = new AdminDao();
         try {
             if (adminDao.checkAdmin(login, password)) {
-                Admin admin = new Admin(login, password);
+                Admin admin = new Admin()
+                        .setLogin(login)
+                        .setPassword(password);
                 session.setAttribute(Attributes.ADMIN, admin);
                 return new ForwardAction(Pages.ADMIN_CONTROL_PANEL);
             } else {

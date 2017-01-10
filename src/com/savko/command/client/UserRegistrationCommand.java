@@ -31,7 +31,11 @@ public class UserRegistrationCommand implements Command {
                 request.setAttribute(Attributes.ERROR, "User with such login exists");
                 return new ForwardAction(Pages.USER_REGISTRATION);
             } else {
-                User user = new User(name, lastName, login, password);
+                User user = new User()
+                        .setName(name)
+                        .setLastName(lastName)
+                        .setLogin(login)
+                        .setPassword(password);
                 userDao.addUser(user);
                 request.setAttribute(Attributes.REGISTERED, "You successfully registered");
                 return new ForwardAction(Pages.USER_REGISTRATION);

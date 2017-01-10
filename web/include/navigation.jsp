@@ -32,7 +32,7 @@
                                     <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=de_DE">Dutch</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=fr_FRS">French</a>
+                                    <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=fr_FR">French</a>
                                 </li>
                             </ul>
                         </li>

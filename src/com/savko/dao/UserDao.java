@@ -1,6 +1,5 @@
 package com.savko.dao;
 
-import com.savko.entity.Request;
 import com.savko.entity.User;
 import com.savko.pool.ConnectionPool;
 import com.savko.pool.ConnectionProxy;
@@ -19,9 +18,6 @@ public class UserDao extends Dao {
     private static final String SQL_CHECK_USER = "SELECT login, password FROM client WHERE login = ? AND password = ?;";
     private static final String SQL_CHECK_USER_LOGIN = "SELECT login FROM client WHERE login = ?;";
     private static final String SQL_DELETE_USER = "DELETE FROM client WHERE login = ?";
-    private static final String SQL_BOOK_REQUEST = "INSERT INTO request(client_id, places_num, " +
-            "date_from, date_to, cost) VALUES(?, ?, ?, ?, ?)";
-    private static final String SQL_TAKE_SETTING = "SELECT value FROM setting WHERE name = ?";
 
     public void addUser(User user) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
@@ -75,24 +71,6 @@ public class UserDao extends Dao {
         return statement;
     }
 
-    public void bookRequest(Request userRequest) throws DaoException {
-        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement(SQL_BOOK_REQUEST);
-            preparedStatement.setInt(1, userRequest.getUserId());
-            preparedStatement.setInt(2, userRequest.getAmountOfPlaces());
-            preparedStatement.setDate(3, new java.sql.Date(userRequest.getDateFrom().getTime()));
-            preparedStatement.setDate(4, new java.sql.Date(userRequest.getDateTo().getTime()));
-            preparedStatement.setDouble(5, userRequest.getCost());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new DaoException("Unable to book user's request.", e);
-        } finally {
-            closeResources(connection, preparedStatement);
-        }
-    }
-
     public User takeUser(String login) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         PreparedStatement preparedStatement = null;
@@ -111,25 +89,6 @@ public class UserDao extends Dao {
             return user;
         } catch (SQLException e) {
             throw new DaoException("Unable to take such user from DB.", e);
-        } finally {
-            closeResources(connection, preparedStatement);
-        }
-    }
-
-    public int takeRoomCost() throws DaoException {
-        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
-        PreparedStatement preparedStatement = null;
-        int value = 0;
-        try {
-            connection.prepareStatement(SQL_TAKE_SETTING);
-            preparedStatement.setString(1, "room_cost");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                value = resultSet.getInt("value");
-            }
-            return value;
-        } catch (SQLException e) {
-            throw new DaoException("Unable to take cost of room.", e);
         } finally {
             closeResources(connection, preparedStatement);
         }

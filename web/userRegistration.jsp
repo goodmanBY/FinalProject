@@ -14,7 +14,8 @@
 <div class="container container-top-padding">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onsubmit="return validateUserRegistrationForm()">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
+                  onsubmit="return validateUserRegistrationForm()">
                 <input type="hidden" name="action" value="userRegistration">
                 <div class="form-group">
                     <span class="centring">Register</span>
@@ -40,13 +41,15 @@
                 <div class="form-group">
                     <label for="password" class="col-md-2 control-label"><fmt:message key="password"/></label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword" class="col-md-2 control-label"><fmt:message key="confirm"/></label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Password">
+                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
+                               placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,7 +66,7 @@
 
 <%@ include file="include/footer.jsp" %>
 
-<%@ include file="include/script.jsp"%>
+<%@ include file="include/script.jsp" %>
 
 </body>
 </html>

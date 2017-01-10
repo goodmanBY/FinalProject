@@ -13,17 +13,14 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ConnectionPool {
 
     private static final Logger LOG = Logger.getLogger(ConnectionPool.class);
-
-    private static ConnectionPool instance;
-    private static AtomicBoolean instanceCreated = new AtomicBoolean();
-    private static AtomicBoolean isClosing = new AtomicBoolean(false);
-    private static ReentrantLock lock = new ReentrantLock();
-
     private static final String URL = "db.url";
     private static final String USER_NAME = "db.username";
     private static final String PASSWORD = "db.password";
     private static final String POOL_SIZE = "db.connections.pool.size";
-
+    private static ConnectionPool instance;
+    private static AtomicBoolean instanceCreated = new AtomicBoolean();
+    private static AtomicBoolean isClosing = new AtomicBoolean(false);
+    private static ReentrantLock lock = new ReentrantLock();
     private String url;
     private String username;
     private String password;
@@ -31,6 +28,15 @@ public class ConnectionPool {
 
     private BlockingQueue<ConnectionProxy> busyConnections;
     private BlockingQueue<ConnectionProxy> freeConnections;
+
+    private ConnectionPool() {
+        ConnectionPoolConfig connectionPoolConfig = ConnectionPoolConfig.getInstance();
+        setPoolSize(Integer.parseInt(connectionPoolConfig.getString((ConnectionPool.POOL_SIZE))));
+        setUrl(connectionPoolConfig.getString(ConnectionPool.URL));
+        setUsername(connectionPoolConfig.getString(ConnectionPool.USER_NAME));
+        setPassword(connectionPoolConfig.getString(ConnectionPool.PASSWORD));
+        init();
+    }
 
     /**
      * Lazy initialization of connection pool
@@ -50,15 +56,6 @@ public class ConnectionPool {
             }
         }
         return instance;
-    }
-
-    private ConnectionPool() {
-        ConnectionPoolConfig connectionPoolConfig = ConnectionPoolConfig.getInstance();
-        setPoolSize(Integer.parseInt(connectionPoolConfig.getString((ConnectionPool.POOL_SIZE))));
-        setUrl(connectionPoolConfig.getString(ConnectionPool.URL));
-        setUsername(connectionPoolConfig.getString(ConnectionPool.USER_NAME));
-        setPassword(connectionPoolConfig.getString(ConnectionPool.PASSWORD));
-        init();
     }
 
     /**

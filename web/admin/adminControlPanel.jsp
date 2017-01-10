@@ -19,7 +19,8 @@
         <a><h2>Requests</h2></a>
     </div>
 
-    <div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/do?action=adminLogOut"><fmt:message key="log.out"/></a></div>
+    <div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/do?action=adminLogOut"><fmt:message
+            key="log.out"/></a></div>
 </c:if>
 
 <%@ include file="/include/script.jsp" %>

@@ -11,5 +11,7 @@ public class Pages {
     public static final String USER_PROFILE = "/userProfile.jsp";
     public static final String USER_REGISTRATION = "/userRegistration.jsp";
     public static final String USER_REQUEST_INFO = "/requestInfo.jsp";
+    public static final String USERS_REQUESTS = "/userRequests.jsp";
 
+    public static final String PAY_REQUEST = "/payRequest.jsp";
 }

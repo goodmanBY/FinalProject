@@ -25,6 +25,9 @@ public class CommandHolder {
         commands.put("takeAllUsers", new AllUsersCommand());
         commands.put("userRequest", new UserRequestCommand());
         commands.put("userRequestInfo", new UserRequestInfoCommand());
+        commands.put("userAllRequestsInfo", new UserAllRequestsCommand());
+        commands.put("preparePayRequest", new PreparePayRequestCommand());
+        commands.put("payRequest", new PayRequestCommand());
 
     }
 

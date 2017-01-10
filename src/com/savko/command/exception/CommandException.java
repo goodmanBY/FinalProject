@@ -5,7 +5,7 @@ import javax.servlet.ServletException;
 
 public class CommandException extends ServletException {
 
-    public CommandException(String exception){
+    public CommandException(String exception) {
         super(exception);
     }
 

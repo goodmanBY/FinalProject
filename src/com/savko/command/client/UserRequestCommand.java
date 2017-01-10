@@ -21,7 +21,6 @@ public class UserRequestCommand implements Command {
         String amountOfPlaces = request.getParameter(Parameters.AMOUNT_OF_PLACES);
         String stringDateFrom = request.getParameter(Parameters.DATE_FROM);
         String stringDateTo = request.getParameter(Parameters.DATE_TO);
-
         try {
             int amountOfDays = DateUtil.calculateAmountOfDays(stringDateFrom, stringDateTo);
             double cost = CostUtil.calculateCost(Integer.parseInt(amountOfPlaces), amountOfDays);
@@ -32,7 +31,6 @@ public class UserRequestCommand implements Command {
             request.setAttribute(Parameters.COST, cost);
         } catch (UtilException e) {
             LOGGER.error("Unable to book user's request.", e);
-
         }
         return new ForwardAction(Pages.USER_REQUEST_INFO);
     }

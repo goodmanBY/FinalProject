@@ -4,7 +4,7 @@ import javax.servlet.ServletException;
 
 public class UtilException extends ServletException {
 
-    public UtilException(String exception){
+    public UtilException(String exception) {
         super(exception);
     }
 

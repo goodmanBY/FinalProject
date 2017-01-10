@@ -19,21 +19,21 @@
         <th>Banned</th>
         <th>Discount ID</th>
     </tr>
-        <c:forEach items="${users}" var="users">
-            <tr>
-                <th>${users.id}</th>
-                <th>${users.name}</th>
-                <th>${users.lastName}</th>
-                <th>${users.login}</th>
-                <th>${users.banned}</th>
-                <th>${users.discountId}</th>
-                <th><a href="${pageContext.request.contextPath}/do?action=showProfile&userId=${users.id}">Profile</a></th>
-            </tr>
-        </c:forEach>
+    <c:forEach items="${users}" var="users">
+        <tr>
+            <th>${users.id}</th>
+            <th>${users.name}</th>
+            <th>${users.lastName}</th>
+            <th>${users.login}</th>
+            <th>${users.banned}</th>
+            <th>${users.discountId}</th>
+            <th><a href="${pageContext.request.contextPath}/do?action=showProfile&userId=${users.id}">Profile</a></th>
+        </tr>
+    </c:forEach>
     </c:if>
 </table>
 
-<%@ include file="/include/script.jsp"%>
+<%@ include file="/include/script.jsp" %>
 
 </body>
 </html>

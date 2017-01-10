@@ -5,9 +5,9 @@ import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
+import com.savko.dao.BookingDao;
 import com.savko.dao.DaoException;
-import com.savko.dao.UserDao;
-import com.savko.entity.Request;
+import com.savko.entity.BookingRequest;
 import com.savko.util.DateUtil;
 import com.savko.util.UtilException;
 import org.apache.log4j.Logger;
@@ -28,9 +28,15 @@ public class UserRequestInfoCommand implements Command {
             java.util.Date dateFrom = DateUtil.castToDate(stringDateFrom);
             java.util.Date dateTo = DateUtil.castToDate(stringDateTo);
             String cost = request.getParameter(Parameters.COST);
-            Request userRequest = new Request(Integer.parseInt(userId), Integer.parseInt(amountOfPlaces), dateFrom, dateTo, Double.parseDouble(cost));
-            UserDao userDao = new UserDao();
-            userDao.bookRequest(userRequest);
+            BookingRequest bookingRequest = new BookingRequest()
+                    .setUserId(Integer.parseInt(userId))
+                    .setAmountOfPlaces(Integer.parseInt(amountOfPlaces))
+                    .setDateFrom(dateFrom)
+                    .setDateTo(dateTo)
+                    .setCost(Double.parseDouble(cost));
+
+            BookingDao bookingDao = new BookingDao();
+            bookingDao.bookRequest(bookingRequest);
         } catch (DaoException e) {
             LOGGER.error("Unable to book user's request.", e);
         } catch (UtilException e) {

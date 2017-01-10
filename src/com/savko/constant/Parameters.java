@@ -14,6 +14,13 @@ public class Parameters {
     public static final String DATE_TO = "dateTo";
     public static final String COST = "cost";
 
+    public static final String REQUEST_ID = "requestId";
+    public static final String CARD_NUMBER = "cardNumber";
+    public static final String MONTH = "month";
+    public static final String YEAR = "year";
+    public static final String OWNER = "owner";
+    public static final String SECURITY_CODE = "securityCode";
+
     public static final String LANGUAGE = "language";
 
 }

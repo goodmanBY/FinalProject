@@ -10,79 +10,67 @@ public class User {
     private byte banned;
     private short discountId;
 
-    public User() {
-
-    }
-
-    public User(int id, String name, String lastName, String login, String password) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-    }
-
-    public User(String name, String lastName, String login, String password) {
-        this.name = name;
-        this.lastName = lastName;
-        this.login = login;
-        this.password = password;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public byte getBanned() {
         return banned;
     }
 
-    public void setBanned(byte banned) {
-        this.banned = banned;
-    }
-
     public short getDiscountId() {
         return discountId;
     }
 
-    public void setDiscountId(short discountId) {
+    public User setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public User setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public User setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public User setLogin(String login) {
+        this.login = login;
+        return this;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public User setBanned(byte banned) {
+        this.banned = banned;
+        return this;
+    }
+
+    public User setDiscountId(short discountId) {
         this.discountId = discountId;
+        return this;
     }
 
     @Override

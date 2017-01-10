@@ -28,7 +28,8 @@
                 <div class="form-group">
                     <label for="password" class="col-md-2 control-label"><fmt:message key="password"/></label>
                     <div class="col-md-10">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="password">
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="password">
                     </div>
                 </div>
                 <div class="form-group">

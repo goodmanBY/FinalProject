@@ -2,7 +2,7 @@ package com.savko.dao;
 
 public class DaoException extends Exception {
 
-    public DaoException(String exception){
+    public DaoException(String exception) {
         super(exception);
     }
 

@@ -12,37 +12,36 @@
 
 <c:if test="${not empty sessionScope.user}">
 
-<%@ include file="include/navigation.jsp" %>
+    <%@ include file="include/navigation.jsp" %>
 
-<div class="container container-top-padding">
-    <div class="row">
-        <div>
-            <span class="centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
-            <div class="form-group">
-                <label class="col-md-offset-6 col-md-2 control-label">Your ID</label>
-                <span>${sessionScope.user.id}</span>
+    <div class="container container-top-padding">
+        <div class="row">
+            <div>
+                <span class="centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
             </div>
-            <div class="form-group">
-                <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="name"/></label>
-                <span>${sessionScope.user.name}</span>
+            <div class="col-md-6 col-md-offset-2">
+                <div class="form-group">
+                    <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="name"/></label>
+                    <span>${sessionScope.user.name}</span>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="last.name"/></label>
+                    <span>${sessionScope.user.lastName}</span>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="login"/></label>
+                    <span>${sessionScope.user.login}</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="last.name"/></label>
-                <span>${sessionScope.user.lastName}</span>
-            </div>
-            <div class="form-group">
-                <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="login"/></label>
-                <span>${sessionScope.user.login}</span>
+            <div class="col-md-12 centring">
+                <a href="${pageContext.request.contextPath}/do?action=userAllRequestsInfo"><h2>My requests</h2></a>
             </div>
         </div>
     </div>
-</div>
 
-<%@ include file="include/footer.jsp" %>
+    <%@ include file="include/footer.jsp" %>
 
-<%@ include file="include/script.jsp" %>
+    <%@ include file="include/script.jsp" %>
 
 </c:if>
 </body>

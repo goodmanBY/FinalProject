@@ -1,6 +1,5 @@
 package com.savko.command.client;
 
-
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.action.RedirectAction;

@@ -17,7 +17,7 @@ public class Dao {
 
     void closeResources(ConnectionProxy connection, Statement statement) {
         try {
-            if (statement!=null) {
+            if (statement != null) {
                 statement.close();
             }
         } catch (SQLException e) {
