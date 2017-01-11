@@ -9,6 +9,7 @@
     <title>Users</title>
 </head>
 <body>
+
 <c:if test="${not empty sessionScope.admin}">
 <table class="table table-hover">
     <tr>
@@ -25,7 +26,14 @@
             <th>${users.name}</th>
             <th>${users.lastName}</th>
             <th>${users.login}</th>
-            <th>${users.banned}</th>
+            <c:choose>
+                <c:when test="${users.banned == 0}">
+                    <th>Not banned</th>
+                </c:when>
+                <c:otherwise>
+                    <th>Banned</th>
+                </c:otherwise>
+            </c:choose>
             <th>${users.discountId}</th>
             <c:choose>
                 <c:when test="${users.banned == 0}">
@@ -37,13 +45,15 @@
                         <a href="${pageContext.request.contextPath}/do?action=unblockUser&userId=${users.id}">Unblock</a>
                     </th>
                 </c:otherwise>
-
             </c:choose>
             <th><a href="${pageContext.request.contextPath}/do?action=showProfile&userId=${users.id}">Profile</a></th>
         </tr>
     </c:forEach>
     </c:if>
 </table>
+
+<div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/admin/adminControlPanel.jsp">Back</a>
+</div>
 
 <%@ include file="/include/script.jsp" %>
 

@@ -4,6 +4,7 @@ import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.constant.HttpHeader;
+import com.savko.constant.Pages;
 import com.savko.dao.BookingDao;
 import com.savko.dao.DaoException;
 import org.apache.log4j.Logger;
@@ -23,6 +24,6 @@ public class CancelConfirmationCommand implements Command {
         } catch (DaoException e) {
             LOGGER.error("Unable to update table 'request'", e);
         }
-        return new ForwardAction(HttpHeader.REFERER);
+        return new ForwardAction(Pages.ADMIN_ALL_BOOKING_REQUESTS);
     }
 }

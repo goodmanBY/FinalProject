@@ -25,20 +25,48 @@
             <th>Approved by</th>
         </tr>
         <c:forEach items="${requests}" var="bookingRequest">
-            <tr>
+            <tr <c:if test="${bookingRequest.paid == 1 && bookingRequest.confirmed == 1}">class="success"</c:if>>
                 <th <c:if test="${empty admin}">hidden</c:if>>${bookingRequest.requestId}</th>
                 <th>${bookingRequest.amountOfPlaces}</th>
                 <th>${bookingRequest.dateFrom}</th>
                 <th>${bookingRequest.dateTo}</th>
                 <th>$${bookingRequest.cost}</th>
-                <th>${bookingRequest.confirmed}</th>
-                <th>${bookingRequest.paid}</th>
-                <th>${bookingRequest.approvedBy}</th>
+                <c:choose>
+                    <c:when test="${bookingRequest.confirmed == 0}">
+                        <th>Not confirmed</th>
+                    </c:when>
+                    <c:otherwise>
+                        <th>Confirmed</th>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${bookingRequest.paid == 0}">
+                        <th>Not paid</th>
+                    </c:when>
+                    <c:otherwise>
+                        <th>Paid</th>
+                    </c:otherwise>
+                </c:choose>
+                <th>
+                    ${bookingRequest.approvedBy}
+                </th>
                 <c:choose>
                     <c:when test="${bookingRequest.confirmed == 1}">
-                        <th>
-                            <a href="${pageContext.request.contextPath}/do?action=preparePayRequest&requestId=${bookingRequest.requestId}">Pay</a>
-                        </th>
+                        <c:choose>
+                            <c:when test="${bookingRequest.paid == 0}">
+                                <th>
+                                    <a href="${pageContext.request.contextPath}/do?action=preparePayRequest&requestId=${bookingRequest.requestId}">Pay</a>
+                                </th>
+                                <th>
+                                    <a>Cash</a>
+                                </th>
+                            </c:when>
+                            <c:otherwise>
+                                <th>
+                                    Paid
+                                </th>
+                            </c:otherwise>
+                        </c:choose>
                     </c:when>
                     <c:otherwise>
                         <th>Wait confirmation</th>

@@ -9,46 +9,51 @@
     <title>All booking requests</title>
 </head>
 <body>
-
-<table class="table table-hover">
-    <tr>
-        <th>Request ID</th>
-        <th>User ID</th>
-        <th>Amount of places</th>
-        <th>Date from</th>
-        <th>Date to</th>
-        <th>Cost, $</th>
-        <th>Confirmed</th>
-        <th>Paid</th>
-        <th>Approved byd</th>
-    </tr>
-    <c:forEach items="${bookingRequests}" var="bookingRequests">
+<c:if test="${not empty sessionScope.admin}">
+    <table class="table table-hover">
         <tr>
-            <th>${bookingRequests.requestId}</th>
-            <th>${bookingRequests.userId}</th>
-            <th>${bookingRequests.amountOfPlaces}</th>
-            <th>${bookingRequests.dateFrom}</th>
-            <th>${bookingRequests.dateTo}</th>
-            <th>${bookingRequests.cost}, $</th>
-            <th>${bookingRequests.confirmed}</th>
-            <th>${bookingRequests.paid}</th>
-            <th>${bookingRequests.approvedBy}</th>
-            <c:choose>
-                <c:when test="${bookingRequests.confirmed == 0}">
-                    <th>
-                        <a href="${pageContext.request.contextPath}/do?action=confirmBookingRequest&requestId=${bookingRequests.requestId}">Confirm</a>
-                    </th>
-                </c:when>
-                <c:otherwise>
-                    <th>
-                        <a href="${pageContext.request.contextPath}/do?action=cancelConfirmation&requestId=${bookingRequests.requestId}">Cancel
-                            confirmation</a>
-                    </th>
-                </c:otherwise>
-            </c:choose>
+            <th>Request ID</th>
+            <th>User ID</th>
+            <th>Amount of places</th>
+            <th>Date from</th>
+            <th>Date to</th>
+            <th>Cost, $</th>
+            <th>Confirmed</th>
+            <th>Paid</th>
+            <th>Approved byd</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach items="${bookingRequests}" var="bookingRequests">
+            <tr <c:if test="${bookingRequests.paid == 1 && bookingRequests.confirmed == 1}">class="success"</c:if>>
+                <th>${bookingRequests.requestId}</th>
+                <th>${bookingRequests.userId}</th>
+                <th>${bookingRequests.amountOfPlaces}</th>
+                <th>${bookingRequests.dateFrom}</th>
+                <th>${bookingRequests.dateTo}</th>
+                <th>${bookingRequests.cost}</th>
+                <th>${bookingRequests.confirmed}</th>
+                <th>${bookingRequests.paid}</th>
+                <th>${bookingRequests.approvedBy}</th>
+                <c:choose>
+                    <c:when test="${bookingRequests.confirmed == 0}">
+                        <th>
+                            <a href="${pageContext.request.contextPath}/do?action=confirmBookingRequest&requestId=${bookingRequests.requestId}">Confirm</a>
+                        </th>
+                    </c:when>
+                    <c:otherwise>
+                        <th>
+                            <a href="${pageContext.request.contextPath}/do?action=cancelConfirmation&requestId=${bookingRequests.requestId}">Cancel
+                                confirmation</a>
+                        </th>
+                    </c:otherwise>
+                </c:choose>
+            </tr>
+        </c:forEach>
+    </table>
+
+    <div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/admin/adminControlPanel.jsp">Back</a>
+    </div>
+
+</c:if>
 
 <%@ include file="/include/script.jsp" %>
 

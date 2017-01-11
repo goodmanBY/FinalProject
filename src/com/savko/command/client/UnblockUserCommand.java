@@ -18,7 +18,7 @@ public class UnblockUserCommand implements Command {
         String userId = request.getParameter("userId");
         UserDao userDao = new UserDao();
         try {
-            userDao.blockUser(Integer.parseInt(userId));
+            userDao.unblockUser(Integer.parseInt(userId));
         } catch (DaoException e) {
             LOGGER.error("Unable to update table 'client'.", e);
         }
