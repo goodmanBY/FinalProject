@@ -27,6 +27,18 @@
             <th>${users.login}</th>
             <th>${users.banned}</th>
             <th>${users.discountId}</th>
+            <c:choose>
+                <c:when test="${users.banned == 0}">
+                    <th><a href="${pageContext.request.contextPath}/do?action=blockUser&userId=${users.id}">Block</a>
+                    </th>
+                </c:when>
+                <c:otherwise>
+                    <th>
+                        <a href="${pageContext.request.contextPath}/do?action=unblockUser&userId=${users.id}">Unblock</a>
+                    </th>
+                </c:otherwise>
+
+            </c:choose>
             <th><a href="${pageContext.request.contextPath}/do?action=showProfile&userId=${users.id}">Profile</a></th>
         </tr>
     </c:forEach>

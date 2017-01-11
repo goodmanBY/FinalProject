@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1>Ooops.... Error ${code}</h1>
-        <h3>${message}</h3>
+<h3>${message}</h3>
 </body>
 </html>

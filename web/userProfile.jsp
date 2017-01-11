@@ -20,6 +20,9 @@
                 <span class="centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
             </div>
             <div class="col-md-6 col-md-offset-2">
+                <div hidden>
+                    <input name="userId" id="userId" value="${sessionScope.user.id}">
+                </div>
                 <div class="form-group">
                     <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="name"/></label>
                     <span>${sessionScope.user.name}</span>

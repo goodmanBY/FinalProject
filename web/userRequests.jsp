@@ -24,19 +24,26 @@
             <th>Paid</th>
             <th>Approved by</th>
         </tr>
-        <c:forEach items="${requests}" var="request">
+        <c:forEach items="${requests}" var="bookingRequest">
             <tr>
-                <th <c:if test="${empty admin}">hidden</c:if>>${request.requestId}</th>
-                <th>${request.amountOfPlaces}</th>
-                <th>${request.dateFrom}</th>
-                <th>${request.dateTo}</th>
-                <th>$${request.cost}</th>
-                <th>${request.confirmed}</th>
-                <th>${request.paid}</th>
-                <th>${request.approvedBy}</th>
-                <th>
-                    <a href="${pageContext.request.contextPath}/do?action=preparePayRequest&requestId=${request.requestId}">Pay</a>
-                </th>
+                <th <c:if test="${empty admin}">hidden</c:if>>${bookingRequest.requestId}</th>
+                <th>${bookingRequest.amountOfPlaces}</th>
+                <th>${bookingRequest.dateFrom}</th>
+                <th>${bookingRequest.dateTo}</th>
+                <th>$${bookingRequest.cost}</th>
+                <th>${bookingRequest.confirmed}</th>
+                <th>${bookingRequest.paid}</th>
+                <th>${bookingRequest.approvedBy}</th>
+                <c:choose>
+                    <c:when test="${bookingRequest.confirmed == 1}">
+                        <th>
+                            <a href="${pageContext.request.contextPath}/do?action=preparePayRequest&requestId=${bookingRequest.requestId}">Pay</a>
+                        </th>
+                    </c:when>
+                    <c:otherwise>
+                        <th>Wait confirmation</th>
+                    </c:otherwise>
+                </c:choose>
             </tr>
         </c:forEach>
         </c:if>

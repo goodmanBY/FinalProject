@@ -2,6 +2,7 @@ package com.savko.command;
 
 import com.savko.command.admin.AdminLogInCommand;
 import com.savko.command.admin.AdminLogOutCommand;
+import com.savko.command.admin.AllBookingRequestsCommand;
 import com.savko.command.admin.AllUsersCommand;
 import com.savko.command.client.*;
 import com.savko.command.exception.CommandException;
@@ -22,12 +23,17 @@ public class CommandHolder {
         commands.put("changeLanguage", new LanguageChangeCommand());
         commands.put("adminLogIn", new AdminLogInCommand());
         commands.put("adminLogOut", new AdminLogOutCommand());
-        commands.put("takeAllUsers", new AllUsersCommand());
+        commands.put("allUsers", new AllUsersCommand());
         commands.put("userRequest", new UserRequestCommand());
         commands.put("userRequestInfo", new UserRequestInfoCommand());
         commands.put("userAllRequestsInfo", new UserAllRequestsCommand());
         commands.put("preparePayRequest", new PreparePayRequestCommand());
         commands.put("payRequest", new PayRequestCommand());
+        commands.put("blockUser", new BlockUserCommand());
+        commands.put("unblockUser", new UnblockUserCommand());
+        commands.put("allBookingRequests", new AllBookingRequestsCommand());
+        commands.put("confirmBookingRequest", new ConfirmBookingRequestCommand());
+        commands.put("cancelConfirmation", new CancelConfirmationCommand());
 
     }
 

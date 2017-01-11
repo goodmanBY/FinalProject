@@ -14,33 +14,13 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public byte getBanned() {
-        return banned;
-    }
-
-    public short getDiscountId() {
-        return discountId;
-    }
-
     public User setId(int id) {
         this.id = id;
         return this;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public User setName(String name) {
@@ -48,9 +28,17 @@ public class User {
         return this;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public User setLastName(String lastName) {
         this.lastName = lastName;
         return this;
+    }
+
+    public String getLogin() {
+        return login;
     }
 
     public User setLogin(String login) {
@@ -58,14 +46,26 @@ public class User {
         return this;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public User setPassword(String password) {
         this.password = password;
         return this;
     }
 
+    public byte getBanned() {
+        return banned;
+    }
+
     public User setBanned(byte banned) {
         this.banned = banned;
         return this;
+    }
+
+    public short getDiscountId() {
+        return discountId;
     }
 
     public User setDiscountId(short discountId) {

@@ -5,31 +5,31 @@ import com.savko.action.RedirectAction;
 import com.savko.command.Command;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
+import com.savko.dao.BookingDao;
 import com.savko.dao.DaoException;
-import com.savko.dao.UserDao;
-import com.savko.entity.User;
+import com.savko.entity.BookingRequest;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class AllUsersCommand implements Command {
+public class AllBookingRequestsCommand implements Command {
 
-    private final static Logger LOGGER = Logger.getLogger(AllUsersCommand.class);
+    private final static Logger LOGGER = Logger.getLogger(AllBookingRequestsCommand.class);
 
     @Override
     public Action execute(HttpServletRequest request) {
-        UserDao userDao = new UserDao();
-        List<User> users = null;
+        BookingDao bookingDao = new BookingDao();
+        List<BookingRequest> bookingRequests = null;
         try {
-            users = userDao.takeAllUsers();
+            bookingRequests = bookingDao.takeAllBookingRequests();
         } catch (DaoException e) {
             LOGGER.error("Unable to take all users.", e);
         }
         HttpSession session = request.getSession();
-        session.setAttribute(Attributes.USERS, users);
+        session.setAttribute(Attributes.BOOKING_REQUESTS, bookingRequests);
 
-        return new RedirectAction(Pages.ADMIN_ALL_USERS);
+        return new RedirectAction(Pages.ADMIN_ALL_BOOKING_REQUESTS);
     }
 }

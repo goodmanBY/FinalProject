@@ -6,17 +6,17 @@
 <html>
 <head>
     <%@ include file="/include/head.jsp" %>
-    <title>Control Panel</title>
+    <title>Control panel</title>
 </head>
 <body>
 <c:if test="${not empty sessionScope.admin}">
     <div class="col-md-12 centring">Cheers, ${sessionScope.admin.login}!</div>
 
     <div class="col-md-6 centring">
-        <a href="${pageContext.request.contextPath}/do?action=takeAllUsers"><h2>Users</h2></a>
+        <a href="${pageContext.request.contextPath}/do?action=allUsers"><h2>Users</h2></a>
     </div>
     <div class="col-md-6 centring">
-        <a><h2>Requests</h2></a>
+        <a href="${pageContext.request.contextPath}/do?action=allBookingRequests"><h2>Booking requests</h2></a>
     </div>
 
     <div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/do?action=adminLogOut"><fmt:message

@@ -9,13 +9,13 @@ public class Admin {
         return login;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public Admin setLogin(String login) {
         this.login = login;
         return this;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public Admin setPassword(String password) {

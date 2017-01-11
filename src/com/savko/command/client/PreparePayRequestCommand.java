@@ -17,7 +17,6 @@ public class PreparePayRequestCommand implements Command {
 
     private final static Logger LOGGER = Logger.getLogger(PreparePayRequestCommand.class);
 
-
     @Override
     public Action execute(HttpServletRequest request) {
         String requestId = request.getParameter(Parameters.REQUEST_ID);
@@ -25,7 +24,7 @@ public class PreparePayRequestCommand implements Command {
         BookingDao bookingDao = new BookingDao();
         try {
             BookingRequest bookingRequest = bookingDao.takeBookingRequestByRequestId(Integer.parseInt(requestId));
-            request.setAttribute(Attributes.AMOUNT_OF_PLACS, bookingRequest.getAmountOfPlaces());
+            request.setAttribute(Attributes.AMOUNT_OF_PLACES, bookingRequest.getAmountOfPlaces());
             request.setAttribute(Attributes.DATE_FROM, bookingRequest.getDateFrom());
             request.setAttribute(Attributes.DATE_TO, bookingRequest.getDateTo());
             request.setAttribute(Attributes.COST, bookingRequest.getCost());
