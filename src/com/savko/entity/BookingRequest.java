@@ -12,7 +12,7 @@ public class BookingRequest {
     private double cost;
     private byte confirmed;
     private byte paid;
-    private int approvedBy;
+    private String approvedBy;
 
     public int getRequestId() {
         return requestId;
@@ -86,11 +86,11 @@ public class BookingRequest {
         return this;
     }
 
-    public int getApprovedBy() {
+    public String getApprovedBy() {
         return approvedBy;
     }
 
-    public BookingRequest setApprovedBy(int approvedBy) {
+    public BookingRequest setApprovedBy(String approvedBy) {
         this.approvedBy = approvedBy;
         return this;
     }

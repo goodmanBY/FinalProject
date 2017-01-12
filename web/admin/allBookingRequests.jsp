@@ -5,7 +5,7 @@
 <fmt:setBundle basename="com.savko.i18n.text"/>
 <html>
 <head>
-    <%@ include file="/include/head.jsp" %>
+    <%@ include file="/include/head.jsp"%>
     <title>All booking requests</title>
 </head>
 <body>
@@ -30,9 +30,25 @@
                 <th>${bookingRequests.dateFrom}</th>
                 <th>${bookingRequests.dateTo}</th>
                 <th>${bookingRequests.cost}</th>
-                <th>${bookingRequests.confirmed}</th>
-                <th>${bookingRequests.paid}</th>
-                <th>${bookingRequests.approvedBy}</th>
+                <c:choose>
+                    <c:when test="${bookingRequests.confirmed == 0}">
+                        <th>Not confirmed</th>
+                    </c:when>
+                    <c:otherwise>
+                        <th>Confirmed</th>
+                    </c:otherwise>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${bookingRequests.paid == 0}">
+                        <th>Not paid</th>
+                    </c:when>
+                    <c:otherwise>
+                        <th>Paid</th>
+                    </c:otherwise>
+                </c:choose>
+                <th>
+                    ${bookingRequests.approvedBy}
+                </th>
                 <c:choose>
                     <c:when test="${bookingRequests.confirmed == 0}">
                         <th>
@@ -40,10 +56,19 @@
                         </th>
                     </c:when>
                     <c:otherwise>
-                        <th>
-                            <a href="${pageContext.request.contextPath}/do?action=cancelConfirmation&requestId=${bookingRequests.requestId}">Cancel
-                                confirmation</a>
-                        </th>
+                        <c:choose>
+                            <c:when test="${bookingRequests.paid == 0}">
+                                <th>
+                                    <a href="${pageContext.request.contextPath}/do?action=cancelConfirmation&requestId=${bookingRequests.requestId}">Cancel
+                                        confirmation</a>
+                                </th>
+                            </c:when>
+                            <c:otherwise>
+                                <th>
+                                    Unable to cancel paid order
+                                </th>
+                            </c:otherwise>
+                        </c:choose>
                     </c:otherwise>
                 </c:choose>
             </tr>

@@ -36,7 +36,7 @@ public class PayRequestCommand implements Command {
                 LOGGER.error("Unable to update table 'request'.", e);
             }
             request.setAttribute(Attributes.PAID, "Wait for confirmation");
-            return new ForwardAction(Pages.USER_PROFILE);
+            return new ForwardAction(Pages.USERS_REQUESTS);
         }
     }
 }

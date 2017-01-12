@@ -18,7 +18,7 @@
         <th>Last Name</th>
         <th>Login</th>
         <th>Banned</th>
-        <th>Discount ID</th>
+        <th>Discount</th>
     </tr>
     <c:forEach items="${users}" var="users">
         <tr>
@@ -46,7 +46,7 @@
                     </th>
                 </c:otherwise>
             </c:choose>
-            <th><a href="${pageContext.request.contextPath}/do?action=showProfile&userId=${users.id}">Profile</a></th>
+            <th><a href="${pageContext.request.contextPath}/do?action=userProfile&userId=${users.id}">Profile</a></th>
         </tr>
     </c:forEach>
     </c:if>
@@ -55,7 +55,7 @@
 <div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/admin/adminControlPanel.jsp">Back</a>
 </div>
 
-<%@ include file="/include/script.jsp" %>
+<%@ include file="/include/script.jsp"%>
 
 </body>
 </html>

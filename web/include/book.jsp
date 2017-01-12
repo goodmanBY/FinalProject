@@ -38,5 +38,6 @@
                 <button type="submit" class="btn btn-success"><fmt:message key="book"/></button>
             </div>
         </div>
+        <%@ include file="/include/message.jsp" %>
     </form>
 </div>

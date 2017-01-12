@@ -22,13 +22,19 @@ public class UserRequestCommand implements Command {
         String stringDateFrom = request.getParameter(Parameters.DATE_FROM);
         String stringDateTo = request.getParameter(Parameters.DATE_TO);
         try {
-            int amountOfDays = DateUtil.calculateAmountOfDays(stringDateFrom, stringDateTo);
-            double cost = CostUtil.calculateCost(Integer.parseInt(amountOfPlaces), amountOfDays);
-            request.setAttribute(Parameters.AMOUNT_OF_PLACES, amountOfPlaces);
-            request.setAttribute(Parameters.AMOUNT_OF_DAYS, amountOfDays);
-            request.setAttribute(Parameters.DATE_FROM, stringDateFrom);
-            request.setAttribute(Parameters.DATE_TO, stringDateTo);
-            request.setAttribute(Parameters.COST, cost);
+            if (DateUtil.areDatesValid(stringDateFrom, stringDateTo)) {
+                int amountOfDays = DateUtil.calculateAmountOfDays(stringDateFrom, stringDateTo);
+                double cost = CostUtil.calculateCost(Integer.parseInt(amountOfPlaces), amountOfDays);
+                request.setAttribute(Parameters.AMOUNT_OF_PLACES, amountOfPlaces);
+                request.setAttribute(Parameters.AMOUNT_OF_DAYS, amountOfDays);
+                request.setAttribute(Parameters.DATE_FROM, stringDateFrom);
+                request.setAttribute(Parameters.DATE_TO, stringDateTo);
+                request.setAttribute(Parameters.COST, cost);
+                return new ForwardAction(Pages.USER_REQUEST_INFO);
+            } else {
+                request.setAttribute("error", "Bad selected dates");
+                return new ForwardAction(Pages.USER_INDEX);
+            }
         } catch (UtilException e) {
             LOGGER.error("Unable to book user's request.", e);
         }

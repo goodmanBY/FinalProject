@@ -1,9 +1,6 @@
 package com.savko.command;
 
-import com.savko.command.admin.AdminLogInCommand;
-import com.savko.command.admin.AdminLogOutCommand;
-import com.savko.command.admin.AllBookingRequestsCommand;
-import com.savko.command.admin.AllUsersCommand;
+import com.savko.command.admin.*;
 import com.savko.command.client.*;
 import com.savko.command.exception.CommandException;
 
@@ -34,6 +31,7 @@ public class CommandHolder {
         commands.put("allBookingRequests", new AllBookingRequestsCommand());
         commands.put("confirmBookingRequest", new ConfirmBookingRequestCommand());
         commands.put("cancelConfirmation", new CancelConfirmationCommand());
+        commands.put("userProfile", new UserProfileCommand());
 
     }
 

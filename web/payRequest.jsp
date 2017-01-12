@@ -10,6 +10,7 @@
 <body>
 
 <%@ include file="include/navigation.jsp" %>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-2 container-top-padding">

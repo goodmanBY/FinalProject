@@ -24,7 +24,7 @@ public class UserAllRequestsCommand implements Command {
         User user = (User) request.getSession().getAttribute(Attributes.USER);
         List<BookingRequest> requests = null;
         try {
-            requests = bookingDao.takeRequestsByUserId(user.getId());
+            requests = bookingDao.takeBookingRequestsByUserId(user.getId());
         } catch (DaoException e) {
             LOGGER.error("Unable to take all user's requests.", e);
         }

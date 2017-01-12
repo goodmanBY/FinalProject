@@ -24,6 +24,6 @@ public class CancelConfirmationCommand implements Command {
         } catch (DaoException e) {
             LOGGER.error("Unable to update table 'request'", e);
         }
-        return new ForwardAction(Pages.ADMIN_ALL_BOOKING_REQUESTS);
+        return new ForwardAction(Pages.ADMIN_CONTROL_PANEL);
     }
 }

@@ -17,23 +17,34 @@
     <div class="container container-top-padding">
         <div class="row">
             <div>
-                <span class="centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
+                <span class="col-md-12 centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
             </div>
             <div class="col-md-6 col-md-offset-2">
                 <div hidden>
                     <input name="userId" id="userId" value="${sessionScope.user.id}">
                 </div>
+
                 <div class="form-group">
-                    <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="name"/></label>
-                    <span>${sessionScope.user.name}</span>
+                    <label for="name" class="col-md-offset-2 col-md-2 control-label"><fmt:message key="name"/></label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="name" id="name"
+                               value="${sessionScope.user.name}" readonly>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="last.name"/></label>
-                    <span>${sessionScope.user.lastName}</span>
+                    <label for="lastName" class="col-md-offset-2 col-md-2 control-label"><fmt:message
+                            key="last.name"/></label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="lastName" id="lastName"
+                               value="${sessionScope.user.lastName}" readonly>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-offset-6 col-md-2 control-label"><fmt:message key="login"/></label>
-                    <span>${sessionScope.user.login}</span>
+                    <label for="login" class="col-md-offset-2 col-md-2 control-label"><fmt:message key="login"/></label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="login" id="login"
+                               value="${sessionScope.user.login}" readonly>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12 centring">
@@ -47,5 +58,6 @@
     <%@ include file="include/script.jsp" %>
 
 </c:if>
+
 </body>
 </html>
