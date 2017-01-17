@@ -16,19 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 
 public class BlockUserCommand implements Command {
 
-    private final static Logger LOGGER = Logger.getLogger(BlockUserCommand.class);
-
     @Override
     public Action execute(HttpServletRequest request) {
         String userId = request.getParameter(Parameters.USER_ID);
         request.setAttribute(Attributes.USER_ID, userId);
-        /*
-        try {
-            UserService.getInstance().blockUser(Integer.parseInt(userId));
-        } catch (ServiceException e) {
-            LOGGER.error("Unable to update table 'client'", e);
-        }
-        */
-        return new ForwardAction("/admin/blockDescription.jsp");
+        return new ForwardAction(Pages.ADMIN_BLOCK_DESCRIPTION);
     }
 }
