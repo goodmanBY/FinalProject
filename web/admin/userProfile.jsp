@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 centring">
-            <h2>Information about user</h2>
+            <h2>Full information about user</h2>
         </div>
         <div class="col-md-6 col-md-offset-2">
             <div class="form-group">
@@ -51,8 +51,7 @@
                 <label for="banned" class="col-md-offset-2 col-sm-2 control-label">Banned</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="banned" id="banned"
-                           value="<c:choose><c:when test="${requestScope.user.banned == 0}">Not blocked</c:when><c:otherwise>
-                            Blocked</c:otherwise></c:choose>" readonly>
+                           value="<c:choose><c:when test="${requestScope.user.banned == 0}">Not blocked</c:when><c:otherwise>Blocked</c:otherwise></c:choose>" readonly>
                 </div>
             </div>
             <div class="form-group">
@@ -67,21 +66,23 @@
 </div>
 
 <table class="table table-hover">
+    <div class="col-md-12 centring">
+        <h2>All user's booking requests</h2>
+    </div>
     <tr>
         <th>Request ID</th>
-        <th>User ID</th>
         <th>Amount of places</th>
         <th>Date from</th>
         <th>Date to</th>
         <th>Cost, $</th>
         <th>Confirmed</th>
         <th>Paid</th>
-        <th>Approved byd</th>
+        <th>Approved by</th>
+        <th>Confirm/Cancel</th>
     </tr>
     <c:forEach items="${bookingRequests}" var="bookingRequests">
         <tr <c:if test="${bookingRequests.paid == 1 && bookingRequests.confirmed == 1}">class="success"</c:if>>
             <th>${bookingRequests.requestId}</th>
-            <th>${bookingRequests.userId}</th>
             <th>${bookingRequests.amountOfPlaces}</th>
             <th>${bookingRequests.dateFrom}</th>
             <th>${bookingRequests.dateTo}</th>
@@ -131,8 +132,7 @@
     </c:forEach>
 </table>
 
-<div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/admin/adminControlPanel.jsp">Back</a>
-</div>
+<%@ include file="/include/toControlPanel.jsp" %>
 
 <%@ include file="/include/script.jsp" %>
 

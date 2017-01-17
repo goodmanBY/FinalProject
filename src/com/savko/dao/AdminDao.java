@@ -10,10 +10,16 @@ import java.sql.SQLException;
 
 public class AdminDao extends Dao {
 
-    private final static Logger LOGGER = Logger.getLogger(AdminDao.class);
-
     private static final String SQL_CHECK_ADMIN = "SELECT login, password FROM admin WHERE " +
             "login = ? AND password = ?;";
+
+    public static AdminDao getInstance() {
+        return StaticHolder.INSTANCE;
+    }
+
+    private static class StaticHolder {
+        static final AdminDao INSTANCE = new AdminDao();
+    }
 
     public boolean checkAdmin(String login, String password) throws DaoException {
         boolean statement = false;

@@ -5,11 +5,14 @@
 <fmt:setBundle basename="com.savko.i18n.text"/>
 <html>
 <head>
-    <%@ include file="/include/head.jsp"%>
+    <%@ include file="/include/head.jsp" %>
     <title>All booking requests</title>
 </head>
 <body>
 <c:if test="${not empty sessionScope.admin}">
+    <div class="col-md-12 centring">
+        <h2>All booking requests</h2>
+    </div>
     <table class="table table-hover">
         <tr>
             <th>Request ID</th>
@@ -47,7 +50,7 @@
                     </c:otherwise>
                 </c:choose>
                 <th>
-                    ${bookingRequests.approvedBy}
+                        ${bookingRequests.approvedBy}
                 </th>
                 <c:choose>
                     <c:when test="${bookingRequests.confirmed == 0}">
@@ -75,8 +78,7 @@
         </c:forEach>
     </table>
 
-    <div class="col-md-12 centring"><a href="${pageContext.request.contextPath}/admin/adminControlPanel.jsp">Back</a>
-    </div>
+    <%@ include file="/include/toControlPanel.jsp" %>
 
 </c:if>
 

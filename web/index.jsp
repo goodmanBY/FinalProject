@@ -14,9 +14,11 @@
 
 <%@ include file="include/carousel.jsp" %>
 
-<div class="container">
-    <%@ include file="include/book.jsp" %>
-    <%@ include file="include/about.jsp" %>
+<div class="container main-container">
+    <div class="row">
+        <%@ include file="include/book.jsp" %>
+        <%@ include file="include/about.jsp" %>
+    </div>
 </div>
 
 <%@ include file="include/footer.jsp" %>

@@ -3,29 +3,36 @@ package com.savko.command.admin;
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
+import com.savko.command.client.UserLogInCommand;
+import com.savko.constant.Pages;
 import com.savko.dao.BookingDao;
 import com.savko.dao.DaoException;
 import com.savko.dao.UserDao;
 import com.savko.entity.BookingRequest;
 import com.savko.entity.User;
+import com.savko.service.BookingService;
+import com.savko.service.ServiceException;
+import com.savko.service.UserService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public class UserProfileCommand implements Command {
+
+    private final static Logger LOGGER = Logger.getLogger(UserProfileCommand.class);
+
     @Override
     public Action execute(HttpServletRequest request) {
         String userId = request.getParameter("userId");
-        UserDao userDao = new UserDao();
-        BookingDao bookingDao = new BookingDao();
         try {
-            User user = userDao.takeUser(Integer.parseInt(userId));
-            List<BookingRequest> bookingRequests = bookingDao.takeBookingRequestsByUserId(Integer.parseInt(userId));
+            User user = UserService.getInstance().takeUser(Integer.parseInt(userId));
+            List<BookingRequest> bookingRequests = BookingService.getInstance().takeBookingRequestsByUserId(Integer.parseInt(userId));
             request.setAttribute("user", user);
             request.setAttribute("bookingRequests", bookingRequests);
-        } catch (DaoException e) {
-            e.printStackTrace();
+        } catch (ServiceException e) {
+            LOGGER.error("Unable to take user or take requests from DB.", e);
         }
-        return new ForwardAction("/admin/userProfile.jsp");
+        return new ForwardAction(Pages.ADMIN_USER_PROFILE);
     }
 }

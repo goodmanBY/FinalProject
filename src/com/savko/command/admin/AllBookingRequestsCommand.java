@@ -8,6 +8,8 @@ import com.savko.constant.Pages;
 import com.savko.dao.BookingDao;
 import com.savko.dao.DaoException;
 import com.savko.entity.BookingRequest;
+import com.savko.service.BookingService;
+import com.savko.service.ServiceException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +22,10 @@ public class AllBookingRequestsCommand implements Command {
 
     @Override
     public Action execute(HttpServletRequest request) {
-        BookingDao bookingDao = new BookingDao();
         List<BookingRequest> bookingRequests = null;
         try {
-            bookingRequests = bookingDao.takeAllBookingRequests();
-        } catch (DaoException e) {
+            bookingRequests = BookingService.getInstance().takeAllBookingRequests();
+        } catch (ServiceException e) {
             LOGGER.error("Unable to take all users.", e);
         }
         HttpSession session = request.getSession();

@@ -8,6 +8,8 @@ import com.savko.constant.Pages;
 import com.savko.dao.DaoException;
 import com.savko.dao.UserDao;
 import com.savko.entity.User;
+import com.savko.service.ServiceException;
+import com.savko.service.UserService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +22,10 @@ public class AllUsersCommand implements Command {
 
     @Override
     public Action execute(HttpServletRequest request) {
-        UserDao userDao = new UserDao();
         List<User> users = null;
         try {
-            users = userDao.takeAllUsers();
-        } catch (DaoException e) {
+            users = UserService.getInstance().takeAllUsers();
+        } catch (ServiceException e) {
             LOGGER.error("Unable to take all users.", e);
         }
         HttpSession session = request.getSession();

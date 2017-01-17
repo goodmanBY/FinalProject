@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="navbar-wrapper">
     <div class="container">
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -11,13 +10,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/index.jsp">Royal Hostel</a>
+                    <a class="navbar-brand" href="index.jsp">Royal Hostel</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/index.jsp"><fmt:message key="home"/></a></li>
-                        <li><a href="/index.jsp"><fmt:message key="suites.and.rooms"/></a></li>
-                        <li><a href="/index.jsp"><fmt:message key="about"/></a></li>
+                        <li class="active"><a href="index.jsp"><fmt:message key="home"/></a></li>
+                        <li><a href="index.jsp"><fmt:message key="suites.and.rooms"/></a></li>
+                        <li><a href="index.jsp"><fmt:message key="about"/></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -40,13 +39,13 @@
                     <c:choose>
                         <c:when test="${empty sessionScope.user}">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/userLogIn.jsp"><fmt:message key="log.in"/></a></li>
-                                <li><a href="/userRegistration.jsp"><fmt:message key="registration"/></a></li>
+                                <li><a href="userLogIn.jsp"><fmt:message key="log.in"/></a></li>
+                                <li><a href="userRegistration.jsp"><fmt:message key="registration"/></a></li>
                             </ul>
                         </c:when>
                         <c:otherwise>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="/userProfile.jsp"><fmt:message key="profile"/></a></li>
+                                <li><a href="userProfile.jsp"><fmt:message key="profile"/></a></li>
                                 <li><a href="${pageContext.request.contextPath}/do?action=userLogOut"><fmt:message
                                         key="log.out"/></a></li>
                             </ul>

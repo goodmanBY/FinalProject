@@ -1,5 +1,6 @@
-body {
-    font-family: 'Indie Flower', cursive;
+html {
+    position: relative;
+    min-height: 100%;
 }
 
 p::selection {
@@ -29,10 +30,6 @@ a {
     align-items: center;
 }
 
-.about {
-    float: right;
-}
-
 .error-message {
     color: #cf0000;
 }
@@ -43,4 +40,15 @@ a {
 
 .success {
     color: #009200;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 85px;
+}
+
+.main-container{
+    padding-bottom: 60px;
 }

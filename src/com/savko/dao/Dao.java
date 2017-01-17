@@ -15,13 +15,13 @@ public class Dao {
         pool.releaseConnection(connection);
     }
 
-    void closeResources(ConnectionProxy connection, Statement statement) {
+    void closeResources(ConnectionProxy connection, Statement statement) throws DaoException {
         try {
             if (statement != null) {
                 statement.close();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException("Unable to return connection.", e);
         }
         closeResources(connection);
     }

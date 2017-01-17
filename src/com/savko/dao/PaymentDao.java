@@ -10,6 +10,14 @@ public class PaymentDao extends Dao {
 
     private static final String SQL_PAY_USER_REQUEST = "UPDATE request SET paid = 1 WHERE request_id = ?;";
 
+    public static PaymentDao getInstance() {
+        return StaticHolder.INSTANCE;
+    }
+
+    private static class StaticHolder {
+        static final PaymentDao INSTANCE = new PaymentDao();
+    }
+
     public void payBookingRequestByRequestId(int requestId) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         PreparedStatement preparedStatement = null;

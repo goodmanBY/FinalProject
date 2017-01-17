@@ -1,7 +1,7 @@
-<div class="row col-md-6 about">
+<div class="col-md-6">
     <span class="centring"><fmt:message key="about"/></span>
-
-    <p>As one of the world’s most iconic luxury hotels, The Dorchester is quite simply the place to be in London.
+    <p>
+        As one of the world’s most iconic luxury hotels, The Dorchester is quite simply the place to be in London.
         Whether you are staying in one of the exquisite rooms and suites, unwinding in the spa, enjoying
         Michelin-starred cuisine or indulging in an award-winning afternoon tea, you will experience the epitome of
         timeless glamour. The Dorchester, which is superbly located in the centre of London and overlooks both Hyde
@@ -13,6 +13,9 @@
         The Promenade, visit the hotspot that is China Tang or The Grill. At The Dorchester Spa, a beautifully
         designed oasis, indulge in signature spa treatments such as a Carol Joy London facial and an Aromatherapy
         Associates massage, then unwind in the glamorous Art Deco relaxation room before heading to The Spatisserie
-        for a glass of champagne.</p>
-    <p><a href="about.jsp"><fmt:message key="find.out.more"/></a></p>
+        for a glass of champagne.
+    </p>
+    <p>
+        <a href="about.jsp"><fmt:message key="find.out.more"/></a>
+    </p>
 </div>

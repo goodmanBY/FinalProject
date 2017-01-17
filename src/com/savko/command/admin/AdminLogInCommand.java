@@ -9,6 +9,8 @@ import com.savko.constant.Parameters;
 import com.savko.dao.AdminDao;
 import com.savko.dao.DaoException;
 import com.savko.entity.Admin;
+import com.savko.service.AdminService;
+import com.savko.service.ServiceException;
 import com.savko.util.HashUtil;
 import org.apache.log4j.Logger;
 
@@ -24,9 +26,8 @@ public class AdminLogInCommand implements Command {
         String login = request.getParameter(Parameters.LOGIN);
         String password = HashUtil.getMd5Hash(request.getParameter(Parameters.PASSWORD));
         HttpSession session = request.getSession();
-        AdminDao adminDao = new AdminDao();
         try {
-            if (adminDao.checkAdmin(login, password)) {
+            if (AdminService.getInstance().checkAdmin(login, password)) {
                 Admin admin = new Admin()
                         .setLogin(login)
                         .setPassword(password);
@@ -36,7 +37,7 @@ public class AdminLogInCommand implements Command {
                 request.setAttribute(Attributes.ERROR, "You are not admin");
                 return new ForwardAction(Pages.ADMIN_INDEX);
             }
-        } catch (DaoException e) {
+        } catch (ServiceException e) {
             LOGGER.error("Unable to log in admin.", e);
         }
         return null;

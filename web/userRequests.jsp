@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
 <fmt:setBundle basename="com.savko.i18n.text"/>
 <html>
@@ -30,8 +31,8 @@
                     <th>Status</th>
                 </tr>
                 <c:forEach items="${requests}" var="bookingRequest">
-                    <tr <c:if test="${bookingRequest.paid == 1 && bookingRequest.confirmed == 1}">class="success"</c:if>>
-                        <th <c:if test="${empty admin}">hidden</c:if>>${bookingRequest.requestId}</th>
+                    <tr ${(bookingRequest.paid == 1 && bookingRequest.confirmed == 1)? 'class="success"':''}>
+                    <th <c:if test="${empty admin}">hidden</c:if>>${bookingRequest.requestId}</th>
                         <th>${bookingRequest.amountOfPlaces}</th>
                         <th>${bookingRequest.dateFrom}</th>
                         <th>${bookingRequest.dateTo}</th>
@@ -61,7 +62,6 @@
                                     <c:when test="${bookingRequest.paid == 0}">
                                         <th>
                                             <a href="${pageContext.request.contextPath}/do?action=preparePayRequest&requestId=${bookingRequest.requestId}">Pay</a>
-                                            <a>Cash</a>
                                         </th>
                                     </c:when>
                                     <c:otherwise>
