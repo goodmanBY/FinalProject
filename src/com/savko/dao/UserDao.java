@@ -22,6 +22,8 @@ public class UserDao extends Dao {
     private static final String SQL_CHECK_USER_LOGIN = "SELECT login FROM client WHERE login = ?;";
     private static final String SQL_BLOCK_USER = "UPDATE client SET banned = 1 WHERE client_id = ?;";
     private static final String SQL_UNBLOCK_USER = "UPDATE client SET banned = 0 WHERE client_id = ?;";
+    private static final String SQL_ADD_BLOCK_DESCRIPTION = "INSERT INTO ban_info(client_id, ban_description) VALUES(?, ?);";
+    private static final String SQL_TAKE_BLOCK_DESCRIPTION = "SELECT ban_description FROM ban_info WHERE client_id = ?;";
 
     public static UserDao getInstance() {
         return StaticHolder.INSTANCE;
@@ -179,6 +181,40 @@ public class UserDao extends Dao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Unable to update table 'client'.", e);
+        } finally {
+            closeResources(connection, preparedStatement);
+        }
+    }
+
+    public void addBlockDescription(int userId, String textDescription) throws DaoException {
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(SQL_ADD_BLOCK_DESCRIPTION);
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, textDescription);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Unable to update table 'ban_info'.", e);
+        } finally {
+            closeResources(connection, preparedStatement);
+        }
+    }
+
+    public String takeBlockDescription(int userId) throws DaoException {
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(SQL_TAKE_BLOCK_DESCRIPTION);
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            String description = null;
+            while(resultSet.next()) {
+                description = resultSet.getString("ban_description");
+            }
+            return description;
+        } catch (SQLException e) {
+            throw new DaoException("Unable to take data from 'ban_info' table.", e);
         } finally {
             closeResources(connection, preparedStatement);
         }

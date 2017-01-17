@@ -30,6 +30,10 @@ public class UserLogInCommand implements Command {
         try {
             if (UserService.getInstance().checkUser(login, password)) {
                 User currentUser = UserService.getInstance().takeUser(login);
+                if(currentUser.getBanned() == 1) {
+                    String blockDescription = UserService.getInstance().takeBlockDescription(currentUser.getId());
+                    session.setAttribute("blockDescription", blockDescription);
+                }
                 session.setAttribute(Attributes.USER, currentUser);
                 return new RedirectAction(Pages.USER_INDEX);
             } else {

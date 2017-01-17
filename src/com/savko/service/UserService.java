@@ -80,4 +80,20 @@ public class UserService {
         }
     }
 
+    public void addBlockDescription(int userId, String blockDescription) throws ServiceException {
+        try {
+            UserDao.getInstance().addBlockDescription(userId, blockDescription);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to update table 'ban_info'.", e);
+        }
+    }
+
+    public String takeBlockDescription(int userId) throws ServiceException {
+        try {
+            return UserDao.getInstance().takeBlockDescription(userId);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to take data from 'ban_info' table.", e);
+        }
+    }
+
 }

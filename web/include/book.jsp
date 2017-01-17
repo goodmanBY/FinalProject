@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9 error-message">
-                    <span>Cause: </span>
+                    <span>Cause: ${sessionScope.blockDescription}</span>
                 </div>
             </div>
         </c:if>

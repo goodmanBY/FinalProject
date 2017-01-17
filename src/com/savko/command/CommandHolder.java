@@ -28,6 +28,7 @@ public class CommandHolder {
         commands.put("payRequest", new PayRequestCommand());
         commands.put("blockUser", new BlockUserCommand());
         commands.put("unblockUser", new UnblockUserCommand());
+        commands.put("addBlockDescription", new BlockDescriptionCommand());
         commands.put("allBookingRequests", new AllBookingRequestsCommand());
         commands.put("confirmBookingRequest", new ConfirmBookingRequestCommand());
         commands.put("cancelConfirmation", new CancelConfirmationCommand());
