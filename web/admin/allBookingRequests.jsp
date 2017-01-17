@@ -26,9 +26,9 @@
             <th>Approved byd</th>
         </tr>
         <c:forEach items="${bookingRequests}" var="bookingRequests">
-            <tr <c:if test="${bookingRequests.paid == 1 && bookingRequests.confirmed == 1}">class="success"</c:if>>
+            <tr ${(bookingRequests.paid == 1 && bookingRequests.confirmed == 1) ? 'class="success"' : ''}>
                 <th>${bookingRequests.requestId}</th>
-                <th>${bookingRequests.userId}</th>
+                <th><a href="${pageContext.request.contextPath}/do?action=userProfile&userId=${bookingRequests.userId}">${bookingRequests.userId}</a></th>
                 <th>${bookingRequests.amountOfPlaces}</th>
                 <th>${bookingRequests.dateFrom}</th>
                 <th>${bookingRequests.dateTo}</th>

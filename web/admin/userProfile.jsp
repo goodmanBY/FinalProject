@@ -51,7 +51,7 @@
                 <label for="banned" class="col-md-offset-2 col-sm-2 control-label">Banned</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="banned" id="banned"
-                           value="<c:choose><c:when test="${requestScope.user.banned == 0}">Not blocked</c:when><c:otherwise>Blocked</c:otherwise></c:choose>" readonly>
+                           value="${(requestScope.user.banned == 0) ? 'Not banned' : 'Banned'}" readonly>
                 </div>
             </div>
             <div class="form-group">

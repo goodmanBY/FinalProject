@@ -24,6 +24,6 @@ public class UnblockUserCommand implements Command {
         } catch (ServiceException e) {
             LOGGER.error("Unable to update table 'client'.", e);
         }
-        return new ForwardAction(Pages.ADMIN_ALL_USERS);
+        return new ForwardAction(Pages.ADMIN_CONTROL_PANEL);
     }
 }

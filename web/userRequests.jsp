@@ -20,7 +20,7 @@
             </div>
             <table class="table table-hover">
                 <tr>
-                    <th <c:if test="${empty admin}">hidden</c:if>>Request ID</th>
+                    <th ${(empty admin) ? 'hidden' : ''}>Request ID</th>
                     <th>Amount of places</th>
                     <th>Date from</th>
                     <th>Date to</th>
@@ -31,8 +31,8 @@
                     <th>Status</th>
                 </tr>
                 <c:forEach items="${requests}" var="bookingRequest">
-                    <tr ${(bookingRequest.paid == 1 && bookingRequest.confirmed == 1)? 'class="success"':''}>
-                    <th <c:if test="${empty admin}">hidden</c:if>>${bookingRequest.requestId}</th>
+                    <tr ${(bookingRequest.paid == 1 && bookingRequest.confirmed == 1) ? 'class="success"' : ''}>
+                        <th ${(empty admin) ? 'hidden' : ''}>${bookingRequest.requestId}</th>
                         <th>${bookingRequest.amountOfPlaces}</th>
                         <th>${bookingRequest.dateFrom}</th>
                         <th>${bookingRequest.dateTo}</th>
@@ -54,7 +54,7 @@
                             </c:otherwise>
                         </c:choose>
                         <th>
-                            ${bookingRequest.approvedBy}
+                                ${bookingRequest.approvedBy}
                         </th>
                         <c:choose>
                             <c:when test="${bookingRequest.confirmed == 1}">
@@ -80,8 +80,10 @@
             </table>
         </c:when>
         <c:otherwise>
-            <div class="col-md-12 centring">
-                <h2>You do not have any booking requests</h2>
+            <div class="row">
+                <div class="col-md-12 centring">
+                    <h2>You do not have any booking requests</h2>
+                </div>
             </div>
         </c:otherwise>
     </c:choose>
