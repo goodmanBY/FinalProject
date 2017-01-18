@@ -1,11 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
-<fmt:setBundle basename="com.savko.i18n.text"/>
+<%@ include file="include/tags.jsp" %>
+
 <html>
 <head>
     <%@ include file="include/head.jsp" %>
-    <title>Pay</title>
+    <title><fmt:message key="pay"/></title>
 </head>
 <body>
 
@@ -15,7 +13,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-2 container-top-padding">
             <div class="form-group centring">
-                <span class="centring">Your booking request</span>
+                <span class="centring"><fmt:message key="your.booking.request"/></span>
             </div>
             <div class="form-group">
                 <label for="name" class="col-sm-3 control-label"><fmt:message key="name"/></label>
@@ -33,7 +31,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="amountOfPlaces" class="col-sm-3 control-label">Amount of places</label>
+                <label for="amountOfPlaces" class="col-sm-3 control-label"><fmt:message key="amount.of.places"/></label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="amountOfPlaces" id="amountOfPlaces"
                            value="${requestScope.amountOfPlaces}" readonly>
@@ -55,7 +53,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="cost" class="col-sm-3 control-label">Cost, $</label>
+                <label for="cost" class="col-sm-3 control-label"><fmt:message key="cost"/>, $</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="cost" id="cost" value="${requestScope.cost}" readonly>
                 </div>
@@ -73,39 +71,39 @@
                     <span class="centring">Card info</span>
                 </div>
                 <div class="form-group">
-                    <label for="cardNumber" class="col-md-2 control-label">Card number</label>
+                    <label for="cardNumber" class="col-md-2 control-label"><fmt:message key="card.number"/></label>
                     <div class="col-md-10">
                         <input type="number" class="form-control" name="cardNumber" id="cardNumber"
                                placeholder="0000 0000 0000 0000">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="month" class="col-md-2 control-label">Month</label>
+                    <label for="month" class="col-md-2 control-label"><fmt:message key="month"/></label>
                     <div class="col-md-10">
                         <input type="number" class="form-control" name="month" id="month" min="1" max="12">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="year" class="col-md-2 control-label">Year</label>
+                    <label for="year" class="col-md-2 control-label"><fmt:message key="year"/></label>
                     <div class="col-md-10">
                         <input type="number" class="form-control" name="year" id="year">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="owner" class="col-md-2 control-label">Owner's name</label>
+                    <label for="owner" class="col-md-2 control-label"><fmt:message key="owner"/></label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" name="owner" id="owner">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="securityCode" class="col-md-2 control-label">Security code (CVC2/CVV2)</label>
+                    <label for="securityCode" class="col-md-2 control-label"><fmt:message key="security.code"/> (CVC2/CVV2)</label>
                     <div class="col-md-10">
                         <input type="number" class="form-control" name="securityCode" id="securityCode">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-success">Pay</button>
+                        <button type="submit" class="btn btn-success"><fmt:message key="pay"/></button>
                     </div>
                 </div>
             </form>

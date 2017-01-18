@@ -1,12 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
-<fmt:setBundle basename="com.savko.i18n.text"/>
+<%@ include file="include/tags.jsp" %>
+
 <html>
 <head>
     <%@ include file="include/head.jsp" %>
-    <title>Profile</title>
+    <title><fmt:message key="profile"/></title>
 </head>
 <body>
 
@@ -17,7 +14,7 @@
     <div class="container container-top-padding">
         <div class="row">
             <div>
-                <span class="col-md-12 centring"><h2>Welcome, ${sessionScope.user.login}!</h2></span>
+                <span class="col-md-12 centring"><h2><fmt:message key="welcome"/>, ${sessionScope.user.login}!</h2></span>
             </div>
             <div class="col-md-6 col-md-offset-2">
                 <div hidden>
@@ -48,7 +45,7 @@
                 </div>
             </div>
             <div class="col-md-12 centring">
-                <a href="${pageContext.request.contextPath}/do?action=userAllRequestsInfo"><h2>My requests</h2></a>
+                <a href="${pageContext.request.contextPath}/do?action=userAllRequestsInfo"><h2><fmt:message key="my.requests"/></h2></a>
             </div>
         </div>
     </div>

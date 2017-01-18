@@ -1,13 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
-<fmt:setBundle basename="com.savko.i18n.text"/>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="include/tags.jsp" %>
+
 <html>
 <head>
     <%@ include file="include/head.jsp" %>
-    <title>Request</title>
+    <title><fmt:message key="request.info"/></title>
 </head>
 <body>
 
@@ -17,7 +13,7 @@
     <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
         <input type="hidden" name="action" value="userRequestInfo">
         <div class="form-group centring">
-            <span class="centring">Your reservation</span>
+            <span class="centring"><fmt:message key="your.reservation"/></span>
         </div>
         <div class="form-group">
             <div class="col-sm-9" hidden>
@@ -40,17 +36,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="amountOfPlaces" class="col-sm-3 control-label">Amount of places</label>
+            <label for="amountOfPlaces" class="col-sm-3 control-label"><fmt:message key="amount.of.places"/></label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="amountOfPlaces" id="amountOfPlaces"
                        value="${requestScope.amountOfPlaces}" readonly>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="amountOfDays" class="col-sm-3 control-label">Amount of days</label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" name="amountOfDays" id="amountOfDays"
-                       value="${requestScope.amountOfDays}" readonly>
             </div>
         </div>
         <div class="form-group">
@@ -68,7 +57,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="cost" class="col-sm-3 control-label">Cost, $</label>
+            <label for="cost" class="col-sm-3 control-label"><fmt:message key="cost"/>, $</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="cost" id="cost" value="${requestScope.cost}" readonly>
             </div>

@@ -1,32 +1,34 @@
 <div class="col-md-6">
     <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
         <input type="hidden" name="action" value="userRequest">
-        <div class="form-group">
-            <span class="col-sm-offset-3 col-sm-9"><fmt:message key="make.a.room.reservation"/></span>
-        </div>
+        <c:if test="${empty sessionScope.user || sessionScope.user.banned == 0}">
+            <div class="form-group">
+                <span class="col-sm-offset-3 col-sm-9"><fmt:message key="make.room.reservation"/></span>
+            </div>
+        </c:if>
         <c:if test="${empty sessionScope.user}">
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9 error-message">
-                    <span>You should sign in before booking</span>
+                    <span><fmt:message key="empty.user.message"/></span>
                 </div>
             </div>
         </c:if>
         <c:if test="${sessionScope.user.banned == 1}">
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9 error-message">
-                    <span>You have been banned. You can't book requests</span>
+                    <span><fmt:message key="banned.user.message"/></span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9 error-message">
-                    <span>Cause: ${sessionScope.blockDescription}</span>
+                    <span><fmt:message key="cause"/>: ${sessionScope.blockDescription}</span>
                 </div>
             </div>
         </c:if>
         <c:if test="${empty sessionScope.user || sessionScope.user.banned == 0}">
             <div class="form-group">
                 <label for="inputAmountOfPlaces" class="col-sm-3 control-label"><fmt:message
-                        key="place.number"/></label>
+                        key="amount.of.places"/></label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" name="amountOfPlaces"
                            id="inputAmountOfPlaces" placeholder="Number" min="1" max="5"

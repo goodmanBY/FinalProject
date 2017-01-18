@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="navbar-wrapper">
     <div class="container">
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -15,7 +16,6 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.jsp"><fmt:message key="home"/></a></li>
-                        <li><a href="index.jsp"><fmt:message key="suites.and.rooms"/></a></li>
                         <li><a href="index.jsp"><fmt:message key="about"/></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -28,10 +28,7 @@
                                     <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=en_EN">English</a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=de_DE">Dutch</a>
-                                </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=fr_FR">French</a>
+                                    <a href="${pageContext.request.contextPath}/do?action=changeLanguage&language=ru_RU">Русский</a>
                                 </li>
                             </ul>
                         </li>

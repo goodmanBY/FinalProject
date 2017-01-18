@@ -3,10 +3,6 @@ html {
     min-height: 100%;
 }
 
-p::selection {
-    background: #ffb7b7;
-}
-
 label {
     font-size: 12px;
 }
@@ -21,7 +17,7 @@ a {
 }
 
 .container-top-padding {
-    padding-top: 100px;
+    padding-top: 80px;
 }
 
 .centring {

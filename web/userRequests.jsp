@@ -1,12 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
-<fmt:setBundle basename="com.savko.i18n.text"/>
+<%@ include file="include/tags.jsp" %>
+
 <html>
 <head>
     <%@ include file="include/head.jsp" %>
-    <title>Requests</title>
+    <title><fmt:message key="your.booking.requests"/></title>
 </head>
 <body>
 
@@ -16,19 +13,19 @@
     <c:choose>
         <c:when test="${not empty requests}">
             <div class="col-md-12 centring">
-                <h2>Your booking requests</h2>
+                <h2><fmt:message key="your.booking.requests"/></h2>
             </div>
             <table class="table table-hover">
                 <tr>
                     <th ${(empty admin) ? 'hidden' : ''}>Request ID</th>
-                    <th>Amount of places</th>
-                    <th>Date from</th>
-                    <th>Date to</th>
-                    <th>Cost</th>
-                    <th>Confirmed</th>
-                    <th>Paid</th>
-                    <th>Approved by</th>
-                    <th>Status</th>
+                    <th><fmt:message key="amount.of.places"/></th>
+                    <th><fmt:message key="date.from"/></th>
+                    <th><fmt:message key="date.to"/></th>
+                    <th><fmt:message key="cost"/></th>
+                    <th><fmt:message key="confirmed"/></th>
+                    <th><fmt:message key="paid"/></th>
+                    <th><fmt:message key="approved.by"/></th>
+                    <th><fmt:message key="status"/></th>
                 </tr>
                 <c:forEach items="${requests}" var="bookingRequest">
                     <tr ${(bookingRequest.paid == 1 && bookingRequest.confirmed == 1) ? 'class="success"' : ''}>
@@ -39,18 +36,18 @@
                         <th>$${bookingRequest.cost}</th>
                         <c:choose>
                             <c:when test="${bookingRequest.confirmed == 0}">
-                                <th>Not confirmed</th>
+                                <th><fmt:message key="not.confirmed"/></th>
                             </c:when>
                             <c:otherwise>
-                                <th>Confirmed</th>
+                                <th><fmt:message key="confirmed"/></th>
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
                             <c:when test="${bookingRequest.paid == 0}">
-                                <th>Not paid</th>
+                                <th><fmt:message key="not.paid"/></th>
                             </c:when>
                             <c:otherwise>
-                                <th>Paid</th>
+                                <th><fmt:message key="paid"/></th>
                             </c:otherwise>
                         </c:choose>
                         <th>
@@ -61,18 +58,20 @@
                                 <c:choose>
                                     <c:when test="${bookingRequest.paid == 0}">
                                         <th>
-                                            <a href="${pageContext.request.contextPath}/do?action=preparePayRequest&requestId=${bookingRequest.requestId}">Pay</a>
+                                            <a href="${pageContext.request.contextPath}/do?action=preparePayRequest&requestId=${bookingRequest.requestId}">
+                                                <fmt:message key="pay"/>
+                                            </a>
                                         </th>
                                     </c:when>
                                     <c:otherwise>
                                         <th>
-                                            Paid
+                                            <fmt:message key="paid"/>
                                         </th>
                                     </c:otherwise>
                                 </c:choose>
                             </c:when>
                             <c:otherwise>
-                                <th>Wait confirmation</th>
+                                <th><fmt:message key="wait.confirmation"/></th>
                             </c:otherwise>
                         </c:choose>
                     </tr>
@@ -82,7 +81,7 @@
         <c:otherwise>
             <div class="row">
                 <div class="col-md-12 centring">
-                    <h2>You do not have any booking requests</h2>
+                    <h2><fmt:message key="empty.requests.message"/></h2>
                 </div>
             </div>
         </c:otherwise>

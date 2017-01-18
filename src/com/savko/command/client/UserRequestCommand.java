@@ -26,7 +26,6 @@ public class UserRequestCommand implements Command {
                 int amountOfDays = DateUtil.calculateAmountOfDays(stringDateFrom, stringDateTo);
                 double cost = CostUtil.calculateCost(Integer.parseInt(amountOfPlaces), amountOfDays);
                 request.setAttribute(Parameters.AMOUNT_OF_PLACES, amountOfPlaces);
-                request.setAttribute(Parameters.AMOUNT_OF_DAYS, amountOfDays);
                 request.setAttribute(Parameters.DATE_FROM, stringDateFrom);
                 request.setAttribute(Parameters.DATE_TO, stringDateTo);
                 request.setAttribute(Parameters.COST, cost);
