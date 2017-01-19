@@ -10,19 +10,12 @@ public class PaymentService {
         return StaticHolder.INSTANCE;
     }
 
-    public void payBookingRequestByRequestId(int requestId) throws ServiceException {
+    public void payBookingRequestByRequestId(int requestId, PaymentInfo paymentInfo) throws ServiceException {
         try {
             PaymentDao.getInstance().payBookingRequestByRequestId(requestId);
-        } catch (DaoException e) {
-            throw new ServiceException("Unable to pay booking request by request ID.", e);
-        }
-    }
-
-    public void addPaymentInfo(PaymentInfo paymentInfo) throws ServiceException {
-        try {
             PaymentDao.getInstance().addPaymentInfo(paymentInfo);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to add payment info.", e);
+            throw new ServiceException("Unable to pay booking request by request ID.", e);
         }
     }
 

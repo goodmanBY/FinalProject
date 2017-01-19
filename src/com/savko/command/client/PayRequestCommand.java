@@ -43,8 +43,7 @@ public class PayRequestCommand implements Command {
                         .setLastFourDigits(CardUtil.getFourLastDigits(cardNumber))
                         .setCost(Double.parseDouble(cost))
                         .setDateAndTime(dateAndTime);
-                PaymentService.getInstance().payBookingRequestByRequestId(Integer.parseInt(requestId));
-                PaymentService.getInstance().addPaymentInfo(paymentInfo);
+                PaymentService.getInstance().payBookingRequestByRequestId(Integer.parseInt(requestId), paymentInfo);
                 request.setAttribute(Attributes.PAID, "Wait for confirmation");
                 return new ForwardAction(Pages.USER_PROFILE);
             } catch (ServiceException e) {
