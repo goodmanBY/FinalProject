@@ -101,7 +101,7 @@ function validatePayRequestForm() {
         result = false;
     }
 
-    if(cardNumber && month && year && owner && securityCode) {
+    if (cardNumber && month && year && owner && securityCode) {
         validationError.innerHTML = "";
     }
 
@@ -113,12 +113,12 @@ function validateAddBlockDescriptionForm() {
 
     var description = document.forms[0]["blockDescription"].value;
 
-    if(!description) {
+    if (!description) {
         validationError.innerHTML = ERROR_FILL_DESCRIPTION_FIELD;
         result = false;
     }
 
-    if(description) {
+    if (description) {
         validationError.innerHTML = "";
     }
 

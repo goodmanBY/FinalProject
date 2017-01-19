@@ -14,7 +14,8 @@
     <div class="container container-top-padding">
         <div class="row">
             <div>
-                <span class="col-md-12 centring"><h2><fmt:message key="welcome"/>, ${sessionScope.user.login}!</h2></span>
+                <span class="col-md-12 centring"><h2><fmt:message
+                        key="welcome"/>, ${sessionScope.user.login}!</h2></span>
             </div>
             <div class="col-md-6 col-md-offset-2">
                 <div hidden>
@@ -45,7 +46,8 @@
                 </div>
             </div>
             <div class="col-md-12 centring">
-                <a href="${pageContext.request.contextPath}/do?action=userAllRequestsInfo"><h2><fmt:message key="my.requests"/></h2></a>
+                <a href="${pageContext.request.contextPath}/do?action=userAllRequestsInfo"><h2><fmt:message
+                        key="my.requests"/></h2></a>
             </div>
         </div>
     </div>

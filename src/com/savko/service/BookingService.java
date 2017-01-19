@@ -12,10 +12,6 @@ public class BookingService {
         return StaticHolder.INSTANCE;
     }
 
-    private static class StaticHolder {
-        static final BookingService INSTANCE = new BookingService();
-    }
-
     public void bookRequest(BookingRequest userRequest) throws ServiceException {
         try {
             BookingDao.getInstance().bookRequest(userRequest);
@@ -70,6 +66,10 @@ public class BookingService {
         } catch (DaoException e) {
             throw new ServiceException("Unable to take cost of room.", e);
         }
+    }
+
+    private static class StaticHolder {
+        static final BookingService INSTANCE = new BookingService();
     }
 
 }

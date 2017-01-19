@@ -61,7 +61,8 @@
         </div>
 
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onkeyup="return validatePayRequestForm()">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
+                  onkeyup="return validatePayRequestForm()">
                 <input type="hidden" name="action" value="payRequest">
                 <div hidden>
                     <input type="text" class="form-control" name="requestId" id="requestId"
@@ -96,7 +97,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="securityCode" class="col-md-2 control-label"><fmt:message key="security.code"/> (CVC2/CVV2)</label>
+                    <label for="securityCode" class="col-md-2 control-label"><fmt:message key="security.code"/>
+                        (CVC2/CVV2)</label>
                     <div class="col-md-10">
                         <input type="number" class="form-control" name="securityCode" id="securityCode">
                     </div>
@@ -115,7 +117,6 @@
 <%@ include file="include/footer.jsp" %>
 
 <%@ include file="include/script.jsp" %>
-
 
 </body>
 </html>

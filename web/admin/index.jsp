@@ -10,7 +10,8 @@
 <div class="container container-top-padding">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onkeyup="return validateLogInForm()">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
+                  onkeyup="return validateLogInForm()">
                 <input type="hidden" name="action" value="adminLogIn">
                 <div class="form-group">
                     <span class="centring">Log in</span>

@@ -12,7 +12,8 @@
 <div class="container container-top-padding">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onkeyup="return validateLogInForm()">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
+                  onkeyup="return validateLogInForm()">
                 <input type="hidden" name="action" value="userLogIn">
                 <div class="form-group">
                     <span class="centring"><fmt:message key="log.in"/></span>
@@ -20,7 +21,8 @@
                 <div class="form-group">
                     <label for="login" class="col-md-2 control-label"><fmt:message key="login"/></label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control" name="login" id="login" placeholder="<fmt:message key="login"/>">
+                        <input type="text" class="form-control" name="login" id="login"
+                               placeholder="<fmt:message key="login"/>">
                     </div>
                 </div>
                 <div class="form-group">

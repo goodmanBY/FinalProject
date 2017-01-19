@@ -5,8 +5,6 @@ import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
-import com.savko.dao.DaoException;
-import com.savko.dao.UserDao;
 import com.savko.service.ServiceException;
 import com.savko.service.UserService;
 import org.apache.log4j.Logger;

@@ -5,8 +5,6 @@ import com.savko.action.RedirectAction;
 import com.savko.command.Command;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
-import com.savko.dao.DaoException;
-import com.savko.dao.UserDao;
 import com.savko.entity.User;
 import com.savko.service.ServiceException;
 import com.savko.service.UserService;

@@ -5,8 +5,6 @@ import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
-import com.savko.dao.BookingDao;
-import com.savko.dao.DaoException;
 import com.savko.entity.BookingRequest;
 import com.savko.service.BookingService;
 import com.savko.service.ServiceException;

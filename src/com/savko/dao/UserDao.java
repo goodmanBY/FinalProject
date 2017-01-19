@@ -3,7 +3,6 @@ package com.savko.dao;
 import com.savko.entity.User;
 import com.savko.pool.ConnectionPool;
 import com.savko.pool.ConnectionProxy;
-import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,10 +26,6 @@ public class UserDao extends Dao {
 
     public static UserDao getInstance() {
         return StaticHolder.INSTANCE;
-    }
-
-    private static class StaticHolder {
-        static final UserDao INSTANCE = new UserDao();
     }
 
     public void addUser(User user) throws DaoException {
@@ -209,7 +204,7 @@ public class UserDao extends Dao {
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             String description = null;
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 description = resultSet.getString("ban_description");
             }
             return description;
@@ -218,6 +213,10 @@ public class UserDao extends Dao {
         } finally {
             closeResources(connection, preparedStatement);
         }
+    }
+
+    private static class StaticHolder {
+        static final UserDao INSTANCE = new UserDao();
     }
 
 }

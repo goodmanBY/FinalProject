@@ -12,10 +12,6 @@ public class UserService {
         return StaticHolder.INSTANCE;
     }
 
-    private static class StaticHolder {
-        static final UserService INSTANCE = new UserService();
-    }
-
     public void addUser(User user) throws ServiceException {
         try {
             UserDao.getInstance().addUser(user);
@@ -94,6 +90,10 @@ public class UserService {
         } catch (DaoException e) {
             throw new ServiceException("Unable to take block description.", e);
         }
+    }
+
+    private static class StaticHolder {
+        static final UserService INSTANCE = new UserService();
     }
 
 }

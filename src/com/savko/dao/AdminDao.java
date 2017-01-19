@@ -2,7 +2,6 @@ package com.savko.dao;
 
 import com.savko.pool.ConnectionPool;
 import com.savko.pool.ConnectionProxy;
-import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,10 +14,6 @@ public class AdminDao extends Dao {
 
     public static AdminDao getInstance() {
         return StaticHolder.INSTANCE;
-    }
-
-    private static class StaticHolder {
-        static final AdminDao INSTANCE = new AdminDao();
     }
 
     public boolean checkAdmin(String login, String password) throws DaoException {
@@ -37,6 +32,10 @@ public class AdminDao extends Dao {
             closeResources(connection, preparedStatement);
         }
         return statement;
+    }
+
+    private static class StaticHolder {
+        static final AdminDao INSTANCE = new AdminDao();
     }
 
 }

@@ -27,10 +27,6 @@ public class BookingDao extends Dao {
         return StaticHolder.INSTANCE;
     }
 
-    private static class StaticHolder {
-        static final BookingDao INSTANCE = new BookingDao();
-    }
-
     public void bookRequest(BookingRequest userRequest) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         PreparedStatement preparedStatement = null;
@@ -108,7 +104,7 @@ public class BookingDao extends Dao {
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             List<BookingRequest> bookingRequests = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 BookingRequest bookingRequest = new BookingRequest()
                         .setRequestId(resultSet.getInt("request_id"))
                         .setAmountOfPlaces(resultSet.getInt("places_num"))
@@ -174,6 +170,10 @@ public class BookingDao extends Dao {
         } finally {
             closeResources(connection, preparedStatement);
         }
+    }
+
+    private static class StaticHolder {
+        static final BookingDao INSTANCE = new BookingDao();
     }
 
 }

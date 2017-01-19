@@ -9,10 +9,12 @@
             <img class="first-slide" src="${pageContext.request.contextPath}/img/hall.jpg" alt="First slide">
         </div>
         <div class="item">
-            <img class="second-slide" src="${pageContext.request.contextPath}/img/uinnberlinhostel_5bed_dorm_room2.jpg" alt="Second slide">
+            <img class="second-slide" src="${pageContext.request.contextPath}/img/uinnberlinhostel_5bed_dorm_room2.jpg"
+                 alt="Second slide">
         </div>
         <div class="item">
-            <img class="third-slide" src="${pageContext.request.contextPath}/img/uinnberlinhostel_8bed_dorm_room2.jpg" alt="Third slide">
+            <img class="third-slide" src="${pageContext.request.contextPath}/img/uinnberlinhostel_8bed_dorm_room2.jpg"
+                 alt="Third slide">
         </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

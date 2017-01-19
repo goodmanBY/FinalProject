@@ -7,8 +7,6 @@ import com.savko.command.Command;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
-import com.savko.dao.DaoException;
-import com.savko.dao.UserDao;
 import com.savko.entity.User;
 import com.savko.service.ServiceException;
 import com.savko.service.UserService;
@@ -30,7 +28,7 @@ public class UserLogInCommand implements Command {
         try {
             if (UserService.getInstance().checkUser(login, password)) {
                 User currentUser = UserService.getInstance().takeUser(login);
-                if(currentUser.getBanned() == 1) {
+                if (currentUser.getBanned() == 1) {
                     String blockDescription = UserService.getInstance().takeBlockDescription(currentUser.getId());
                     session.setAttribute("blockDescription", blockDescription);
                 }

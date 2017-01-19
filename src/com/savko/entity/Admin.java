@@ -1,7 +1,7 @@
 package com.savko.entity;
 
 public class Admin {
-    
+
     private String login;
     private String password;
 

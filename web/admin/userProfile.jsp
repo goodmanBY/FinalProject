@@ -99,7 +99,7 @@
                 </c:otherwise>
             </c:choose>
             <th>
-                ${bookingRequests.approvedBy}
+                    ${bookingRequests.approvedBy}
             </th>
             <c:choose>
                 <c:when test="${bookingRequests.confirmed == 0}">

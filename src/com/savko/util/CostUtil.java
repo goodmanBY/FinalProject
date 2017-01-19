@@ -1,7 +1,5 @@
 package com.savko.util;
 
-import com.savko.dao.BookingDao;
-import com.savko.dao.DaoException;
 import com.savko.service.BookingService;
 import com.savko.service.ServiceException;
 

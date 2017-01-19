@@ -14,10 +14,6 @@ public class PaymentDao extends Dao {
         return StaticHolder.INSTANCE;
     }
 
-    private static class StaticHolder {
-        static final PaymentDao INSTANCE = new PaymentDao();
-    }
-
     public void payBookingRequestByRequestId(int requestId) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         PreparedStatement preparedStatement = null;
@@ -30,6 +26,10 @@ public class PaymentDao extends Dao {
         } finally {
             closeResources(connection, preparedStatement);
         }
+    }
+
+    private static class StaticHolder {
+        static final PaymentDao INSTANCE = new PaymentDao();
     }
 
 }

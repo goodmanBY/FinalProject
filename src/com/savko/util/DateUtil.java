@@ -14,7 +14,7 @@ public class DateUtil {
         try {
             Date dateFrom = DATE_FORMAT.parse(stringDateFrom);
             Date dateTo = DATE_FORMAT.parse(stringDateTo);
-            if(dateTo.getTime() - dateFrom.getTime() < 1) {
+            if (dateTo.getTime() - dateFrom.getTime() < 1) {
                 valid = false;
             }
             return valid;

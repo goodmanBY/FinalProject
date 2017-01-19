@@ -18,7 +18,7 @@
             <div>
                 <span class="col-md-12 centring"><h2>Add description</h2></span>
             </div>
-                <textarea class="form-control custom-text-area" name="blockDescription" rows="3"></textarea>
+            <textarea class="form-control custom-text-area" name="blockDescription" rows="3"></textarea>
             <div class="form-group">
                 <div class="col-md-12 centring">
                     <button type="submit" class="btn btn-success">Block user</button>
