@@ -1,6 +1,6 @@
 package com.savko.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class PaymentInfo {
 
@@ -9,7 +9,7 @@ public class PaymentInfo {
     private int requestId;
     private int lastFourDigits;
     private double cost;
-    private Date dateAndTime;
+    private Timestamp dateAndTime;
 
     public int getPaymentInfoId() {
         return paymentInfoId;
@@ -56,11 +56,11 @@ public class PaymentInfo {
         return this;
     }
 
-    public Date getDateAndTime() {
+    public Timestamp getDateAndTime() {
         return dateAndTime;
     }
 
-    public PaymentInfo setDateAndTime(Date dateAndTime) {
+    public PaymentInfo setDateAndTime(Timestamp dateAndTime) {
         this.dateAndTime = dateAndTime;
         return this;
     }

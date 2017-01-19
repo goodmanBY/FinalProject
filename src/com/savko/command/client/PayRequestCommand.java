@@ -16,6 +16,7 @@ import com.savko.util.UtilException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Timestamp;
 import java.util.Date;
 
 public class PayRequestCommand implements Command {
@@ -36,7 +37,7 @@ public class PayRequestCommand implements Command {
         int userId = currentUser.getId();
         if (CardUtil.isCardValid(cardNumber, Integer.parseInt(month), Integer.parseInt(year), owner, securityCode)) {
             try {
-                Date dateAndTime = DateUtil.getCurrentDateAndTime();
+                java.sql.Timestamp dateAndTime = DateUtil.getCurrentDateAndTime();
                 paymentInfo.setUserId(userId)
                         .setRequestId(Integer.parseInt(requestId))
                         .setLastFourDigits(CardUtil.getFourLastDigits(cardNumber))

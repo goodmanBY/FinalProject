@@ -1,8 +1,10 @@
 package com.savko.util;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -10,16 +12,12 @@ public class DateUtil {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-
-    public static Date getCurrentDateAndTime() throws UtilException {
-        try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = new Date();
-            return dateFormat.parse(dateFormat.format(date));
-        } catch (ParseException e) {
-            throw new UtilException("Unable to get current date and time.", e);
-        }
+    public static Timestamp getCurrentDateAndTime() throws UtilException {
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
+        return new Timestamp(now.getTime());
     }
+
 
     public static boolean areDatesValid(String stringDateFrom, String stringDateTo) throws UtilException {
         boolean valid = true;

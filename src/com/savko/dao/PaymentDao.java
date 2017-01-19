@@ -42,7 +42,7 @@ public class PaymentDao extends Dao {
             preparedStatement.setInt(2, paymentInfo.getRequestId());
             preparedStatement.setInt(3, paymentInfo.getLastFourDigits());
             preparedStatement.setDouble(4, paymentInfo.getCost());
-            preparedStatement.setDate(5, new java.sql.Date(paymentInfo.getDateAndTime().getTime()));
+            preparedStatement.setTimestamp(5, new java.sql.Timestamp(paymentInfo.getDateAndTime().getTime()));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Unable to insert payment info in DB.", e);
@@ -65,7 +65,7 @@ public class PaymentDao extends Dao {
                         .setRequestId(resultSet.getInt("request_id"))
                         .setLastFourDigits(resultSet.getInt("last_four_digits"))
                         .setCost(resultSet.getDouble("cost"))
-                        .setDateAndTime(resultSet.getTime("date_time"));
+                        .setDateAndTime(resultSet.getTimestamp("date_time"));
             }
             return paymentInfo;
         } catch (SQLException e) {
