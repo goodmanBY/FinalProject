@@ -21,7 +21,6 @@
                 <div hidden>
                     <input name="userId" id="userId" value="${sessionScope.user.id}">
                 </div>
-
                 <div class="form-group">
                     <label for="name" class="col-md-offset-2 col-md-2 control-label"><fmt:message key="name"/></label>
                     <div class="col-md-8">

@@ -15,5 +15,6 @@ public class Attributes {
     public static final String DATE_TO = "dateTo";
     public static final String COST = "cost";
     public static final String BOOKING_REQUESTS = "bookingRequests";
+    public static final String PAYMENT_INFO = "paymentInfo";
 
 }

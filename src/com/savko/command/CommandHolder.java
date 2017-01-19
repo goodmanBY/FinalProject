@@ -33,6 +33,7 @@ public class CommandHolder {
         commands.put("confirmBookingRequest", new ConfirmBookingRequestCommand());
         commands.put("cancelConfirmation", new CancelConfirmationCommand());
         commands.put("userProfile", new UserProfileCommand());
+        commands.put("paymentInfo", new PaymentInfoCommand());
 
     }
 

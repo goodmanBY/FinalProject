@@ -65,8 +65,10 @@
                   onkeyup="return validatePayRequestForm()">
                 <input type="hidden" name="action" value="payRequest">
                 <div hidden>
-                    <input type="text" class="form-control" name="requestId" id="requestId"
-                           value="${requestScope.requestId}">
+                    <input type="text" class="form-control" name="requestId" value="${requestScope.requestId}">
+                </div>
+                <div hidden>
+                    <input type="text" class="form-control" name="cost" value="${requestScope.cost}">
                 </div>
                 <div class="form-group centring">
                     <span class="centring">Card info</span>

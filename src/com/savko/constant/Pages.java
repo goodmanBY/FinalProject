@@ -17,4 +17,5 @@ public class Pages {
     public static final String USERS_REQUESTS = "/userRequests.jsp";
 
     public static final String PAY_REQUEST = "/payRequest.jsp";
+    public static final String PAYMENT_INFO = "/paymentInfo.jsp";
 }

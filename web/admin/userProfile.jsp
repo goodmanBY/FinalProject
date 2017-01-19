@@ -74,6 +74,7 @@
         <th>Paid</th>
         <th>Approved by</th>
         <th>Confirm/Cancel</th>
+        <th>Payment info</th>
     </tr>
     <c:forEach items="${bookingRequests}" var="bookingRequests">
         <tr ${bookingRequests.paid == 1 && bookingRequests.confirmed == 1 ? 'class=\"success\"' : ''}>
@@ -118,6 +119,11 @@
                         <c:otherwise>
                             <th>
                                 Unable to cancel paid order
+                            </th>
+                            <th>
+                                <a href="${pageContext.request.contextPath}/do?action=paymentInfo&requestId=${bookingRequests.requestId}">
+                                    Info
+                                </a>
                             </th>
                         </c:otherwise>
                     </c:choose>

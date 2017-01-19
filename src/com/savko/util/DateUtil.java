@@ -1,5 +1,6 @@
 package com.savko.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,6 +9,17 @@ import java.util.concurrent.TimeUnit;
 public class DateUtil {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+
+
+    public static Date getCurrentDateAndTime() throws UtilException {
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            return dateFormat.parse(dateFormat.format(date));
+        } catch (ParseException e) {
+            throw new UtilException("Unable to get current date and time.", e);
+        }
+    }
 
     public static boolean areDatesValid(String stringDateFrom, String stringDateTo) throws UtilException {
         boolean valid = true;

@@ -35,7 +35,11 @@ a {
 }
 
 .success {
-    color: #009200;
+    color: #00bc00;
+}
+
+.confirmed {
+    color: #ffaf24;
 }
 
 .footer {

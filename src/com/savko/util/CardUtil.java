@@ -8,6 +8,7 @@ public class CardUtil {
     private static final int VALID_CARD_CVV_LENGTH = 3;
     private static final int FIRST_MONTH_INDEX = 1;
     private static final int LAST_MONTH_INDEX = 12;
+    private static final int LAST_FOUR_DIGITS = 4;
     private static final int CURRENT_YEAR = Calendar.getInstance().get(Calendar.YEAR);
 
     public static boolean isCardValid(String cardNumber, int month, int year, String ownerName, String cvvNumber) {
@@ -34,6 +35,10 @@ public class CardUtil {
         }
 
         return valid;
+    }
+
+    public static int getFourLastDigits(String cardNumber) {
+        return Integer.parseInt(cardNumber.substring(cardNumber.length() - LAST_FOUR_DIGITS, cardNumber.length()));
     }
 
 }

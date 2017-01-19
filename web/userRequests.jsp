@@ -28,7 +28,7 @@
                     <th><fmt:message key="status"/></th>
                 </tr>
                 <c:forEach items="${requests}" var="bookingRequest">
-                    <tr ${(bookingRequest.paid == 1 && bookingRequest.confirmed == 1) ? 'class="success"' : ''}>
+                    <tr ${(bookingRequest.paid == 1) ? 'class="success"' : ''}>
                         <th ${(empty admin) ? 'hidden' : ''}>${bookingRequest.requestId}</th>
                         <th>${bookingRequest.amountOfPlaces}</th>
                         <th>${bookingRequest.dateFrom}</th>
@@ -39,7 +39,8 @@
                                 <th><fmt:message key="not.confirmed"/></th>
                             </c:when>
                             <c:otherwise>
-                                <th><fmt:message key="confirmed"/></th>
+                                <th ${(bookingRequest.confirmed == 1 && bookingRequest.paid == 0) ? 'class="confirmed"' : ''}>
+                                    <fmt:message key="confirmed"/></th>
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
@@ -65,7 +66,9 @@
                                     </c:when>
                                     <c:otherwise>
                                         <th>
-                                            <fmt:message key="paid"/>
+                                            <a href="${pageContext.request.contextPath}/do?action=paymentInfo&requestId=${bookingRequest.requestId}">
+                                                Info
+                                            </a>
                                         </th>
                                     </c:otherwise>
                                 </c:choose>

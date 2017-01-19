@@ -12,7 +12,6 @@
         <h2>All users</h2>
     </div>
     <table class="table table-hover">
-
         <tr>
             <th>ID</th>
             <th>Name</th>
