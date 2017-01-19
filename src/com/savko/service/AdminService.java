@@ -17,7 +17,7 @@ public class AdminService {
         try {
             return AdminDao.getInstance().checkAdmin(login, password);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to find such admin.", e);
+            throw new ServiceException("Unable to check admin.", e);
         }
     }
 

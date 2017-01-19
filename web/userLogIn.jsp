@@ -1,4 +1,4 @@
-<%@ include file="include/tags.jsp" %>
+<%@ include file="include/userTags.jsp" %>
 
 <html>
 <head>
@@ -12,7 +12,7 @@
 <div class="container container-top-padding">
     <div class="row">
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onkeyup="return validateLogInForm()">
                 <input type="hidden" name="action" value="userLogIn">
                 <div class="form-group">
                     <span class="centring"><fmt:message key="log.in"/></span>

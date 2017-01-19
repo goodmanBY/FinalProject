@@ -1,8 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
-<fmt:setBundle basename="com.savko.i18n.text"/>
+<%@ include file="/include/adminTags.jsp" %>
 
 <html>
 <head>
@@ -18,22 +14,21 @@
         </div>
         <div class="col-md-6 col-md-offset-2">
             <div class="form-group">
-                <label for="userId" class="col-md-offset-2 col-sm-2 control-label"><fmt:message key="name"/></label>
+                <label for="userId" class="col-md-offset-2 col-sm-2 control-label">User ID</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="userId" id="userId" value="${requestScope.user.id}"
                            readonly>
                 </div>
             </div>
             <div class="form-group">
-                <label for="name" class="col-md-offset-2 col-sm-2 control-label"><fmt:message key="name"/></label>
+                <label for="name" class="col-md-offset-2 col-sm-2 control-label">Name</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="name" id="name" value="${requestScope.user.name}"
                            readonly>
                 </div>
             </div>
             <div class="form-group">
-                <label for="lastName" class="col-md-offset-2 col-sm-2 control-label"><fmt:message
-                        key="last.name"/></label>
+                <label for="lastName" class="col-md-offset-2 col-sm-2 control-label">Last name</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="lastName" id="lastName"
                            value="${requestScope.user.lastName}"
@@ -81,7 +76,7 @@
         <th>Confirm/Cancel</th>
     </tr>
     <c:forEach items="${bookingRequests}" var="bookingRequests">
-        <tr <c:if test="${bookingRequests.paid == 1 && bookingRequests.confirmed == 1}">class="success"</c:if>>
+        <tr ${bookingRequests.paid == 1 && bookingRequests.confirmed == 1 ? 'class=\"success\"' : ''}>
             <th>${bookingRequests.requestId}</th>
             <th>${bookingRequests.amountOfPlaces}</th>
             <th>${bookingRequests.dateFrom}</th>

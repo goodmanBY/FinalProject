@@ -17,7 +17,7 @@ public class PaymentService {
         try {
             PaymentDao.getInstance().payBookingRequestByRequestId(requestId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take such user from DB.", e);
+            throw new ServiceException("Unable to pay booking request by request ID.", e);
         }
     }
 

@@ -18,7 +18,7 @@ public class BlockDescriptionCommand implements Command {
     @Override
     public Action execute(HttpServletRequest request) {
         String userId = request.getParameter(Parameters.USER_ID);
-        String blockDescription = request.getParameter("blockDescription");
+        String blockDescription = request.getParameter(Parameters.BLOCK_DESCRIPTION);
         try {
             UserService.getInstance().blockUser(Integer.parseInt(userId));
             UserService.getInstance().addBlockDescription(Integer.parseInt(userId), blockDescription);

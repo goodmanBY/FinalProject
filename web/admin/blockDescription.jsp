@@ -1,17 +1,16 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
-<fmt:setBundle basename="com.savko.i18n.text"/>
+<%@ include file="/include/adminTags.jsp" %>
+
 <html>
 <head>
     <%@ include file="/include/head.jsp" %>
     <title>Title</title>
 </head>
 <body>
+
 <div class="container">
     <div class="row">
-        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
+        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
+              onkeyup="return validateAddBlockDescriptionForm()">
             <input type="hidden" name="action" value="addBlockDescription">
             <div hidden>
                 <label for="userId"></label><input name="userId" id="userId" value="${requestScope.userId}">
@@ -26,6 +25,7 @@
                 </div>
             </div>
         </form>
+        <%@ include file="/include/message.jsp" %>
     </div>
 </div>
 

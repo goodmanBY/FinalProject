@@ -20,6 +20,8 @@ public class Parameters {
     public static final String OWNER = "owner";
     public static final String SECURITY_CODE = "securityCode";
 
+    public static final String BLOCK_DESCRIPTION = "blockDescription";
+
     public static final String LANGUAGE = "language";
 
 }

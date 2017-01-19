@@ -28,7 +28,7 @@ public class UserService {
         try {
             return UserDao.getInstance().checkUser(login, password);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to find such user.", e);
+            throw new ServiceException("Unable to check user.", e);
         }
     }
 
@@ -36,7 +36,7 @@ public class UserService {
         try {
             return UserDao.getInstance().checkUserLogin(login);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to find such user.", e);
+            throw new ServiceException("Unable to check user.", e);
         }
     }
 
@@ -44,7 +44,7 @@ public class UserService {
         try {
             return UserDao.getInstance().takeUser(login);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take such user from DB.", e);
+            throw new ServiceException("Unable to take user.", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class UserService {
         try {
             return UserDao.getInstance().takeUser(userId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take such user from DB.", e);
+            throw new ServiceException("Unable to take user.", e);
         }
     }
 
@@ -68,7 +68,7 @@ public class UserService {
         try {
             UserDao.getInstance().blockUser(userId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to update table 'client'.", e);
+            throw new ServiceException("Unable to block user.", e);
         }
     }
 
@@ -76,7 +76,7 @@ public class UserService {
         try {
             UserDao.getInstance().unblockUser(userId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to update table 'client'.", e);
+            throw new ServiceException("Unable to unblock user.", e);
         }
     }
 
@@ -84,7 +84,7 @@ public class UserService {
         try {
             UserDao.getInstance().addBlockDescription(userId, blockDescription);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to update table 'ban_info'.", e);
+            throw new ServiceException("Unable to add block description.", e);
         }
     }
 
@@ -92,7 +92,7 @@ public class UserService {
         try {
             return UserDao.getInstance().takeBlockDescription(userId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take data from 'ban_info' table.", e);
+            throw new ServiceException("Unable to take block description.", e);
         }
     }
 

@@ -1,4 +1,4 @@
-<%@ include file="include/tags.jsp" %>
+<%@ include file="include/userTags.jsp" %>
 
 <html>
 <head>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="col-md-6 col-md-offset-2">
-            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
+            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onkeyup="return validatePayRequestForm()">
                 <input type="hidden" name="action" value="payRequest">
                 <div hidden>
                     <input type="text" class="form-control" name="requestId" id="requestId"

@@ -1,4 +1,4 @@
-<%@ include file="include/tags.jsp" %>
+<%@ include file="include/userTags.jsp" %>
 
 <html>
 <head>

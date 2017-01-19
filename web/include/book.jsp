@@ -27,28 +27,29 @@
         </c:if>
         <c:if test="${empty sessionScope.user || sessionScope.user.banned == 0}">
             <div class="form-group">
-                <label for="inputAmountOfPlaces" class="col-sm-3 control-label"><fmt:message
+                <label for="amountOfPlaces" class="col-sm-3 control-label"><fmt:message
                         key="amount.of.places"/></label>
                 <div class="col-sm-9">
                     <input type="number" class="form-control" name="amountOfPlaces"
-                           id="inputAmountOfPlaces" placeholder="Number" min="1" max="5"
-                           <c:if test="${empty sessionScope.user}">readonly</c:if>>
+                           id="amountOfPlaces" placeholder="<fmt:message key="amount.of.places"/>"
+                        ${not empty sessionScope.user ? 'value = \"1\"' : ''} min="1" max="5"
+                        ${empty sessionScope.user ? 'readonly' : ''}>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputDateFrom" class="col-sm-3 control-label"><fmt:message key="date.from"/></label>
+                <label for="dateFrom" class="col-sm-3 control-label"><fmt:message key="date.from"/></label>
                 <div class="col-sm-9">
                     <input type="date" class="form-control" name="dateFrom"
-                           id="inputDateFrom" placeholder="From"
-                           <c:if test="${empty sessionScope.user}">readonly</c:if>>
+                           id="dateFrom" placeholder="From"
+                        ${empty sessionScope.user ? 'readonly' : ''}>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputDateTo" class="col-sm-3 control-label"><fmt:message key="date.to"/></label>
+                <label for="dateTo" class="col-sm-3 control-label"><fmt:message key="date.to"/></label>
                 <div class="col-sm-9">
                     <input type="date" class="form-control" name="dateTo"
-                           id="inputDateTo" placeholder="To"
-                           <c:if test="${empty sessionScope.user}">readonly</c:if>>
+                           id="dateTo" placeholder="To"
+                        ${empty sessionScope.user ? 'readonly' : ''}>
                 </div>
             </div>
         </c:if>
@@ -59,6 +60,6 @@
                 </div>
             </div>
         </c:if>
-        <%@ include file="/include/message.jsp" %>
     </form>
+    <%@ include file="/include/message.jsp" %>
 </div>

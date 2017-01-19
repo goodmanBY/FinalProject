@@ -1,14 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language  : 'en'}"/>
-<fmt:setBundle basename="com.savko.i18n.text"/>
+<%@ include file="/include/adminTags.jsp" %>
+
 <html>
 <head>
     <%@ include file="/include/head.jsp" %>
     <title>All booking requests</title>
 </head>
 <body>
+
 <c:if test="${not empty sessionScope.admin}">
     <div class="col-md-12 centring">
         <h2>All booking requests</h2>

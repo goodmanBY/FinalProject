@@ -20,7 +20,7 @@ public class BookingService {
         try {
             BookingDao.getInstance().bookRequest(userRequest);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to book user's request.", e);
+            throw new ServiceException("Unable to book request.", e);
         }
     }
 
@@ -28,7 +28,7 @@ public class BookingService {
         try {
             return BookingDao.getInstance().takeBookingRequestByRequestId(requestId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take request from DB.", e);
+            throw new ServiceException("Unable to take booking request by request ID.", e);
         }
     }
 
@@ -36,7 +36,7 @@ public class BookingService {
         try {
             return BookingDao.getInstance().takeAllBookingRequests();
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take all booking requests from 'request' table.", e);
+            throw new ServiceException("Unable to take all booking requests.", e);
         }
     }
 
@@ -44,7 +44,7 @@ public class BookingService {
         try {
             return BookingDao.getInstance().takeBookingRequestsByUserId(userId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take requests from DB.", e);
+            throw new ServiceException("Unable to take booking requests by user ID.", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class BookingService {
         try {
             BookingDao.getInstance().confirmBookingRequest(requestId, adminLogin);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to update table 'request'.", e);
+            throw new ServiceException("Unable to confirm booking request.", e);
         }
     }
 
@@ -60,7 +60,7 @@ public class BookingService {
         try {
             BookingDao.getInstance().cancelConfirmation(requestId);
         } catch (DaoException e) {
-            throw new ServiceException("Unable to update table 'request'.", e);
+            throw new ServiceException("Unable to cancel confirmation.", e);
         }
     }
 
@@ -68,7 +68,7 @@ public class BookingService {
         try {
             return BookingDao.getInstance().takeRoomCost();
         } catch (DaoException e) {
-            throw new ServiceException("Unable to take cost of room from 'setting' table.", e);
+            throw new ServiceException("Unable to take cost of room.", e);
         }
     }
 
