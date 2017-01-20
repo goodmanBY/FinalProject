@@ -12,7 +12,7 @@
         <div class="col-md-12 centring">
             <h2>Full information about user</h2>
         </div>
-        <div class="col-md-5 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-2">
             <div class="form-group">
                 <label for="userId" class="col-md-offset-2 col-sm-2 control-label">User ID</label>
                 <div class="col-sm-8">
@@ -53,7 +53,7 @@
                 <label for="discount" class="col-md-offset-2 col-sm-2 control-label">Discount</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="discount" id="discount"
-                           value="${requestScope.user.discountId}" readonly>
+                           value="${requestScope.user.discount}" readonly>
                 </div>
             </div>
         </div>
@@ -88,7 +88,9 @@
                     <th>Not confirmed</th>
                 </c:when>
                 <c:otherwise>
-                    <th>Confirmed</th>
+                    <th ${(bookingRequests.confirmed == 1 && bookingRequests.paid == 0) ? 'class="confirmed"' : ''}>
+                        Confirmed
+                    </th>
                 </c:otherwise>
             </c:choose>
             <c:choose>

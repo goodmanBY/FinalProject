@@ -1,6 +1,7 @@
 package com.savko.filter;
 
 import com.savko.constant.Attributes;
+import com.savko.constant.Pages;
 import com.savko.entity.Admin;
 
 import javax.servlet.*;
@@ -20,7 +21,7 @@ public class AdminFilter implements Filter {
         if (admin != null) {
             filterChain.doFilter(request, response);
         } else {
-            request.getRequestDispatcher("/admin/").forward(request, response);
+            request.getRequestDispatcher(Pages.ADMIN_INDEX).forward(request, response);
         }
     }
 

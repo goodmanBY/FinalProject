@@ -24,7 +24,7 @@ public class BlockDescriptionCommand implements Command {
             UserService.getInstance().blockUser(Integer.parseInt(userId));
             UserService.getInstance().addBlockDescription(Integer.parseInt(userId), blockDescription);
         } catch (ServiceException e) {
-            //LOGGER.error("Unable to block user.", e);
+            LOGGER.error("Unable to block user.", e);
             throw new CommandException("Unable to block user.", e);
         }
         return new ForwardAction(Pages.ADMIN_CONTROL_PANEL);

@@ -37,7 +37,7 @@ public class AdminLogInCommand implements Command {
                 return new ForwardAction(Pages.ADMIN_INDEX);
             }
         } catch (ServiceException e) {
-            //LOGGER.error("Unable to log in admin.", e);
+            LOGGER.error("Unable to log in admin.", e);
             throw new CommandException("Unable to log in admin.", e);
         }
     }

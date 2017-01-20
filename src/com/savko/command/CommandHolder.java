@@ -34,6 +34,7 @@ public class CommandHolder {
         commands.put("cancelConfirmation", new CancelConfirmationCommand());
         commands.put("userProfile", new UserProfileCommand());
         commands.put("paymentInfo", new PaymentInfoCommand());
+        commands.put("setDiscountValue", new UserDiscountCommand());
 
     }
 

@@ -2,7 +2,7 @@ package com.savko.constant;
 
 public class Pages {
 
-    public static final String ADMIN_INDEX = "/admin/index.jsp";
+    public static final String ADMIN_INDEX = "/admin/";
     public static final String ADMIN_CONTROL_PANEL = "/admin/adminControlPanel.jsp";
     public static final String ADMIN_ALL_USERS = "/admin/allUsers.jsp";
     public static final String ADMIN_ALL_BOOKING_REQUESTS = "/admin/allBookingRequests.jsp";

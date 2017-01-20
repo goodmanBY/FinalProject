@@ -23,6 +23,8 @@ public class UserDao extends Dao {
     private static final String SQL_UNBLOCK_USER = "UPDATE client SET banned = 0 WHERE client_id = ?;";
     private static final String SQL_ADD_BLOCK_DESCRIPTION = "INSERT INTO ban_info(client_id, ban_description) VALUES(?, ?);";
     private static final String SQL_TAKE_BLOCK_DESCRIPTION = "SELECT ban_description FROM ban_info WHERE client_id = ?;";
+    private static final String SQL_CHANGE_USER_DISCOUNT = "UPDATE client SET discount = ? WHERE client_id = ?;";
+    private static final String SQL_TAKE_DISCOUNT_VALUE_BY_USER_ID = "SELECT discount FROM client WHERE client_id = ?;";
 
     public static UserDao getInstance() {
         return StaticHolder.INSTANCE;
@@ -94,7 +96,7 @@ public class UserDao extends Dao {
                         .setLastName(resultSet.getString("last_name"))
                         .setLogin(login)
                         .setBanned(resultSet.getByte("banned"))
-                        .setDiscountId(resultSet.getShort("discount_id"));
+                        .setDiscount(resultSet.getInt("discount"));
             }
             return user;
         } catch (SQLException e) {
@@ -118,7 +120,7 @@ public class UserDao extends Dao {
                         .setLastName(resultSet.getString("last_name"))
                         .setLogin(resultSet.getString("login"))
                         .setBanned(resultSet.getByte("banned"))
-                        .setDiscountId(resultSet.getShort("discount_id"));
+                        .setDiscount(resultSet.getInt("discount"));
             }
             return user;
         } catch (SQLException e) {
@@ -142,7 +144,7 @@ public class UserDao extends Dao {
                         .setLastName(resultSet.getString("last_name"))
                         .setLogin(resultSet.getString("login"))
                         .setBanned(resultSet.getByte("banned"))
-                        .setDiscountId(resultSet.getShort("discount_id"));
+                        .setDiscount(resultSet.getInt("discount"));
                 users.add(user);
             }
             return users;
@@ -204,12 +206,46 @@ public class UserDao extends Dao {
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             String description = null;
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 description = resultSet.getString("ban_description");
             }
             return description;
         } catch (SQLException e) {
             throw new DaoException("Unable to take data from 'ban_info' table.", e);
+        } finally {
+            closeResources(connection, preparedStatement);
+        }
+    }
+
+    public void changeUserDiscountValue(int discountValue, int userId) throws DaoException {
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(SQL_CHANGE_USER_DISCOUNT);
+            preparedStatement.setInt(1, discountValue);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Unable to update table 'client'.", e);
+        } finally {
+            closeResources(connection, preparedStatement);
+        }
+    }
+
+    public int takeDiscountValueByUserId(int userId) throws DaoException {
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(SQL_TAKE_DISCOUNT_VALUE_BY_USER_ID);
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int discountValue = 0;
+            if(resultSet.next()) {
+                discountValue = resultSet.getInt("discount");
+            }
+            return discountValue;
+        } catch (SQLException e) {
+            throw new DaoException("Unable to take data from DB..", e);
         } finally {
             closeResources(connection, preparedStatement);
         }

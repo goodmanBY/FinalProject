@@ -92,6 +92,22 @@ public class UserService {
         }
     }
 
+    public void changeUserDiscountValue(int discountValue, int userId) throws ServiceException {
+        try {
+            UserDao.getInstance().changeUserDiscountValue(discountValue, userId);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to change user discount value.", e);
+        }
+    }
+
+    public int takeDiscountValueByUserId(int userId) throws ServiceException {
+        try {
+            return UserDao.getInstance().takeDiscountValueByUserId(userId);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to take discount value by user ID.", e);
+        }
+    }
+
     private static class StaticHolder {
         static final UserService INSTANCE = new UserService();
     }

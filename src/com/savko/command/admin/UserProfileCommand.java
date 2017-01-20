@@ -28,7 +28,7 @@ public class UserProfileCommand implements Command {
             request.setAttribute("user", user);
             request.setAttribute("bookingRequests", bookingRequests);
         } catch (ServiceException e) {
-            //LOGGER.error("Unable to take user or take requests from DB.", e);
+            LOGGER.error("Unable to take user or take requests from DB.", e);
             throw new CommandException("Unable to take user or take requests from DB.", e);
         }
         return new ForwardAction(Pages.ADMIN_USER_PROFILE);

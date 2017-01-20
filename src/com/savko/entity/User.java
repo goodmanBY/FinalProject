@@ -8,7 +8,7 @@ public class User {
     private String login;
     private String password;
     private byte banned;
-    private short discountId;
+    private int discount;
 
     public int getId() {
         return id;
@@ -64,12 +64,12 @@ public class User {
         return this;
     }
 
-    public short getDiscountId() {
-        return discountId;
+    public int getDiscount() {
+        return discount;
     }
 
-    public User setDiscountId(short discountId) {
-        this.discountId = discountId;
+    public User setDiscount(int discount) {
+        this.discount = discount;
         return this;
     }
 
@@ -82,7 +82,7 @@ public class User {
 
         if (id != user.id) return false;
         if (banned != user.banned) return false;
-        if (discountId != user.discountId) return false;
+        if (discount != user.discount) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
@@ -98,7 +98,7 @@ public class User {
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (int) banned;
-        result = 31 * result + (int) discountId;
+        result = 31 * result + (int) discount;
         return result;
     }
 
@@ -111,7 +111,7 @@ public class User {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", banned=" + banned +
-                ", discountId=" + discountId +
+                ", discount=" + discount +
                 '}';
     }
 }

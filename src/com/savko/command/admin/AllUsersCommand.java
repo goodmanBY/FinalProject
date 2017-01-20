@@ -25,7 +25,7 @@ public class AllUsersCommand implements Command {
         try {
             users = UserService.getInstance().takeAllUsers();
         } catch (ServiceException e) {
-            //LOGGER.error("Unable to take all users.", e);
+            LOGGER.error("Unable to take all users.", e);
             throw new CommandException("Unable to take all users.", e);
         }
         HttpSession session = request.getSession();

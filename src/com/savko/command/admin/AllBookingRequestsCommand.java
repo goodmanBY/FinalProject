@@ -25,7 +25,7 @@ public class AllBookingRequestsCommand implements Command {
         try {
             bookingRequests = BookingService.getInstance().takeAllBookingRequests();
         } catch (ServiceException e) {
-            //LOGGER.error("Unable to take all booking requests.", e);
+            LOGGER.error("Unable to take all booking requests.", e);
             throw new CommandException("Unable to take all booking requests.", e);
         }
         HttpSession session = request.getSession();

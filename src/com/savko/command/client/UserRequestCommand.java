@@ -7,6 +7,9 @@ import com.savko.command.exception.CommandException;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
+import com.savko.entity.User;
+import com.savko.service.ServiceException;
+import com.savko.service.UserService;
 import com.savko.util.CostUtil;
 import com.savko.util.DateUtil;
 import com.savko.util.UtilException;
@@ -20,13 +23,15 @@ public class UserRequestCommand implements Command {
 
     @Override
     public Action execute(HttpServletRequest request) throws CommandException {
+        User user = (User) request.getSession().getAttribute(Attributes.USER);
         String amountOfPlaces = request.getParameter(Parameters.AMOUNT_OF_PLACES);
         String stringDateFrom = request.getParameter(Parameters.DATE_FROM);
         String stringDateTo = request.getParameter(Parameters.DATE_TO);
         try {
             if (DateUtil.areDatesValid(stringDateFrom, stringDateTo)) {
                 int amountOfDays = DateUtil.calculateAmountOfDays(stringDateFrom, stringDateTo);
-                double cost = CostUtil.calculateCost(Integer.parseInt(amountOfPlaces), amountOfDays);
+                int userDiscount = UserService.getInstance().takeDiscountValueByUserId(user.getId());
+                double cost = CostUtil.calculateCost(Integer.parseInt(amountOfPlaces), amountOfDays, userDiscount);
                 request.setAttribute(Parameters.AMOUNT_OF_PLACES, amountOfPlaces);
                 request.setAttribute(Parameters.DATE_FROM, stringDateFrom);
                 request.setAttribute(Parameters.DATE_TO, stringDateTo);
@@ -38,6 +43,9 @@ public class UserRequestCommand implements Command {
         } catch (UtilException e) {
             LOGGER.error("Unable to book user's request.", e);
             throw new CommandException("Unable to book user's request.", e);
+        } catch (ServiceException e) {
+            LOGGER.error("Unable to take discount by user ID.", e);
+            throw new CommandException("Unable to take discount by user ID.", e);
         }
         return new ForwardAction(Pages.USER_REQUEST_INFO);
     }

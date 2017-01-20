@@ -36,6 +36,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="Discount" class="col-sm-3 control-label"><fmt:message key="discount"/></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="Discount" id="Discount"
+                       value="${sessionScope.user.discount}%" readonly>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="amountOfPlaces" class="col-sm-3 control-label"><fmt:message key="amount.of.places"/></label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="amountOfPlaces" id="amountOfPlaces"
