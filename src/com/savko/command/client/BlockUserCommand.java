@@ -15,6 +15,7 @@ public class BlockUserCommand implements Command {
     public Action execute(HttpServletRequest request) {
         String userId = request.getParameter(Parameters.USER_ID);
         request.setAttribute(Attributes.USER_ID, userId);
+
         return new ForwardAction(Pages.ADMIN_BLOCK_DESCRIPTION);
     }
 }

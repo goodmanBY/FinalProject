@@ -7,7 +7,8 @@ var ERROR_FILL_ALL_FIELDS = "Fill all fields",
     ERROR_INVALID_MONTH_INDEX = "Incorrect month",
     ERROR_INVALID_YEAR = "Incorrect year",
     ERROR_INVALID_SECURITY_CODE = "Invalid security code",
-    ERROR_FILL_DESCRIPTION_FIELD = "Fill description";
+    ERROR_FILL_DESCRIPTION_FIELD = "Fill description",
+    ERROR_INVALID_SELECTED_DATES = "Invalid selected dates";
 
 var VALID_LOGIN_LENGTH = 4,
     VALID_CARD_NUMBER_LENGTH = 16,
@@ -123,5 +124,43 @@ function validateAddBlockDescriptionForm() {
     }
 
     return result;
+
+}
+
+function validateBookingForm() {
+
+    var amountOfPlaces = document.forms[0]["amountOfPlaces"].value,
+        dateFrom = document.forms[0]["dateFrom"].value,
+        dateTo = document.forms[0]["dateTo"].value;
+
+    if(!amountOfPlaces || dateFrom.getTime() == "" || dateTo.getTime() == "") {
+        validationError.innerHTML = ERROR_FILL_ALL_FIELDS;
+        result = false;
+    }
+
+    if(getDaysBetweenTwoDates(dateTo, dateFrom) <= 0) {
+        validationError.innerHTML = ERROR_INVALID_SELECTED_DATES;
+        result = false;
+    }
+
+    if(amountOfPlaces && dateFrom && dateTo) {
+        validationError.innerHTML = "";
+    }
+
+    return result;
+
+}
+
+function getDaysBetweenTwoDates(dateFrom, dateTo) {
+
+    var hours = 24,
+        minutes = 60,
+        seconds = 60,
+        milliseconds = 1000,
+        oneDay = hours * minutes * seconds * milliseconds;
+
+    var timeDifference = Math.abs(dateTo.getTime() - dateFrom.getTime());
+
+    return Math.ceil(timeDifference / oneDay);
 
 }

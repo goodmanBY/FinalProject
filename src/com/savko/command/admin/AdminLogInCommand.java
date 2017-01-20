@@ -3,6 +3,7 @@ package com.savko.command.admin;
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
+import com.savko.command.exception.CommandException;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
@@ -20,7 +21,7 @@ public class AdminLogInCommand implements Command {
     private final static Logger LOGGER = Logger.getLogger(AdminLogInCommand.class);
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public Action execute(HttpServletRequest request) throws CommandException {
         String login = request.getParameter(Parameters.LOGIN);
         String password = HashUtil.getMd5Hash(request.getParameter(Parameters.PASSWORD));
         HttpSession session = request.getSession();
@@ -36,8 +37,8 @@ public class AdminLogInCommand implements Command {
                 return new ForwardAction(Pages.ADMIN_INDEX);
             }
         } catch (ServiceException e) {
-            LOGGER.error("Unable to log in admin.", e);
+            //LOGGER.error("Unable to log in admin.", e);
+            throw new CommandException("Unable to log in admin.", e);
         }
-        return null;
     }
 }

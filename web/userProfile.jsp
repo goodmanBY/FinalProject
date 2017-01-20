@@ -17,7 +17,7 @@
                 <span class="col-md-12 centring"><h2><fmt:message
                         key="welcome"/>, ${sessionScope.user.login}!</h2></span>
             </div>
-            <div class="col-md-6 col-md-offset-2">
+            <div class="col-md-5 col-md-offset-3">
                 <div hidden>
                     <input name="userId" id="userId" value="${sessionScope.user.id}">
                 </div>

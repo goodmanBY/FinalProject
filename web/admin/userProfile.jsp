@@ -12,7 +12,7 @@
         <div class="col-md-12 centring">
             <h2>Full information about user</h2>
         </div>
-        <div class="col-md-6 col-md-offset-2">
+        <div class="col-md-5 col-md-offset-3">
             <div class="form-group">
                 <label for="userId" class="col-md-offset-2 col-sm-2 control-label">User ID</label>
                 <div class="col-sm-8">

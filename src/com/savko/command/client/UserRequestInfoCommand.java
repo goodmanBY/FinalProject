@@ -3,6 +3,7 @@ package com.savko.command.client;
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
+import com.savko.command.exception.CommandException;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
 import com.savko.entity.BookingRequest;
@@ -19,7 +20,7 @@ public class UserRequestInfoCommand implements Command {
     private final static Logger LOGGER = Logger.getLogger(UserRequestInfoCommand.class);
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public Action execute(HttpServletRequest request) throws CommandException {
         String userId = request.getParameter(Parameters.USER_ID);
         String amountOfPlaces = request.getParameter(Parameters.AMOUNT_OF_PLACES);
         String stringDateFrom = request.getParameter(Parameters.DATE_FROM);
@@ -37,9 +38,11 @@ public class UserRequestInfoCommand implements Command {
                     .setCost(Double.parseDouble(cost));
             BookingService.getInstance().bookRequest(bookingRequest);
         } catch (ServiceException e) {
-            LOGGER.error("Unable to book user's request.", e);
+            //LOGGER.error("Unable to book user's request.", e);
+            throw new CommandException("Unable to book user's request.", e);
         } catch (UtilException e) {
-            LOGGER.error("Unable to cast String to Date format" + e);
+            LOGGER.error("Unable to cast String to Date format." + e);
+            throw new CommandException("Unable to cast String to Date format.", e);
         }
         return new ForwardAction(Pages.USER_PROFILE);
     }

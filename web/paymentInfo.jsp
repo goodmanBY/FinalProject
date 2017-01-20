@@ -15,7 +15,7 @@
             <div class="col-md-12 centring">
                 <h2>Payment info</h2>
             </div>
-            <div class="col-md-6 col-md-offset-2">
+            <div class="col-md-5 col-md-offset-3">
                 <div class="form-group">
                     <label for="lastFourDigits" class="col-md-offset-2 col-md-2 control-label">Last digits</label>
                     <div class="col-md-8">

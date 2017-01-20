@@ -3,6 +3,7 @@ package com.savko.command.client;
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
+import com.savko.command.exception.CommandException;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
@@ -18,13 +19,14 @@ public class PaymentInfoCommand implements Command {
     private final static Logger LOGGER = Logger.getLogger(PaymentInfoCommand.class);
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public Action execute(HttpServletRequest request) throws CommandException {
         String requestId = request.getParameter(Parameters.REQUEST_ID);
         try {
             PaymentInfo paymentInfo = PaymentService.getInstance().takePaymentInfoByRequestId(Integer.parseInt(requestId));
             request.setAttribute(Attributes.PAYMENT_INFO, paymentInfo);
         } catch (ServiceException e) {
-            LOGGER.error("Unable to take data from DB.", e);
+            LOGGER.error("Unable to take payment info by request ID.", e);
+            throw new CommandException("Unable to take payment info by request ID.", e);
         }
         return new ForwardAction(Pages.PAYMENT_INFO);
     }

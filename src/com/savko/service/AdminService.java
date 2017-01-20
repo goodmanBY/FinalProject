@@ -17,6 +17,14 @@ public class AdminService {
         }
     }
 
+    public void addAdmin(String login, String password) throws ServiceException {
+        try {
+            AdminDao.getInstance().addAdmin(login, password);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to add admin.", e);
+        }
+    }
+
     private static class StaticHolder {
         static final AdminService INSTANCE = new AdminService();
     }

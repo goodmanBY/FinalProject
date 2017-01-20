@@ -3,6 +3,7 @@ package com.savko.command.client;
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
+import com.savko.command.exception.CommandException;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
@@ -19,7 +20,7 @@ public class UserRegistrationCommand implements Command {
     private final static Logger LOGGER = Logger.getLogger(UserRegistrationCommand.class);
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public Action execute(HttpServletRequest request) throws CommandException {
         String name = request.getParameter(Parameters.NAME);
         String lastName = request.getParameter(Parameters.LAST_NAME);
         String login = request.getParameter(Parameters.LOGIN);
@@ -40,7 +41,7 @@ public class UserRegistrationCommand implements Command {
             }
         } catch (ServiceException e) {
             LOGGER.error("Unable to register user.", e);
+            throw new CommandException("Unable to register user.", e);
         }
-        return null;
     }
 }

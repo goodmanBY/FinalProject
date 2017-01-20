@@ -9,7 +9,7 @@
 
 <%@ include file="include/navigation.jsp" %>
 
-<div class="col-md-6 col-md-offset-2 container-top-padding">
+<div class="col-md-5 col-md-offset-3 container-top-padding">
     <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do">
         <input type="hidden" name="action" value="userRequestInfo">
         <div class="form-group centring">

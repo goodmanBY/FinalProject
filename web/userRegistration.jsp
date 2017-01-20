@@ -11,13 +11,13 @@
 
 <div class="container container-top-padding">
     <div class="row">
-        <div class="col-md-6 col-md-offset-2">
+        <div class="form-group">
+            <span class="centring"><fmt:message key="registration"/></span>
+        </div>
+        <div class="col-md-5 col-md-offset-3">
             <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
                   onkeyup="return validateUserRegistrationForm()">
                 <input type="hidden" name="action" value="userRegistration">
-                <div class="form-group">
-                    <span class="centring"><fmt:message key="registration"/></span>
-                </div>
                 <div class="form-group">
                     <label for="name" class="col-md-2 control-label"><fmt:message key="name"/></label>
                     <div class="col-md-10">

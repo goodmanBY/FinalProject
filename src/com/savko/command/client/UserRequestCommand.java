@@ -3,6 +3,8 @@ package com.savko.command.client;
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
+import com.savko.command.exception.CommandException;
+import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
 import com.savko.util.CostUtil;
@@ -17,7 +19,7 @@ public class UserRequestCommand implements Command {
     private final static Logger LOGGER = Logger.getLogger(UserRequestCommand.class);
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public Action execute(HttpServletRequest request) throws CommandException {
         String amountOfPlaces = request.getParameter(Parameters.AMOUNT_OF_PLACES);
         String stringDateFrom = request.getParameter(Parameters.DATE_FROM);
         String stringDateTo = request.getParameter(Parameters.DATE_TO);
@@ -29,13 +31,13 @@ public class UserRequestCommand implements Command {
                 request.setAttribute(Parameters.DATE_FROM, stringDateFrom);
                 request.setAttribute(Parameters.DATE_TO, stringDateTo);
                 request.setAttribute(Parameters.COST, cost);
-                return new ForwardAction(Pages.USER_REQUEST_INFO);
             } else {
-                request.setAttribute("error", "Bad selected dates");
+                request.setAttribute(Attributes.ERROR, "Bad selected dates");
                 return new ForwardAction(Pages.USER_INDEX);
             }
         } catch (UtilException e) {
             LOGGER.error("Unable to book user's request.", e);
+            throw new CommandException("Unable to book user's request.", e);
         }
         return new ForwardAction(Pages.USER_REQUEST_INFO);
     }
