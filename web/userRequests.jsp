@@ -23,6 +23,7 @@
                     <th><fmt:message key="date.to"/></th>
                     <th><fmt:message key="cost"/></th>
                     <th><fmt:message key="confirmed"/></th>
+                    <th><fmt:message key="declined"/></th>
                     <th><fmt:message key="paid"/></th>
                     <th><fmt:message key="approved.by"/></th>
                     <th><fmt:message key="status"/></th>
@@ -41,6 +42,16 @@
                             <c:otherwise>
                                 <th ${(bookingRequest.confirmed == 1 && bookingRequest.paid == 0) ? 'class="confirmed"' : ''}>
                                     <fmt:message key="confirmed"/></th>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${bookingRequest.declined == 0}">
+                                <th>Not declined</th>
+                            </c:when>
+                            <c:otherwise>
+                                <th ${(bookingRequest.declined == 1 && bookingRequest.paid == 0) ? 'class=\"declined\"' : ''}>
+                                    Declined
+                                </th>
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
@@ -67,14 +78,25 @@
                                     <c:otherwise>
                                         <th>
                                             <a href="${pageContext.request.contextPath}/do?action=paymentInfo&requestId=${bookingRequest.requestId}">
-                                                Info
+                                                <fmt:message key="info"/>
                                             </a>
                                         </th>
                                     </c:otherwise>
                                 </c:choose>
                             </c:when>
                             <c:otherwise>
-                                <th><fmt:message key="wait.confirmation"/></th>
+                                <c:choose>
+                                    <c:when test="${bookingRequest.confirmed == 0 && bookingRequest.declined == 0}">
+                                        <th>
+                                            <fmt:message key="wait.confirmation"/>
+                                        </th>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <th>
+                                            <fmt:message key="declined"/>
+                                        </th>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:otherwise>
                         </c:choose>
                     </tr>

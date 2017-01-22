@@ -11,6 +11,7 @@ public class BookingRequest {
     private Date dateTo;
     private double cost;
     private byte confirmed;
+    private byte declined;
     private byte paid;
     private String approvedBy;
 
@@ -74,6 +75,15 @@ public class BookingRequest {
 
     public BookingRequest setConfirmed(byte confirmed) {
         this.confirmed = confirmed;
+        return this;
+    }
+
+    public byte getDeclined() {
+        return declined;
+    }
+
+    public BookingRequest setDeclined(byte declined) {
+        this.declined = declined;
         return this;
     }
 

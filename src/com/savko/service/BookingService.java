@@ -46,6 +46,7 @@ public class BookingService {
 
     public void confirmBookingRequest(int requestId, String adminLogin) throws ServiceException {
         try {
+            BookingDao.getInstance().cancelDeclination(requestId);
             BookingDao.getInstance().confirmBookingRequest(requestId, adminLogin);
         } catch (DaoException e) {
             throw new ServiceException("Unable to confirm booking request.", e);
@@ -57,6 +58,23 @@ public class BookingService {
             BookingDao.getInstance().cancelConfirmation(requestId);
         } catch (DaoException e) {
             throw new ServiceException("Unable to cancel confirmation.", e);
+        }
+    }
+
+    public void declineBookingRequest(int request_id, String adminLogin) throws ServiceException {
+        try {
+            BookingDao.getInstance().cancelConfirmation(request_id);
+            BookingDao.getInstance().declineBookingRequest(request_id, adminLogin);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to decline booking request.", e);
+        }
+    }
+
+    public void cancelDeclination(int request_id) throws ServiceException {
+        try {
+            BookingDao.getInstance().cancelDeclination(request_id);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to cancel declination.", e);
         }
     }
 

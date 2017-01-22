@@ -1,4 +1,4 @@
-package com.savko.command.client;
+package com.savko.command.admin;
 
 import com.savko.action.Action;
 import com.savko.action.ForwardAction;

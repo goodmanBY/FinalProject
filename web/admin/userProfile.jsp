@@ -71,13 +71,14 @@
         <th>Date to</th>
         <th>Cost, $</th>
         <th>Confirmed</th>
+        <th>Declined</th>
         <th>Paid</th>
         <th>Approved by</th>
         <th>Confirm/Cancel</th>
-        <th>Payment info</th>
+        <th>Decline/Cancel</th>
     </tr>
     <c:forEach items="${bookingRequests}" var="bookingRequests">
-        <tr ${bookingRequests.paid == 1 && bookingRequests.confirmed == 1 ? 'class=\"success\"' : ''}>
+        <tr ${bookingRequests.paid == 1 && bookingRequests.confirmed == 1 ? 'class="success"' : ''}>
             <th>${bookingRequests.requestId}</th>
             <th>${bookingRequests.amountOfPlaces}</th>
             <th>${bookingRequests.dateFrom}</th>
@@ -90,6 +91,16 @@
                 <c:otherwise>
                     <th ${(bookingRequests.confirmed == 1 && bookingRequests.paid == 0) ? 'class="confirmed"' : ''}>
                         Confirmed
+                    </th>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${bookingRequests.declined == 0 && bookingRequests.paid == 1}">
+                    <th>Not declined</th>
+                </c:when>
+                <c:otherwise>
+                    <th ${(bookingRequests.declined == 1 && bookingRequests.paid == 0) ? 'class="declined"' : ''}>
+                        Declined
                     </th>
                 </c:otherwise>
             </c:choose>
@@ -126,6 +137,29 @@
                                 <a href="${pageContext.request.contextPath}/do?action=paymentInfo&requestId=${bookingRequests.requestId}">
                                     Info
                                 </a>
+                            </th>
+                        </c:otherwise>
+                    </c:choose>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${bookingRequests.declined == 0}">
+                    <th>
+                        <a href="${pageContext.request.contextPath}/do?action=declineBookingRequest&requestId=${bookingRequests.requestId}">Decline request</a>
+                    </th>
+                </c:when>
+                <c:otherwise>
+                    <c:choose>
+                        <c:when test="${bookingRequests.paid == 0}">
+                            <th>
+                                <a>
+                                    <a href="${pageContext.request.contextPath}/do?action=cancelDeclination&requestId=${bookingRequests.requestId}">Cancel declination</a>
+                                </a>
+                            </th>
+                        </c:when>
+                        <c:otherwise>
+                            <th>
+                                Unable to decline paid order
                             </th>
                         </c:otherwise>
                     </c:choose>

@@ -32,6 +32,8 @@ public class CommandHolder {
         commands.put("allBookingRequests", new AllBookingRequestsCommand());
         commands.put("confirmBookingRequest", new ConfirmBookingRequestCommand());
         commands.put("cancelConfirmation", new CancelConfirmationCommand());
+        commands.put("declineBookingRequest", new DeclinedRequestCommand());
+        commands.put("cancelDeclination", new CancelDeclinationCommand());
         commands.put("userProfile", new UserProfileCommand());
         commands.put("paymentInfo", new PaymentInfoCommand());
         commands.put("setDiscountValue", new UserDiscountCommand());

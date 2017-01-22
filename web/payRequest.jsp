@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5 col-md-offset-3 container-top-padding">
+        <div class="col-md-6 col-md-offset-2 container-top-padding">
             <div class="form-group centring">
                 <span class="centring"><fmt:message key="your.booking.request"/></span>
             </div>
