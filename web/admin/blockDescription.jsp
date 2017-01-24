@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
-              onkeyup="return validateAddBlockDescriptionForm()">
+              onsubmit="return validateAddBlockDescriptionForm(this)">
             <input type="hidden" name="action" value="addBlockDescription">
             <div hidden>
                 <label for="userId"></label><input name="userId" id="userId" value="${requestScope.userId}">

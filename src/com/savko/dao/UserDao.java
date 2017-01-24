@@ -16,6 +16,8 @@ public class UserDao extends Dao {
     private static final String SQL_INSERT_USER = "INSERT INTO client(name, last_name, login, password) VALUES(?, ?, ?, ?);";
     private static final String SQL_TAKE_USER_BY_LOGIN = "SELECT * FROM client WHERE login = ?;";
     private static final String SQL_TAKE_USER_BY_ID = "SELECT * FROM client WHERE client_id = ?;";
+    private static final String SQL_TAKE_USER_BY_REQUEST_ID = "SELECT client.client_id, name, last_name, login, banned, " +
+            "discount FROM client RIGHT JOIN request ON client.client_id = request.client_id WHERE request.request_id = ?;";
     private static final String SQL_TAKE_ALL_USERS = "SELECT * FROM client;";
     private static final String SQL_CHECK_USER = "SELECT login, password FROM client WHERE login = ? AND password = ?;";
     private static final String SQL_CHECK_USER_LOGIN = "SELECT login FROM client WHERE login = ?;";
@@ -130,6 +132,30 @@ public class UserDao extends Dao {
         }
     }
 
+    public User takeUserByRequestId(int requestId) throws DaoException {
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(SQL_TAKE_USER_BY_REQUEST_ID);
+            preparedStatement.setInt(1, requestId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = new User();
+            if (resultSet.next()) {
+                user.setId(resultSet.getInt("client_id"))
+                        .setName(resultSet.getString("name"))
+                        .setLastName(resultSet.getString("last_name"))
+                        .setLogin(resultSet.getString("login"))
+                        .setBanned(resultSet.getByte("banned"))
+                        .setDiscount(resultSet.getInt("discount"));
+            }
+            return user;
+        } catch (SQLException e) {
+            throw new DaoException("Unable to take such user from DB.", e);
+        } finally {
+            closeResources(connection, preparedStatement);
+        }
+    }
+
     public List<User> takeAllUsers() throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         Statement statement = null;
@@ -206,7 +232,7 @@ public class UserDao extends Dao {
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
             String description = null;
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 description = resultSet.getString("ban_description");
             }
             return description;

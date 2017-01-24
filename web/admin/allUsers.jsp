@@ -21,7 +21,7 @@
         <th>Block/Unblock</th>
         <th></th>
     </tr>
-    <c:forEach items="${users}" var="users">
+    <c:forEach items="${requestScope.users}" var="users">
         <tr>
             <th>${users.id}</th>
             <th>${users.name}</th>
@@ -32,7 +32,7 @@
                     <th>Not banned</th>
                 </c:when>
                 <c:otherwise>
-                    <th>Banned</th>
+                    <th class="banned">Banned</th>
                 </c:otherwise>
             </c:choose>
             <th>
@@ -42,25 +42,25 @@
                             ${users.discount}%<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="${pageContext.request.contextPath}/do?action=setDiscountValue&userId=${users.id}&discountValue=5">5%</a></li>
-                        <li><a href="${pageContext.request.contextPath}/do?action=setDiscountValue&userId=${users.id}&discountValue=10">10%</a></li>
-                        <li><a href="${pageContext.request.contextPath}/do?action=setDiscountValue&userId=${users.id}&discountValue=15">15%</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/do?action=setDiscountValue&userId=${users.id}&discountValue=5">5%</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/do?action=setDiscountValue&userId=${users.id}&discountValue=10">10%</a></li>
+                        <li><a href="${pageContext.request.contextPath}/admin/do?action=setDiscountValue&userId=${users.id}&discountValue=15">15%</a></li>
                     </ul>
                 </div>
             </th>
             <c:choose>
                 <c:when test="${users.banned == 0}">
                     <th>
-                        <a href="${pageContext.request.contextPath}/do?action=blockUser&userId=${users.id}">Block</a>
+                        <a href="${pageContext.request.contextPath}/admin/do?action=blockUser&userId=${users.id}">Block</a>
                     </th>
                 </c:when>
                 <c:otherwise>
                     <th>
-                        <a href="${pageContext.request.contextPath}/do?action=unblockUser&userId=${users.id}">Unblock</a>
+                        <a href="${pageContext.request.contextPath}/admin/do?action=unblockUser&userId=${users.id}">Unblock</a>
                     </th>
                 </c:otherwise>
             </c:choose>
-            <th><a href="${pageContext.request.contextPath}/do?action=userProfile&userId=${users.id}">About</a></th>
+            <th><a href="${pageContext.request.contextPath}/admin/do?action=userProfile&userId=${users.id}">Profile</a></th>
         </tr>
     </c:forEach>
 </table>

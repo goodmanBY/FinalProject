@@ -37,13 +37,14 @@ public class UserRequestInfoCommand implements Command {
                     .setDateTo(dateTo)
                     .setCost(Double.parseDouble(cost));
             BookingService.getInstance().bookRequest(bookingRequest);
+
         } catch (ServiceException e) {
-            //LOGGER.error("Unable to book user's request.", e);
+            LOGGER.error("Unable to book user's request.", e);
             throw new CommandException("Unable to book user's request.", e);
         } catch (UtilException e) {
             LOGGER.error("Unable to cast String to Date format." + e);
             throw new CommandException("Unable to cast String to Date format.", e);
         }
-        return new ForwardAction(Pages.USER_PROFILE);
+        return new ForwardAction(Pages.SUCCESS_BOOKING);
     }
 }

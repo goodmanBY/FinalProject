@@ -18,21 +18,6 @@ public class DateUtil {
         return new Timestamp(now.getTime());
     }
 
-
-    public static boolean areDatesValid(String stringDateFrom, String stringDateTo) throws UtilException {
-        boolean valid = true;
-        try {
-            Date dateFrom = DATE_FORMAT.parse(stringDateFrom);
-            Date dateTo = DATE_FORMAT.parse(stringDateTo);
-            if (dateTo.getTime() - dateFrom.getTime() < 1) {
-                valid = false;
-            }
-            return valid;
-        } catch (ParseException e) {
-            throw new UtilException("Unable to calculate amount of days between dates.", e);
-        }
-    }
-
     public static int calculateAmountOfDays(String stringDateFrom, String stringDateTo) throws UtilException {
         try {
             Date dateFrom = DATE_FORMAT.parse(stringDateFrom);

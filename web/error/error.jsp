@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <link href="${pageContext.request.contextPath}/css/errorPage.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/information.css" rel="stylesheet">
     <title>Error ${code}</title>
 </head>
 <body>

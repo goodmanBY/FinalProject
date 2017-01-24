@@ -1,6 +1,7 @@
 package com.savko.command.admin;
 
 import com.savko.action.Action;
+import com.savko.action.ForwardAction;
 import com.savko.action.RedirectAction;
 import com.savko.command.Command;
 import com.savko.command.exception.CommandException;
@@ -28,9 +29,8 @@ public class AllUsersCommand implements Command {
             LOGGER.error("Unable to take all users.", e);
             throw new CommandException("Unable to take all users.", e);
         }
-        HttpSession session = request.getSession();
-        session.setAttribute(Attributes.USERS, users);
+        request.setAttribute(Attributes.USERS, users);
 
-        return new RedirectAction(Pages.ADMIN_ALL_USERS);
+        return new ForwardAction(Pages.ADMIN_ALL_USERS);
     }
 }

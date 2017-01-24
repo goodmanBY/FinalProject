@@ -1,11 +1,13 @@
 package com.savko.command.admin;
 
 import com.savko.action.Action;
+import com.savko.action.ForwardAction;
 import com.savko.action.RedirectAction;
 import com.savko.command.Command;
 import com.savko.command.exception.CommandException;
 import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
+import com.savko.constant.Parameters;
 import com.savko.entity.BookingRequest;
 import com.savko.service.BookingService;
 import com.savko.service.ServiceException;
@@ -28,9 +30,8 @@ public class AllBookingRequestsCommand implements Command {
             LOGGER.error("Unable to take all booking requests.", e);
             throw new CommandException("Unable to take all booking requests.", e);
         }
-        HttpSession session = request.getSession();
-        session.setAttribute(Attributes.BOOKING_REQUESTS, bookingRequests);
+        request.setAttribute(Attributes.BOOKING_REQUESTS, bookingRequests);
 
-        return new RedirectAction(Pages.ADMIN_ALL_BOOKING_REQUESTS);
+        return new ForwardAction(Pages.ADMIN_ALL_BOOKING_REQUESTS);
     }
 }

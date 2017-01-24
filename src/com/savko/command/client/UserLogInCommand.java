@@ -12,6 +12,7 @@ import com.savko.entity.User;
 import com.savko.service.ServiceException;
 import com.savko.service.UserService;
 import com.savko.util.HashUtil;
+import com.savko.validation.LogInValidation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,16 +28,22 @@ public class UserLogInCommand implements Command {
         String password = HashUtil.getMd5Hash(request.getParameter(Parameters.PASSWORD));
         HttpSession session = request.getSession();
         try {
-            if (UserService.getInstance().checkUser(login, password)) {
-                User currentUser = UserService.getInstance().takeUser(login);
-                if (currentUser.getBanned() == 1) {
-                    String blockDescription = UserService.getInstance().takeBlockDescription(currentUser.getId());
-                    session.setAttribute("blockDescription", blockDescription);
+            if (LogInValidation.validateLoginAndPassword(login, password)) {
+                if (UserService.getInstance().checkUser(login, password)) {
+                    User currentUser = UserService.getInstance().takeUser(login);
+                    if (currentUser.getBanned() == 1) {
+                        String blockDescription = UserService.getInstance().takeBlockDescription(currentUser.getId());
+                        session.setAttribute("blockDescription", blockDescription);
+                    }
+                    session.setAttribute(Attributes.USER, currentUser);
+                    //Redirect
+                    return new ForwardAction(Pages.USER_INDEX);
+                } else {
+                    request.setAttribute(Attributes.ERROR, "Incorrect login or password");
+                    return new ForwardAction(Pages.USER_LOG_IN);
                 }
-                session.setAttribute(Attributes.USER, currentUser);
-                return new RedirectAction(Pages.USER_INDEX);
             } else {
-                request.setAttribute(Attributes.ERROR, "Incorrect login or password");
+                request.setAttribute(Attributes.ERROR, "Fill all fields");
                 return new ForwardAction(Pages.USER_LOG_IN);
             }
         } catch (ServiceException e) {

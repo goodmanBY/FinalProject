@@ -8,11 +8,15 @@ import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
 import com.savko.entity.Admin;
+import com.savko.entity.BookingRequest;
+import com.savko.entity.User;
 import com.savko.service.BookingService;
 import com.savko.service.ServiceException;
+import com.savko.service.UserService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public class DeclinedRequestCommand implements Command {
 
@@ -23,12 +27,19 @@ public class DeclinedRequestCommand implements Command {
         String requestId = request.getParameter(Parameters.REQUEST_ID);
         Admin admin = (Admin) request.getSession().getAttribute(Attributes.ADMIN);
         String adminLogin = admin.getLogin();
+        List<BookingRequest> bookingRequests;
+        User user;
         try {
             BookingService.getInstance().declineBookingRequest(Integer.parseInt(requestId), adminLogin);
+            user = UserService.getInstance().takeUserByRequestId(Integer.parseInt(requestId));
+            bookingRequests = BookingService.getInstance().takeBookingRequestsByUserId(user.getId());
+            request.setAttribute(Attributes.USER, user);
+            request.setAttribute(Attributes.BOOKING_REQUESTS, bookingRequests);
         } catch (ServiceException e) {
             LOGGER.error("Unable to decline booking request.", e);
             throw new CommandException("Unable to decline booking request.", e);
         }
-        return new ForwardAction(Pages.ADMIN_CONTROL_PANEL);
+
+        return new ForwardAction(Pages.ADMIN_USER_PROFILE);
     }
 }

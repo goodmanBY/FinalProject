@@ -4,7 +4,9 @@ import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.command.exception.CommandException;
+import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
+import com.savko.constant.Parameters;
 import com.savko.entity.BookingRequest;
 import com.savko.entity.User;
 import com.savko.service.BookingService;
@@ -21,16 +23,17 @@ public class UserProfileCommand implements Command {
 
     @Override
     public Action execute(HttpServletRequest request) throws CommandException {
-        String userId = request.getParameter("userId");
+        String userId = request.getParameter(Parameters.USER_ID);
         try {
             User user = UserService.getInstance().takeUser(Integer.parseInt(userId));
             List<BookingRequest> bookingRequests = BookingService.getInstance().takeBookingRequestsByUserId(Integer.parseInt(userId));
-            request.setAttribute("user", user);
-            request.setAttribute("bookingRequests", bookingRequests);
+            request.setAttribute(Attributes.USER, user);
+            request.setAttribute(Attributes.BOOKING_REQUESTS, bookingRequests);
         } catch (ServiceException e) {
             LOGGER.error("Unable to take user or take requests from DB.", e);
             throw new CommandException("Unable to take user or take requests from DB.", e);
         }
+
         return new ForwardAction(Pages.ADMIN_USER_PROFILE);
     }
 }

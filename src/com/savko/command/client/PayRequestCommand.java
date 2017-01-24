@@ -14,6 +14,7 @@ import com.savko.service.ServiceException;
 import com.savko.util.CardUtil;
 import com.savko.util.DateUtil;
 import com.savko.util.UtilException;
+import com.savko.validation.UserCardValidation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +37,7 @@ public class PayRequestCommand implements Command {
         PaymentInfo paymentInfo = new PaymentInfo();
         User currentUser = (User) request.getSession().getAttribute(Attributes.USER);
         int userId = currentUser.getId();
-        if (CardUtil.isCardValid(cardNumber, Integer.parseInt(month), Integer.parseInt(year), owner, securityCode)) {
+        if (UserCardValidation.isCardValid(cardNumber, month, year, owner, securityCode)) {
             try {
                 java.sql.Timestamp dateAndTime = DateUtil.getCurrentDateAndTime();
                 paymentInfo.setUserId(userId)
@@ -46,7 +47,7 @@ public class PayRequestCommand implements Command {
                         .setDateAndTime(dateAndTime);
                 PaymentService.getInstance().payBookingRequestByRequestId(Integer.parseInt(requestId), paymentInfo);
                 request.setAttribute(Attributes.PAID, "Wait for confirmation");
-                return new ForwardAction(Pages.USER_PROFILE);
+                return new ForwardAction(Pages.SUCCESS_PAID);
             } catch (ServiceException e) {
                 LOGGER.error("Unable to pay request.", e);
                 throw new CommandException("Unable to pay request.", e);

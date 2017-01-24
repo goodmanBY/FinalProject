@@ -16,6 +16,9 @@ public class Pages {
     public static final String USER_REQUEST_INFO = "/requestInfo.jsp";
     public static final String USERS_REQUESTS = "/userRequests.jsp";
 
+    public static final String SUCCESS_BOOKING = "/successBooking.jsp";
+    public static final String SUCCESS_PAID = "/successPaid.jsp";
+
     public static final String PAY_REQUEST = "/payRequest.jsp";
     public static final String PAYMENT_INFO = "/paymentInfo.jsp";
 }

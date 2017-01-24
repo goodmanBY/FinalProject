@@ -13,6 +13,7 @@ import com.savko.service.UserService;
 import com.savko.util.CostUtil;
 import com.savko.util.DateUtil;
 import com.savko.util.UtilException;
+import com.savko.validation.DatesValidation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class UserRequestCommand implements Command {
         String stringDateFrom = request.getParameter(Parameters.DATE_FROM);
         String stringDateTo = request.getParameter(Parameters.DATE_TO);
         try {
-            if (DateUtil.areDatesValid(stringDateFrom, stringDateTo)) {
+            if (DatesValidation.areDatesValid(stringDateFrom, stringDateTo)) {
                 int amountOfDays = DateUtil.calculateAmountOfDays(stringDateFrom, stringDateTo);
                 int userDiscount = UserService.getInstance().takeDiscountValueByUserId(user.getId());
                 double cost = CostUtil.calculateCost(Integer.parseInt(amountOfPlaces), amountOfDays, userDiscount);

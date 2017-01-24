@@ -52,6 +52,14 @@ public class UserService {
         }
     }
 
+    public User takeUserByRequestId(int requestId) throws ServiceException {
+        try {
+            return UserDao.getInstance().takeUserByRequestId(requestId);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to take user.", e);
+        }
+    }
+
     public List<User> takeAllUsers() throws ServiceException {
         try {
             return UserDao.getInstance().takeAllUsers();
@@ -60,9 +68,10 @@ public class UserService {
         }
     }
 
-    public void blockUser(int userId) throws ServiceException {
+    public void blockUser(int userId, String blockDescription) throws ServiceException {
         try {
             UserDao.getInstance().blockUser(userId);
+            UserService.getInstance().addBlockDescription(userId, blockDescription);
         } catch (DaoException e) {
             throw new ServiceException("Unable to block user.", e);
         }

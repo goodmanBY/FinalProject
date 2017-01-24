@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-5 col-md-offset-3">
             <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
-                  onkeyup="return validateUserRegistrationForm()">
+                  onsubmit="return validateUserRegistrationForm(this)">
                 <input type="hidden" name="action" value="userRegistration">
                 <div class="form-group">
                     <label for="name" class="col-md-2 control-label"><fmt:message key="name"/></label>

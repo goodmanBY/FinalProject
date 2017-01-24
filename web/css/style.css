@@ -26,20 +26,12 @@ a {
     align-items: center;
 }
 
-.error-message {
+.error-message, .declined, .banned {
     color: #cf0000;
 }
 
-.declined {
-    color: #cf0000;
-}
-
-.registered {
+.registered, .success {
     color: #00ac00;
-}
-
-.success {
-    color: #00bc00;
 }
 
 .confirmed {

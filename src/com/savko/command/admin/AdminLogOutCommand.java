@@ -14,6 +14,7 @@ public class AdminLogOutCommand implements Command {
     public Action execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute(Attributes.ADMIN);
+
         return new ForwardAction(Pages.ADMIN_INDEX);
     }
 

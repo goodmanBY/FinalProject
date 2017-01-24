@@ -1,5 +1,6 @@
 <div class="col-md-6">
-    <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do" onkeyup="return validateBookingForm()">
+    <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
+          onsubmit="return validateBookingForm(this)">
         <input type="hidden" name="action" value="userRequest">
         <c:if test="${empty sessionScope.user || sessionScope.user.banned == 0}">
             <div class="form-group">

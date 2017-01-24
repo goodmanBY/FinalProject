@@ -62,7 +62,7 @@
 
         <div class="col-md-6 col-md-offset-2">
             <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
-                  onkeyup="return validatePayRequestForm()">
+                  onsubmit="return validatePayRequestForm(this)">
                 <input type="hidden" name="action" value="payRequest">
                 <div hidden>
                     <input type="text" class="form-control" name="requestId" value="${requestScope.requestId}">
