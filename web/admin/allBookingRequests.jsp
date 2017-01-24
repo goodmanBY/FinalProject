@@ -87,7 +87,7 @@
                 </c:otherwise>
             </c:choose>
             <c:choose>
-                <c:when test="${bookingRequests.declined == 0}">
+                <c:when test="${bookingRequests.declined == 0 && bookingRequests.paid == 0}">
                     <th>
                         <a href="${pageContext.request.contextPath}/admin/do?action=declineBookingRequest&requestId=${bookingRequests.requestId}">Decline
                             request</a>

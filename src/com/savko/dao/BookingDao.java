@@ -13,7 +13,6 @@ import java.util.List;
 
 public class BookingDao extends Dao {
 
-    private static final String SQL_TAKE_SETTING = "SELECT value FROM setting WHERE name = ?;";
     private static final String SQL_BOOK_REQUEST = "INSERT INTO request(client_id, places_num, " +
             "date_from, date_to, cost) VALUES(?, ?, ?, ?, ?);";
     private static final String SQL_TAKE_BOOKING_REQUEST_BY_REQUEST_ID = "SELECT request_id, places_num, " +
@@ -181,25 +180,6 @@ public class BookingDao extends Dao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Unable to take update 'request' table.", e);
-        } finally {
-            closeResources(connection, preparedStatement);
-        }
-    }
-
-    public int takeRoomCost() throws DaoException {
-        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
-        PreparedStatement preparedStatement = null;
-        int value = 0;
-        try {
-            preparedStatement = connection.prepareStatement(SQL_TAKE_SETTING);
-            preparedStatement.setString(1, "room_cost");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                value = resultSet.getInt("value");
-            }
-            return value;
-        } catch (SQLException e) {
-            throw new DaoException("Unable to take cost of room from 'setting' table.", e);
         } finally {
             closeResources(connection, preparedStatement);
         }

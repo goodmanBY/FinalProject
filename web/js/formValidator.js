@@ -23,8 +23,7 @@ var VALID_LOGIN_LENGTH = 4,
     LAST_MONTH_INDEX = 12;
 
 
-var currentDay = new Date().getDate(),
-    currentYear = new Date().getFullYear(),
+var currentYear = new Date().getFullYear(),
     maxValidYear = currentYear + 5;
 
 var validationError = document.getElementById("validation-error");
@@ -195,17 +194,26 @@ function checkDates(stringDateFrom, stringDateTo) {
 
     var result = true;
 
-    var dateFrom = new Date(stringDateFrom);
-    var dateTo = new Date(stringDateTo);
+    var currentDay = daysPassed(new Date());
+    var dayFrom = daysPassed(new Date(stringDateFrom));
+    var dayTo = daysPassed(new Date(stringDateTo));
 
-    if (dateFrom.getDate() - currentDay < 0) {
+
+    if (dayFrom - currentDay < 0) {
         result = false;
     }
 
-    if (dateTo.getDate() - currentDay <= 0) {
+    if (dayTo - currentDay <= 0) {
         result = false;
     }
 
     return result;
 
+}
+
+function daysPassed(dt) {
+    var current = new Date(dt.getTime());
+    var previous = new Date(dt.getFullYear(), 0, 1);
+
+    return Math.ceil((current - previous + 1) / 86400000);
 }
