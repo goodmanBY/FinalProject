@@ -9,6 +9,7 @@ public class Attributes {
     public static final String REGISTERED = "registered";
     public static final String ERROR = "error";
     public static final String PAID = "paid";
+    public static final String REQUESTS = "requests";
     public static final String REQUEST_ID = "requestId";
     public static final String AMOUNT_OF_PLACES = "amountOfPlaces";
     public static final String DATE_FROM = "dateFrom";
@@ -16,5 +17,8 @@ public class Attributes {
     public static final String COST = "cost";
     public static final String BOOKING_REQUESTS = "bookingRequests";
     public static final String PAYMENT_INFO = "paymentInfo";
+    public static final String DISCOUNTS = "discounts";
+    public static final String ROOM_COST = "roomCost";
+    public static final String BLOCK_DESCRIPTION = "blockDescription";
 
 }

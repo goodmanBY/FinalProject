@@ -4,9 +4,11 @@ import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.command.exception.CommandException;
+import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.constant.Parameters;
 import com.savko.entity.BookingRequest;
+import com.savko.entity.User;
 import com.savko.service.BookingService;
 import com.savko.service.ServiceException;
 import com.savko.util.DateUtil;
@@ -21,17 +23,16 @@ public class UserRequestInfoCommand implements Command {
 
     @Override
     public Action execute(HttpServletRequest request) throws CommandException {
-        String userId = request.getParameter(Parameters.USER_ID);
+        User user = (User) request.getSession().getAttribute(Attributes.USER);
         String amountOfPlaces = request.getParameter(Parameters.AMOUNT_OF_PLACES);
         String stringDateFrom = request.getParameter(Parameters.DATE_FROM);
         String stringDateTo = request.getParameter(Parameters.DATE_TO);
-
         try {
             java.util.Date dateFrom = DateUtil.castToDate(stringDateFrom);
             java.util.Date dateTo = DateUtil.castToDate(stringDateTo);
             String cost = request.getParameter(Parameters.COST);
             BookingRequest bookingRequest = new BookingRequest()
-                    .setUserId(Integer.parseInt(userId))
+                    .setUserId(user.getId())
                     .setAmountOfPlaces(Integer.parseInt(amountOfPlaces))
                     .setDateFrom(dateFrom)
                     .setDateTo(dateTo)

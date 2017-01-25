@@ -22,8 +22,8 @@
             </ul>
         </div>
         <div class="col-5 col-middle text-center">
-            <img src="${pageContext.request.contextPath}/img/congratulations.png"
-                 alt="Balloons." height="520" width="600">
+            <img class="congratulation-img" src="${pageContext.request.contextPath}/img/congratulations.png"
+                 alt="Balloons.">
         </div>
     </div>
 </div>

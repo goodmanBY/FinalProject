@@ -15,6 +15,7 @@ public class UserLogOutCommand implements Command {
     public Action execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.removeAttribute(Attributes.USER);
+
         return new ForwardAction(Pages.USER_INDEX);
     }
 }

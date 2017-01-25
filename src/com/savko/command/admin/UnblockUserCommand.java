@@ -22,15 +22,14 @@ public class UnblockUserCommand implements Command {
     @Override
     public Action execute(HttpServletRequest request) throws CommandException {
         String userId = request.getParameter(Parameters.USER_ID);
-        List<User> users;
         try {
             UserService.getInstance().unblockUser(Integer.parseInt(userId));
-            users = UserService.getInstance().takeAllUsers();
+            List<User> users = UserService.getInstance().takeAllUsers();
+            request.setAttribute(Attributes.USERS, users);
         } catch (ServiceException e) {
             LOGGER.error("Unable to unblock user.", e);
             throw new CommandException("Unable to unblock user.", e);
         }
-        request.setAttribute(Attributes.USERS, users);
 
         return new ForwardAction(Pages.ADMIN_ALL_USERS);
     }

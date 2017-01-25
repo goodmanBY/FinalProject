@@ -11,13 +11,13 @@
 
 <div class="container-top-padding">
     <c:choose>
-        <c:when test="${not empty requests}">
+        <c:when test="${not empty requestScope.requests}">
             <div class="col-md-12 centring">
                 <h2><fmt:message key="your.booking.requests"/></h2>
             </div>
             <table class="table table-hover">
                 <tr>
-                    <th ${(empty admin) ? 'hidden' : ''}>Request ID</th>
+                    <th ${(empty sessionScope.admin) ? 'hidden' : ''}>Request ID</th>
                     <th><fmt:message key="amount.of.places"/></th>
                     <th><fmt:message key="date.from"/></th>
                     <th><fmt:message key="date.to"/></th>
@@ -28,9 +28,9 @@
                     <th><fmt:message key="approved.by"/></th>
                     <th><fmt:message key="status"/></th>
                 </tr>
-                <c:forEach items="${requests}" var="bookingRequest">
+                <c:forEach items="${requestScope.requests}" var="bookingRequest">
                     <tr ${(bookingRequest.paid == 1) ? 'class="success"' : ''}>
-                        <th ${(empty admin) ? 'hidden' : ''}>${bookingRequest.requestId}</th>
+                        <th ${(empty sessionScope.admin) ? 'hidden' : ''}>${bookingRequest.requestId}</th>
                         <th>${bookingRequest.amountOfPlaces}</th>
                         <th>${bookingRequest.dateFrom}</th>
                         <th>${bookingRequest.dateTo}</th>
@@ -46,11 +46,11 @@
                         </c:choose>
                         <c:choose>
                             <c:when test="${bookingRequest.declined == 0}">
-                                <th>Not declined</th>
+                                <th><fmt:message key="not.declined"/></th>
                             </c:when>
                             <c:otherwise>
                                 <th ${(bookingRequest.declined == 1 && bookingRequest.paid == 0) ? 'class=\"declined\"' : ''}>
-                                    Declined
+                                    <fmt:message key="declined"/>
                                 </th>
                             </c:otherwise>
                         </c:choose>

@@ -25,7 +25,7 @@ public class UserDao extends Dao {
     private static final String SQL_UNBLOCK_USER = "UPDATE client SET banned = 0 WHERE client_id = ?;";
     private static final String SQL_ADD_BLOCK_DESCRIPTION = "INSERT INTO ban_info(client_id, ban_description) VALUES(?, ?);";
     private static final String SQL_TAKE_BLOCK_DESCRIPTION = "SELECT ban_description FROM ban_info WHERE client_id = ?;";
-    private static final String SQL_CHANGE_USER_DISCOUNT = "UPDATE client SET discount = ? WHERE client_id = ?;";
+    private static final String SQL_SET_USER_DISCOUNT_VALUE = "UPDATE client SET discount = ? WHERE client_id = ?;";
     private static final String SQL_TAKE_DISCOUNT_VALUE_BY_USER_ID = "SELECT discount FROM client WHERE client_id = ?;";
 
     public static UserDao getInstance() {
@@ -243,12 +243,12 @@ public class UserDao extends Dao {
         }
     }
 
-    public void changeUserDiscountValue(int discountValue, int userId) throws DaoException {
+    public void setUserDiscountValueByUserId(int userId, int discount) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement(SQL_CHANGE_USER_DISCOUNT);
-            preparedStatement.setInt(1, discountValue);
+            preparedStatement = connection.prepareStatement(SQL_SET_USER_DISCOUNT_VALUE);
+            preparedStatement.setInt(1, discount);
             preparedStatement.setInt(2, userId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

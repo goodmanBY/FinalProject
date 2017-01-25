@@ -22,14 +22,13 @@ public class UserAllRequestsCommand implements Command {
     @Override
     public Action execute(HttpServletRequest request) throws CommandException {
         User user = (User) request.getSession().getAttribute(Attributes.USER);
-        List<BookingRequest> requests;
         try {
-            requests = BookingService.getInstance().takeBookingRequestsByUserId(user.getId());
+            List<BookingRequest> requests = BookingService.getInstance().takeBookingRequestsByUserId(user.getId());
+            request.setAttribute(Attributes.REQUESTS, requests);
         } catch (ServiceException e) {
             LOGGER.error("Unable to take all user's requests.", e);
             throw new CommandException("Unable to take all user's requests.", e);
         }
-        request.setAttribute("requests", requests);
         return new ForwardAction(Pages.USERS_REQUESTS);
     }
 }

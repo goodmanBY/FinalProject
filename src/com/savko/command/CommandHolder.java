@@ -36,10 +36,11 @@ public class CommandHolder {
         commands.put("cancelDeclination", new CancelDeclinationCommand());
         commands.put("userProfile", new UserProfileCommand());
         commands.put("paymentInfo", new PaymentInfoCommand());
-        commands.put("setDiscountValue", new UserDiscountCommand());
         commands.put("changeRoomCost", new ChangeRoomCostCommand());
         commands.put("changeDiscountValue", new ChangeDiscountCommand());
         commands.put("adminSettings", new AdminSettingsCommand());
+        commands.put("setUserDiscount", new UserDiscountCommand());
+        commands.put("about", new AboutCommand());
 
     }
 

@@ -13,13 +13,10 @@
 
     <div class="container container-top-padding">
         <div class="row">
-            <div>
-                <span class="col-md-12 centring"><h2><fmt:message key="your.profile"/></h2></span>
+            <div class="centring">
+                <h2><fmt:message key="your.profile"/></h2>
             </div>
             <div class="col-md-6 col-md-offset-2">
-                <div hidden>
-                    <input name="userId" id="userId" value="${sessionScope.user.id}">
-                </div>
                 <div class="form-group">
                     <label for="name" class="col-md-offset-2 col-md-2 control-label"><fmt:message key="name"/></label>
                     <div class="col-md-8">
@@ -40,6 +37,14 @@
                     <div class="col-md-8">
                         <input type="text" class="form-control" name="login" id="login"
                                value="${sessionScope.user.login}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="discount" class="col-md-offset-2 col-md-2 control-label"><fmt:message
+                            key="discount"/></label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="discount" id="discount"
+                               value="${sessionScope.user.discount}%" readonly>
                     </div>
                 </div>
             </div>

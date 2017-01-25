@@ -12,8 +12,8 @@ var ERROR_FILL_ALL_FIELDS = "Fill all fields",
     ERROR_FILL_DESCRIPTION_FIELD = "Fill description",
     ERROR_INVALID_SELECTED_DATES = "Invalid selected dates";
 
-var REGEX_FIRST_SYMBOL = /[a-z]/i,
-    REGEX_WHITESPACE = /\s/g,
+var REGEX_INCORRECT_FIRST_SYMBOL = /[^A-zА-я]/,
+    REGEX_WHITESPACE = /\s/,
     REGEX_VALID_CARD_NUMBER = /^([0-9]{16})$/,
     REGEX_VALID_SECURITY_CODE_ = /^([0-9]{3})$/;
 
@@ -59,8 +59,8 @@ function validateUserRegistrationForm(form) {
         result = false;
     }
 
-    if ((name && name.search(REGEX_FIRST_SYMBOL) !== 0) || (lastName && lastName.search(REGEX_FIRST_SYMBOL)
-        || (login && login.search(REGEX_FIRST_SYMBOL)) !== 0)) {
+    if ((name && name.match(REGEX_INCORRECT_FIRST_SYMBOL)) || (lastName && lastName.match(REGEX_INCORRECT_FIRST_SYMBOL)
+        || (login && login.match(REGEX_INCORRECT_FIRST_SYMBOL)))) {
         validationError.innerHTML = ERROR_INCORRECT_FIRST_SYMBOL;
         result = false;
     }

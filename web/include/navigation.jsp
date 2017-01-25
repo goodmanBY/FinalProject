@@ -16,7 +16,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.jsp"><fmt:message key="home"/></a></li>
-                        <li><a href="index.jsp"><fmt:message key="about"/></a></li>
+                        <li><a href="${pageContext.request.contextPath}/do?action=about"><fmt:message key="about"/></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">

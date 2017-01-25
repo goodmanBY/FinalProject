@@ -1,5 +1,5 @@
 <div class="col-md-6">
-    <span class="centring"><fmt:message key="about"/></span>
+    <h2><fmt:message key="about"/></h2>
     <p>
         <fmt:message key="text.about"/>
     </p>

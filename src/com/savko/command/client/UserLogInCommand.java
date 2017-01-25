@@ -33,10 +33,9 @@ public class UserLogInCommand implements Command {
                     User currentUser = UserService.getInstance().takeUser(login);
                     if (currentUser.getBanned() == 1) {
                         String blockDescription = UserService.getInstance().takeBlockDescription(currentUser.getId());
-                        session.setAttribute("blockDescription", blockDescription);
+                        session.setAttribute(Attributes.BLOCK_DESCRIPTION, blockDescription);
                     }
                     session.setAttribute(Attributes.USER, currentUser);
-                    //Redirect
                     return new ForwardAction(Pages.USER_INDEX);
                 } else {
                     request.setAttribute(Attributes.ERROR, "Incorrect login or password");

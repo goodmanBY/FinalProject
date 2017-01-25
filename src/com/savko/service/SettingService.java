@@ -44,6 +44,14 @@ public class SettingService {
         }
     }
 
+    public Discount takeDiscountById(int discountId) throws ServiceException {
+        try {
+            return SettingDao.getInstance().takeDiscountById(discountId);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to take discount by ID.", e);
+        }
+    }
+
     private static class StaticHolder {
         static final SettingService INSTANCE = new SettingService();
     }

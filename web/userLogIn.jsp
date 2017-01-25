@@ -11,9 +11,7 @@
 
 <div class="container container-top-padding">
     <div class="row">
-        <div class="form-group">
-            <span class="centring"><fmt:message key="log.in"/></span>
-        </div>
+        <h3 class="centring"><fmt:message key="log.in"/></h3>
         <div class="col-md-5 col-md-offset-3">
             <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
                   onsubmit="return validateLogInForm(this)">

@@ -27,12 +27,10 @@ public class DeclinedRequestCommand implements Command {
         String requestId = request.getParameter(Parameters.REQUEST_ID);
         Admin admin = (Admin) request.getSession().getAttribute(Attributes.ADMIN);
         String adminLogin = admin.getLogin();
-        List<BookingRequest> bookingRequests;
-        User user;
         try {
             BookingService.getInstance().declineBookingRequest(Integer.parseInt(requestId), adminLogin);
-            user = UserService.getInstance().takeUserByRequestId(Integer.parseInt(requestId));
-            bookingRequests = BookingService.getInstance().takeBookingRequestsByUserId(user.getId());
+            User user = UserService.getInstance().takeUserByRequestId(Integer.parseInt(requestId));
+            List<BookingRequest> bookingRequests = BookingService.getInstance().takeBookingRequestsByUserId(user.getId());
             request.setAttribute(Attributes.USER, user);
             request.setAttribute(Attributes.BOOKING_REQUESTS, bookingRequests);
         } catch (ServiceException e) {

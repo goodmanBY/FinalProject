@@ -42,9 +42,13 @@
                             ${users.discount}%<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="${pageContext.request.contextPath}/admin/do?action=setDiscountValue&userId=${users.id}&discountValue=5">5%</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/do?action=setDiscountValue&userId=${users.id}&discountValue=10">10%</a></li>
-                        <li><a href="${pageContext.request.contextPath}/admin/do?action=setDiscountValue&userId=${users.id}&discountValue=15">15%</a></li>
+                        <c:forEach items="${requestScope.discounts}" var="discounts">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/do?action=setUserDiscount&userId=${users.id}&discountId=${discounts.discountId}">
+                                    ${discounts.discount}%
+                                </a>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </th>

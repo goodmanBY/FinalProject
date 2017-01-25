@@ -3,9 +3,7 @@
           onsubmit="return validateBookingForm(this)">
         <input type="hidden" name="action" value="userRequest">
         <c:if test="${empty sessionScope.user || sessionScope.user.banned == 0}">
-            <div class="form-group">
-                <span class="col-sm-offset-3 col-sm-9"><fmt:message key="make.room.reservation"/></span>
-            </div>
+            <h2 class="centring"><fmt:message key="make.room.reservation"/></h2>
         </c:if>
         <c:if test="${empty sessionScope.user}">
             <div class="form-group">

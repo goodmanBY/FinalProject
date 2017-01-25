@@ -4,7 +4,9 @@ import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.command.exception.CommandException;
+import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
+import com.savko.constant.Parameters;
 import com.savko.entity.Discount;
 import com.savko.service.ServiceException;
 import com.savko.service.SettingService;
@@ -19,13 +21,13 @@ public class ChangeRoomCostCommand implements Command{
 
     @Override
     public Action execute(HttpServletRequest request) throws CommandException {
-        String roomCost = request.getParameter("roomCost");
+        String roomCost = request.getParameter(Parameters.ROOM_COST);
         try {
             SettingService.getInstance().changeRoomCost(Integer.parseInt(roomCost));
             int currentRoomCost = SettingService.getInstance().takeRoomCost();
             List<Discount> discounts = SettingService.getInstance().takeAllDiscounts();
-            request.setAttribute("roomCost", currentRoomCost);
-            request.setAttribute("discounts", discounts);
+            request.setAttribute(Attributes.ROOM_COST, currentRoomCost);
+            request.setAttribute(Attributes.DISCOUNTS, discounts);
         } catch (ServiceException e) {
             LOGGER.error("Unable change room cost.", e);
             throw new CommandException("Unable change room cost.", e);

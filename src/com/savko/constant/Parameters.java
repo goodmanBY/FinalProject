@@ -23,6 +23,10 @@ public class Parameters {
 
     public static final String BLOCK_DESCRIPTION = "blockDescription";
 
+    public static final String DISCOUNT_VALUE = "discountValue";
+    public static final String DISCOUNT_ID = "discountId";
+    public static final String ROOM_COST = "roomCost";
+
     public static final String LANGUAGE = "language";
 
 }

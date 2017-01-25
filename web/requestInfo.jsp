@@ -16,12 +16,6 @@
             <span class="centring"><fmt:message key="your.reservation"/></span>
         </div>
         <div class="form-group">
-            <div class="col-sm-9" hidden>
-                <input type="text" class="form-control" name="userId" id="userId" value="${sessionScope.user.id}"
-                       readonly>
-            </div>
-        </div>
-        <div class="form-group">
             <label for="name" class="col-sm-3 control-label"><fmt:message key="name"/></label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="name" id="name" value="${sessionScope.user.name}"

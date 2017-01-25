@@ -4,6 +4,7 @@ import com.savko.action.Action;
 import com.savko.action.ForwardAction;
 import com.savko.command.Command;
 import com.savko.command.exception.CommandException;
+import com.savko.constant.Attributes;
 import com.savko.constant.Pages;
 import com.savko.entity.Discount;
 import com.savko.service.ServiceException;
@@ -22,8 +23,8 @@ public class AdminSettingsCommand implements Command {
         try {
             int currentRoomCost = SettingService.getInstance().takeRoomCost();
             List<Discount> discounts = SettingService.getInstance().takeAllDiscounts();
-            request.setAttribute("roomCost", currentRoomCost);
-            request.setAttribute("discounts", discounts);
+            request.setAttribute(Attributes.ROOM_COST, currentRoomCost);
+            request.setAttribute(Attributes.DISCOUNTS, discounts);
         } catch (ServiceException e) {
             LOGGER.error("Unable to take discounts or room cost.", e);
             throw new CommandException("Unable to take discounts or room cost.", e);

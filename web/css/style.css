@@ -20,6 +20,10 @@ a {
     padding-top: 80px;
 }
 
+.about-top-padding {
+    padding-top: 200px;
+}
+
 .centring {
     display: flex;
     justify-content: center;
@@ -51,4 +55,9 @@ a {
 
 .custom-text-area {
     resize: none;
+}
+
+.congratulation-img {
+    height: 520px;
+    width: 600px;
 }
