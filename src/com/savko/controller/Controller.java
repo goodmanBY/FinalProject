@@ -14,8 +14,6 @@ import java.io.IOException;
 
 public class Controller extends HttpServlet {
 
-    private static final Logger LOG = Logger.getLogger(Controller.class);
-
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init();

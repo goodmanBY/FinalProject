@@ -41,6 +41,7 @@ public class CommandHolder {
         commands.put("adminSettings", new AdminSettingsCommand());
         commands.put("setUserDiscount", new UserDiscountCommand());
         commands.put("about", new AboutCommand());
+        commands.put("deleteBookingRequest", new DeleteBookingRequestCommand());
 
     }
 

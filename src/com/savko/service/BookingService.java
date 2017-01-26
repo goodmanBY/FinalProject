@@ -78,6 +78,14 @@ public class BookingService {
         }
     }
 
+    public void deleteBookingRequestByRequestId(int requestId) throws ServiceException {
+        try {
+            BookingDao.getInstance().deleteBookingRequestByRequestId(requestId);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to delete booking request.", e);
+        }
+    }
+
     private static class StaticHolder {
         static final BookingService INSTANCE = new BookingService();
     }

@@ -27,6 +27,7 @@
                     <th><fmt:message key="paid"/></th>
                     <th><fmt:message key="approved.by"/></th>
                     <th><fmt:message key="status"/></th>
+                    <th></th>
                 </tr>
                 <c:forEach items="${requestScope.requests}" var="bookingRequest">
                     <tr ${(bookingRequest.paid == 1) ? 'class="success"' : ''}>
@@ -99,6 +100,14 @@
                                 </c:choose>
                             </c:otherwise>
                         </c:choose>
+                        <th>
+                            <c:if test="${bookingRequest.paid == 0}">
+
+                                <a href="${pageContext.request.contextPath}/do?action=deleteBookingRequest&requestId=${bookingRequest.requestId}">
+                                    <fmt:message key="delete"/>
+                                </a>
+                            </c:if>
+                        </th>
                     </tr>
                 </c:forEach>
             </table>

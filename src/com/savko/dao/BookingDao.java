@@ -22,10 +22,15 @@ public class BookingDao extends Dao {
             "date_to, cost, confirmed, declined, paid, approved_by FROM request WHERE client_id = ?;";
     private static final String SQL_TAKE_ALL_BOOKING_REQUESTS = "SELECT request_id, client_id, places_num, date_from, " +
             "date_to, cost, confirmed, declined, paid, approved_by FROM request;";
-    private static final String SQL_CONFIRM_BOOKING_REQUEST = "UPDATE request SET confirmed = 1, approved_by = ? WHERE request_id = ?;";
-    private static final String SQL_CANCEL_CONFIRMATION = "UPDATE request SET confirmed = 0, approved_by = NULL WHERE request_id = ?;";
-    private static final String SQL_DECLINE_BOOKING_REQUEST_BY_REQUEST_ID = "UPDATE request SET declined = 1, approved_by = ? WHERE request_id = ?;";
-    private static final String SQL_CANCEL_DECLINATION = "UPDATE request SET declined = 0, approved_by = NULL WHERE request_id = ?;";
+    private static final String SQL_CONFIRM_BOOKING_REQUEST = "UPDATE request SET confirmed = 1, " +
+            "approved_by = ? WHERE request_id = ?;";
+    private static final String SQL_CANCEL_CONFIRMATION = "UPDATE request SET confirmed = 0, approved_by = " +
+            "NULL WHERE request_id = ?;";
+    private static final String SQL_DECLINE_BOOKING_REQUEST_BY_REQUEST_ID = "UPDATE request SET declined = 1, " +
+            "approved_by = ? WHERE request_id = ?;";
+    private static final String SQL_CANCEL_DECLINATION = "UPDATE request SET declined = 0, " +
+            "approved_by = NULL WHERE request_id = ?;";
+    private static final String SQ_DELETE_BOOKING_REQUEST_BY_REQUEST_ID = "DELEtE FROM request WHERE request_id = ?;";
 
     public static BookingDao getInstance() {
         return StaticHolder.INSTANCE;
@@ -183,6 +188,20 @@ public class BookingDao extends Dao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("Unable to take update 'request' table.", e);
+        } finally {
+            closeResources(connection, preparedStatement);
+        }
+    }
+
+    public void deleteBookingRequestByRequestId(int requestId) throws DaoException {
+        ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(SQ_DELETE_BOOKING_REQUEST_BY_REQUEST_ID);
+            preparedStatement.setInt(1, requestId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("Unable to delete data from 'request' table.", e);
         } finally {
             closeResources(connection, preparedStatement);
         }
