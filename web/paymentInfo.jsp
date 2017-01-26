@@ -12,12 +12,11 @@
 
     <div class="container container-top-padding">
         <div class="row">
-            <div class="col-md-12 centring">
-                <h2>Payment info</h2>
-            </div>
+            <h3 class="centring"><fmt:message key="payment.info"/></h3>
             <div class="col-md-6 col-md-offset-2">
                 <div class="form-group">
-                    <label for="lastFourDigits" class="col-md-offset-2 col-md-2 control-label">Last digits</label>
+                    <label for="lastFourDigits" class="col-md-offset-2 col-md-2 control-label"><fmt:message
+                            key="last.digits"/></label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" name="lastFourDigits" id="lastFourDigits"
                                value="**** **** **** ${requestScope.paymentInfo.lastFourDigits}" readonly>
@@ -32,11 +31,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dateTime" class="col-md-offset-2 col-md-2 control-label">Date and time</label>
+                    <label for="dateTime" class="col-md-offset-2 col-md-2 control-label"><fmt:message
+                            key="date.and.time"/></label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" name="dateTime" id="dateTime"
-                               value="${requestScope.paymentInfo.dateAndTime}" readonly>
-                    </div>
+                               value="${requestScope.paymentInfo.dateAndTime}" readonly></div>
                 </div>
             </div>
         </div>

@@ -49,7 +49,7 @@
                         <th class="col-md-3">${discounts.discount}%</th>
 
                         <th class="col-md-3">
-                            <input type="number" class="form-control" name="discountValue" id="discountValue" min="1"
+                            <input type="number" class="form-control" name="discountValue" id="discountValue" min="0"
                                    max="20">
                         </th>
 

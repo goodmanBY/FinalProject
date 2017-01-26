@@ -53,7 +53,7 @@
                 <label for="discount" class="col-md-offset-2 col-sm-2 control-label">Discount</label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" name="discount" id="discount"
-                           value="${requestScope.user.discount}" readonly>
+                           value="${requestScope.user.discount}%" readonly>
                 </div>
             </div>
         </div>

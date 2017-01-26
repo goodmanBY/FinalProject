@@ -1,5 +1,6 @@
 package com.savko.dao;
 
+import com.savko.constant.DbColumns;
 import com.savko.entity.PaymentInfo;
 import com.savko.pool.ConnectionPool;
 import com.savko.pool.ConnectionProxy;
@@ -13,7 +14,8 @@ public class PaymentDao extends Dao {
     private static final String SQL_PAY_USER_REQUEST = "UPDATE request SET paid = 1 WHERE request_id = ?;";
     private static final String SQL_ADD_PAYMENT_INFO = "INSERT INTO payment_info(client_id, request_id, last_four_digits, cost, " +
             "date_time) VALUES (?, ?, ?, ?, ?);";
-    private static final String SQL_TAKE_PAYMENT_INFO_BY_ID = "SELECT * FROM payment_info WHERE request_id = ?;";
+    private static final String SQL_TAKE_PAYMENT_INFO_BY_ID = "SELECT payment_info_id, client_id, request_id, " +
+            "last_four_digits, cost, date_time FROM payment_info WHERE request_id = ?;";
 
     public static PaymentDao getInstance() {
         return StaticHolder.INSTANCE;
@@ -60,12 +62,12 @@ public class PaymentDao extends Dao {
             preparedStatement.setInt(1, requestId);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                paymentInfo.setPaymentInfoId(resultSet.getInt("payment_info_id"))
-                        .setUserId(resultSet.getInt("client_id"))
-                        .setRequestId(resultSet.getInt("request_id"))
-                        .setLastFourDigits(resultSet.getInt("last_four_digits"))
-                        .setCost(resultSet.getDouble("cost"))
-                        .setDateAndTime(resultSet.getTimestamp("date_time"));
+                paymentInfo.setPaymentInfoId(resultSet.getInt(DbColumns.PAYMENT_INFO_ID))
+                        .setUserId(resultSet.getInt(DbColumns.CLIENT_ID))
+                        .setRequestId(resultSet.getInt(DbColumns.REQUEST_ID))
+                        .setLastFourDigits(resultSet.getInt(DbColumns.LAST_FOUR_DIGITS))
+                        .setCost(resultSet.getDouble(DbColumns.COST))
+                        .setDateAndTime(resultSet.getTimestamp(DbColumns.DATE_TIME));
             }
             return paymentInfo;
         } catch (SQLException e) {

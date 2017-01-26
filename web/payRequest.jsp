@@ -12,9 +12,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-2 container-top-padding">
-            <div class="form-group centring">
-                <span class="centring"><fmt:message key="your.booking.request"/></span>
-            </div>
+            <h3 class="centring"><fmt:message key="your.booking.request"/></h3>
             <div class="form-group">
                 <label for="name" class="col-sm-3 control-label"><fmt:message key="name"/></label>
                 <div class="col-sm-9">
@@ -61,6 +59,7 @@
         </div>
 
         <div class="col-md-6 col-md-offset-2">
+            <h3 class="centring"><fmt:message key="card.info"/></h3>
             <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/do"
                   onsubmit="return validatePayRequestForm(this)">
                 <input type="hidden" name="action" value="payRequest">
@@ -69,9 +68,6 @@
                 </div>
                 <div hidden>
                     <input type="text" class="form-control" name="cost" value="${requestScope.cost}">
-                </div>
-                <div class="form-group centring">
-                    <span class="centring">Card info</span>
                 </div>
                 <div class="form-group">
                     <label for="cardNumber" class="col-md-2 control-label"><fmt:message key="card.number"/></label>

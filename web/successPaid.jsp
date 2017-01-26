@@ -9,12 +9,10 @@
 </head>
 <body>
 
-<%@ include file="include/navigation.jsp" %>
-
 <div class="page-container page-container-responsive">
     <div class="row space-top-8 space-8 row-table">
         <div class="col-5 col-middle">
-            <h2>Your request has been successfully paid!</h2>
+            <h2><fmt:message key="successfully.paid"/>!</h2>
             <ul class="list-unstyled">
                 <li><a href="${pageContext.request.contextPath}/do?action=userAllRequestsInfo"><fmt:message
                         key="my.requests"/></a></li>
@@ -26,8 +24,6 @@
         </div>
     </div>
 </div>
-
-<%@ include file="include/footer.jsp" %>
 
 <%@ include file="include/script.jsp" %>
 

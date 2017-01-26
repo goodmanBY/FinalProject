@@ -28,7 +28,7 @@ public class UserDiscountCommand implements Command {
         String discountId = request.getParameter(Parameters.DISCOUNT_ID);
         try {
             Discount discount = SettingService.getInstance().takeDiscountById(Integer.parseInt(discountId));
-            UserService.getInstance().setUserDiscountValueByUserId(Integer.parseInt(userId), discount.getDiscount());
+            UserService.getInstance().setUserDiscountValueByUserId(Integer.parseInt(userId), discount.getDiscountId());
             List<User> users = UserService.getInstance().takeAllUsers();
             List<Discount> discounts = SettingService.getInstance().takeAllDiscounts();
             request.setAttribute(Attributes.DISCOUNTS, discounts);

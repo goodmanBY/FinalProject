@@ -9,13 +9,11 @@
 </head>
 <body>
 
-<%@ include file="include/navigation.jsp" %>
-
 <div class="page-container page-container-responsive">
     <div class="row space-top-8 space-8 row-table">
         <div class="col-5 col-middle">
-            <h2>Your request has been successfully booked!</h2>
-            <h3>Please wait confirmation!</h3>
+            <h2><fmt:message key="successfully.booked"/>!</h2>
+            <h3><fmt:message key="please.wait.confirmation"/>!</h3>
             <ul class="list-unstyled">
                 <li><a href="${pageContext.request.contextPath}/do?action=userAllRequestsInfo"><fmt:message
                         key="my.requests"/></a></li>
@@ -27,8 +25,6 @@
         </div>
     </div>
 </div>
-
-<%@ include file="include/footer.jsp" %>
 
 <%@ include file="include/script.jsp" %>
 

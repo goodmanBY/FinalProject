@@ -111,9 +111,9 @@ public class UserService {
         }
     }
 
-    public void setUserDiscountValueByUserId(int userId, int discount) throws ServiceException {
+    public void setUserDiscountValueByUserId(int userId, int discountId) throws ServiceException {
         try {
-            UserDao.getInstance().setUserDiscountValueByUserId(userId, discount);
+            UserDao.getInstance().setUserDiscountValueByUserId(userId, discountId);
         } catch (DaoException e) {
             throw new ServiceException("Unable to set discount value by user ID.", e);
         }

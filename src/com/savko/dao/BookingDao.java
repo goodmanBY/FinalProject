@@ -1,5 +1,6 @@
 package com.savko.dao;
 
+import com.savko.constant.DbColumns;
 import com.savko.entity.BookingRequest;
 import com.savko.pool.ConnectionPool;
 import com.savko.pool.ConnectionProxy;
@@ -17,8 +18,10 @@ public class BookingDao extends Dao {
             "date_from, date_to, cost) VALUES(?, ?, ?, ?, ?);";
     private static final String SQL_TAKE_BOOKING_REQUEST_BY_REQUEST_ID = "SELECT request_id, places_num, " +
             "date_from, date_to, cost FROM request WHERE request_id = ?;";
-    private static final String SQL_TAKE_BOOKING_REQUEST_BY_USER_ID = "SELECT * FROM request WHERE client_id = ?;";
-    private static final String SQL_TAKE_ALL_BOOKING_REQUESTS = "SELECT * FROM request;";
+    private static final String SQL_TAKE_BOOKING_REQUEST_BY_USER_ID = "SELECT request_id, places_num, date_from, " +
+            "date_to, cost, confirmed, declined, paid, approved_by FROM request WHERE client_id = ?;";
+    private static final String SQL_TAKE_ALL_BOOKING_REQUESTS = "SELECT request_id, client_id, places_num, date_from, " +
+            "date_to, cost, confirmed, declined, paid, approved_by FROM request;";
     private static final String SQL_CONFIRM_BOOKING_REQUEST = "UPDATE request SET confirmed = 1, approved_by = ? WHERE request_id = ?;";
     private static final String SQL_CANCEL_CONFIRMATION = "UPDATE request SET confirmed = 0, approved_by = NULL WHERE request_id = ?;";
     private static final String SQL_DECLINE_BOOKING_REQUEST_BY_REQUEST_ID = "UPDATE request SET declined = 1, approved_by = ? WHERE request_id = ?;";
@@ -55,11 +58,11 @@ public class BookingDao extends Dao {
             ResultSet resultSet = preparedStatement.executeQuery();
             BookingRequest bookingRequest = new BookingRequest();
             if (resultSet.next()) {
-                bookingRequest.setRequestId(resultSet.getInt("request_id"))
-                        .setAmountOfPlaces(resultSet.getInt("places_num"))
-                        .setDateFrom(resultSet.getDate("date_from"))
-                        .setDateTo(resultSet.getDate("date_to"))
-                        .setCost(resultSet.getDouble("cost"));
+                bookingRequest.setRequestId(resultSet.getInt(DbColumns.REQUEST_ID))
+                        .setAmountOfPlaces(resultSet.getInt(DbColumns.PLACE_NUM))
+                        .setDateFrom(resultSet.getDate(DbColumns.DATE_FROM))
+                        .setDateTo(resultSet.getDate(DbColumns.DATE_TO))
+                        .setCost(resultSet.getDouble(DbColumns.COST));
             }
             return bookingRequest;
         } catch (SQLException e) {
@@ -78,16 +81,16 @@ public class BookingDao extends Dao {
             List<BookingRequest> bookingRequests = new ArrayList<>();
             while (resultSet.next()) {
                 BookingRequest bookingRequest = new BookingRequest()
-                        .setRequestId(resultSet.getInt("request_id"))
-                        .setUserId(resultSet.getInt("client_id"))
-                        .setAmountOfPlaces(resultSet.getInt("places_num"))
-                        .setDateFrom(resultSet.getDate("date_from"))
-                        .setDateTo(resultSet.getDate("date_to"))
-                        .setCost(resultSet.getDouble("cost"))
-                        .setConfirmed(resultSet.getByte("confirmed"))
-                        .setDeclined(resultSet.getByte("declined"))
-                        .setPaid(resultSet.getByte("paid"))
-                        .setApprovedBy(resultSet.getString("approved_by"));
+                        .setRequestId(resultSet.getInt(DbColumns.REQUEST_ID))
+                        .setUserId(resultSet.getInt(DbColumns.CLIENT_ID))
+                        .setAmountOfPlaces(resultSet.getInt(DbColumns.PLACE_NUM))
+                        .setDateFrom(resultSet.getDate(DbColumns.DATE_FROM))
+                        .setDateTo(resultSet.getDate(DbColumns.DATE_TO))
+                        .setCost(resultSet.getDouble(DbColumns.COST))
+                        .setConfirmed(resultSet.getByte(DbColumns.CONFIRMED))
+                        .setDeclined(resultSet.getByte(DbColumns.DECLINED))
+                        .setPaid(resultSet.getByte(DbColumns.PAID))
+                        .setApprovedBy(resultSet.getString(DbColumns.APPROVED_BY));
                 bookingRequests.add(bookingRequest);
             }
             return bookingRequests;
@@ -108,15 +111,15 @@ public class BookingDao extends Dao {
             List<BookingRequest> bookingRequests = new ArrayList<>();
             while (resultSet.next()) {
                 BookingRequest bookingRequest = new BookingRequest()
-                        .setRequestId(resultSet.getInt("request_id"))
-                        .setAmountOfPlaces(resultSet.getInt("places_num"))
-                        .setDateFrom(resultSet.getDate("date_from"))
-                        .setDateTo(resultSet.getDate("date_to"))
-                        .setCost(resultSet.getDouble("cost"))
-                        .setConfirmed(resultSet.getByte("confirmed"))
-                        .setDeclined(resultSet.getByte("declined"))
-                        .setPaid(resultSet.getByte("paid"))
-                        .setApprovedBy(resultSet.getString("approved_by"));
+                        .setRequestId(resultSet.getInt(DbColumns.REQUEST_ID))
+                        .setAmountOfPlaces(resultSet.getInt(DbColumns.PLACE_NUM))
+                        .setDateFrom(resultSet.getDate(DbColumns.DATE_FROM))
+                        .setDateTo(resultSet.getDate(DbColumns.DATE_TO))
+                        .setCost(resultSet.getDouble(DbColumns.COST))
+                        .setConfirmed(resultSet.getByte(DbColumns.CONFIRMED))
+                        .setDeclined(resultSet.getByte(DbColumns.DECLINED))
+                        .setPaid(resultSet.getByte(DbColumns.PAID))
+                        .setApprovedBy(resultSet.getString(DbColumns.APPROVED_BY));
                 bookingRequests.add(bookingRequest);
             }
             return bookingRequests;
