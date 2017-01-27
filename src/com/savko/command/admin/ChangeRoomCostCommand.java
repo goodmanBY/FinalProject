@@ -10,6 +10,7 @@ import com.savko.constant.Parameters;
 import com.savko.entity.Discount;
 import com.savko.service.ServiceException;
 import com.savko.service.SettingService;
+import com.savko.validation.SettingsValidation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,14 +24,20 @@ public class ChangeRoomCostCommand implements Command{
     public Action execute(HttpServletRequest request) throws CommandException {
         String roomCost = request.getParameter(Parameters.ROOM_COST);
         try {
-            SettingService.getInstance().changeRoomCost(Integer.parseInt(roomCost));
-            int currentRoomCost = SettingService.getInstance().takeRoomCost();
             List<Discount> discounts = SettingService.getInstance().takeAllDiscounts();
-            request.setAttribute(Attributes.ROOM_COST, currentRoomCost);
             request.setAttribute(Attributes.DISCOUNTS, discounts);
+            int currentRoomCost = SettingService.getInstance().takeRoomCost();
+            if(SettingsValidation.isRoomCostValid(roomCost)) {
+                SettingService.getInstance().changeRoomCost(Integer.parseInt(roomCost));
+                int changedRoomCost = SettingService.getInstance().takeRoomCost();
+                request.setAttribute(Attributes.ROOM_COST, changedRoomCost);
+            } else {
+                request.setAttribute(Attributes.ROOM_COST, currentRoomCost);
+                request.setAttribute(Attributes.ERROR, "Fill the field");
+            }
         } catch (ServiceException e) {
-            LOGGER.error("Unable change room cost.", e);
-            throw new CommandException("Unable change room cost.", e);
+            LOGGER.error("Unable to change room cost.", e);
+            throw new CommandException("Unable to change room cost.", e);
         }
         return new ForwardAction(Pages.ADMIN_SETTINGS);
     }

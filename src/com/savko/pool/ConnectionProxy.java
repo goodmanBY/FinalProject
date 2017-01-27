@@ -23,21 +23,11 @@ public class ConnectionProxy implements Connection {
         return connection.prepareStatement(sql);
     }
 
-    /**
-     * Releases taken connection
-     *
-     * @throws SQLException
-     */
     @Override
     public void close() throws SQLException {
         ConnectionPool.getInstance().releaseConnection(this);
     }
 
-    /**
-     * Closes connection
-     *
-     * @throws SQLException
-     */
     void terminateConnection() throws SQLException {
         connection.close();
     }

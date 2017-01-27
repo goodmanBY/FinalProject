@@ -38,11 +38,6 @@ public class ConnectionPool {
         init();
     }
 
-    /**
-     * Lazy initialization of connection pool
-     *
-     * @return instance of connection pool
-     */
     public static ConnectionPool getInstance() {
         if (!instanceCreated.get()) {
             lock.lock();
@@ -58,9 +53,6 @@ public class ConnectionPool {
         return instance;
     }
 
-    /**
-     * Creates connections and fills freeConnections queue with it
-     */
     private void init() {
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -80,11 +72,6 @@ public class ConnectionPool {
         }
     }
 
-    /**
-     * Takes free connection from pool
-     *
-     * @return taken connection
-     */
     public ConnectionProxy takeConnection() {
         ConnectionProxy connection = null;
         try {
@@ -98,11 +85,6 @@ public class ConnectionPool {
         return connection;
     }
 
-    /**
-     * Gets connection back to pool
-     *
-     * @param connection connection for releasing
-     */
     public void releaseConnection(ConnectionProxy connection) {
         try {
             if (connection != null) {
@@ -114,9 +96,6 @@ public class ConnectionPool {
         }
     }
 
-    /**
-     * After clearing connections queues assign a value null to variable instance
-     */
     public void closePool() {
         isClosing.set(true);
 
@@ -131,11 +110,6 @@ public class ConnectionPool {
         }
     }
 
-    /**
-     * Clears busyConnections and freeConnections queues and terminates connections
-     *
-     * @throws SQLException
-     */
     private void clearConnectionQueue() throws SQLException {
         ConnectionProxy connection;
 

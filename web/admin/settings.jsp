@@ -13,7 +13,8 @@
     </div>
 
     <div class="col-md-6 centring">
-        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/do">
+        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/do"
+              onsubmit="return validateRoomCost(this)">
             <input type="hidden" name="action" value="changeRoomCost">
             <div class="form-group">
                 <div class="col-md-12 centring">
@@ -39,7 +40,8 @@
                 <th></th>
             </tr>
             <c:forEach items="${requestScope.discounts}" var="discounts">
-                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/do">
+                <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/do"
+                      onsubmit="return validateDiscountValue(this)">
                     <input type="hidden" name="action" value="changeDiscountValue">
                     <tr>
                         <input type="hidden" class="form-control" name="discountId" value="${discounts.discountId}">
@@ -62,6 +64,8 @@
         </table>
     </div>
 </div>
+
+<%@ include file="/include/message.jsp" %>
 
 <%@ include file="/include/toControlPanel.jsp" %>
 

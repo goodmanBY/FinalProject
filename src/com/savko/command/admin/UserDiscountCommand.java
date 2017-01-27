@@ -34,8 +34,8 @@ public class UserDiscountCommand implements Command {
             request.setAttribute(Attributes.DISCOUNTS, discounts);
             request.setAttribute(Attributes.USERS, users);
         } catch (ServiceException e) {
-            LOGGER.error("Unable set user discount.", e);
-            throw new CommandException("Unable set user discount.", e);
+            LOGGER.error("Unable to set user discount.", e);
+            throw new CommandException("Unable to set user discount.", e);
         }
 
         return new ForwardAction(Pages.ADMIN_ALL_USERS);

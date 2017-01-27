@@ -1,4 +1,5 @@
 var ERROR_FILL_ALL_FIELDS = "Fill all fields",
+    ERROR_FILL_FIELD = "Fill field",
     ERROR_LOGIN_IS_TOO_SHORT = "Login should consist of more than 4 symbols",
     ERROR_PASSWORD_IS_TOO_SHORT = "Password should consist of more than 6 symbols",
     ERROR_PASSWORDS_DO_NOT_MATH = "Passwords do not match",
@@ -173,6 +174,35 @@ function validateBookingForm(form) {
 
     return result;
 
+}
+
+function validateRoomCost(form) {
+
+    var result = true;
+
+    var roomCost = form["roomCost"].value;
+
+    if(!roomCost) {
+        validationError.innerHTML = ERROR_FILL_FIELD;
+        result = false;
+    }
+
+    return result;
+}
+
+function validateDiscountValue(form) {
+
+    var result = true;
+
+    var discountValue = form["discountValue"].value;
+
+
+    if(!discountValue) {
+        validationError.innerHTML = ERROR_FILL_FIELD;
+        result = false;
+    }
+
+    return result;
 }
 
 function getDaysBetweenTwoDates(stringDateFrom, stringDateTo) {

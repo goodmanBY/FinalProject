@@ -10,6 +10,7 @@ import com.savko.constant.Parameters;
 import com.savko.entity.Discount;
 import com.savko.service.ServiceException;
 import com.savko.service.SettingService;
+import com.savko.validation.SettingsValidation;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,16 +25,21 @@ public class ChangeDiscountCommand implements Command {
         String discountValue = request.getParameter(Parameters.DISCOUNT_VALUE);
         String discountId = request.getParameter(Parameters.DISCOUNT_ID);
         try {
-            SettingService.getInstance().changeDiscountById(Integer.parseInt(discountValue), Integer.parseInt(discountId));
-            List<Discount> discounts = SettingService.getInstance().takeAllDiscounts();
             int currentRoomCost = SettingService.getInstance().takeRoomCost();
             request.setAttribute(Attributes.ROOM_COST, currentRoomCost);
-            request.setAttribute(Attributes.DISCOUNTS, discounts);
+            List<Discount> currentDiscounts = SettingService.getInstance().takeAllDiscounts();
+            if (SettingsValidation.isDiscountValueValid(discountValue)) {
+                SettingService.getInstance().changeDiscountById(Integer.parseInt(discountValue), Integer.parseInt(discountId));
+                List<Discount> changedDiscounts = SettingService.getInstance().takeAllDiscounts();
+                request.setAttribute(Attributes.DISCOUNTS, changedDiscounts);
+            } else {
+                request.setAttribute(Attributes.DISCOUNTS, currentDiscounts);
+                request.setAttribute(Attributes.ERROR, "Fill the field");
+            }
         } catch (ServiceException e) {
-            LOGGER.error("Unable change discount value.", e);
-            throw new CommandException("Unable change discount value.", e);
+            LOGGER.error("Unable to change discount value.", e);
+            throw new CommandException("Unable to change discount value.", e);
         }
-
         return new ForwardAction(Pages.ADMIN_SETTINGS);
     }
 }

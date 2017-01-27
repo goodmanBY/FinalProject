@@ -29,10 +29,6 @@ public class Controller extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * @param request  HttpServletRequest instance
-     * @param response HttpServletResponse instance
-     */
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         CommandHolder requestHelper = CommandHolder.getInstance();
