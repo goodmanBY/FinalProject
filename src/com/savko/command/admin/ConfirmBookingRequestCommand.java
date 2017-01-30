@@ -27,9 +27,9 @@ public class ConfirmBookingRequestCommand implements Command {
     public Action execute(HttpServletRequest request) throws CommandException {
         String requestId = request.getParameter(Parameters.REQUEST_ID);
         Admin admin = (Admin) request.getSession().getAttribute(Attributes.ADMIN);
-        String adminLogin = admin.getLogin();
+        int adminId = admin.getId();
         try {
-            BookingService.getInstance().confirmBookingRequest(Integer.parseInt(requestId), adminLogin);
+            BookingService.getInstance().confirmBookingRequest(Integer.parseInt(requestId), adminId);
             User user = UserService.getInstance().takeUserByRequestId(Integer.parseInt(requestId));
             List<BookingRequest> bookingRequests = BookingService.getInstance().takeBookingRequestsByUserId(user.getId());
             request.setAttribute(Attributes.USER, user);

@@ -149,7 +149,7 @@
                         <c:when test="${bookingRequests.paid == 0}">
                             <th>
                                 <a href="${pageContext.request.contextPath}/admin/do?action=cancelDeclination&requestId=${bookingRequests.requestId}">Cancel
-                                    confirmation</a>
+                                    declination</a>
                             </th>
                         </c:when>
                         <c:otherwise>

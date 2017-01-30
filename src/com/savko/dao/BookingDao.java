@@ -19,17 +19,19 @@ public class BookingDao extends Dao {
     private static final String SQL_TAKE_BOOKING_REQUEST_BY_REQUEST_ID = "SELECT request_id, places_num, " +
             "date_from, date_to, cost FROM request WHERE request_id = ?;";
     private static final String SQL_TAKE_BOOKING_REQUEST_BY_USER_ID = "SELECT request_id, places_num, date_from, " +
-            "date_to, cost, confirmed, declined, paid, approved_by FROM request WHERE client_id = ?;";
+            "date_to, cost, confirmed, declined, paid, login FROM request LEFT JOIN admin ON approver_id = admin_id " +
+            "WHERE client_id = ?;";
     private static final String SQL_TAKE_ALL_BOOKING_REQUESTS = "SELECT request_id, client_id, places_num, date_from, " +
-            "date_to, cost, confirmed, declined, paid, approved_by FROM request;";
+            "date_to, cost, confirmed, declined, paid, login FROM request LEFT JOIN admin ON " +
+            "approver_id = admin_id;";
     private static final String SQL_CONFIRM_BOOKING_REQUEST = "UPDATE request SET confirmed = 1, " +
-            "approved_by = ? WHERE request_id = ?;";
-    private static final String SQL_CANCEL_CONFIRMATION = "UPDATE request SET confirmed = 0, approved_by = " +
+            "approver_id = ? WHERE request_id = ?;";
+    private static final String SQL_CANCEL_CONFIRMATION = "UPDATE request SET confirmed = 0, approver_id = " +
             "NULL WHERE request_id = ?;";
     private static final String SQL_DECLINE_BOOKING_REQUEST_BY_REQUEST_ID = "UPDATE request SET declined = 1, " +
-            "approved_by = ? WHERE request_id = ?;";
+            "approver_id = ? WHERE request_id = ?;";
     private static final String SQL_CANCEL_DECLINATION = "UPDATE request SET declined = 0, " +
-            "approved_by = NULL WHERE request_id = ?;";
+            "approver_id = NULL WHERE request_id = ?;";
     private static final String SQ_DELETE_BOOKING_REQUEST_BY_REQUEST_ID = "DELEtE FROM request WHERE request_id = ?;";
 
     public static BookingDao getInstance() {
@@ -95,7 +97,7 @@ public class BookingDao extends Dao {
                         .setConfirmed(resultSet.getByte(DbColumns.CONFIRMED))
                         .setDeclined(resultSet.getByte(DbColumns.DECLINED))
                         .setPaid(resultSet.getByte(DbColumns.PAID))
-                        .setApprovedBy(resultSet.getString(DbColumns.APPROVED_BY));
+                        .setApprovedBy(resultSet.getString(DbColumns.LOGIN));
                 bookingRequests.add(bookingRequest);
             }
             return bookingRequests;
@@ -124,7 +126,7 @@ public class BookingDao extends Dao {
                         .setConfirmed(resultSet.getByte(DbColumns.CONFIRMED))
                         .setDeclined(resultSet.getByte(DbColumns.DECLINED))
                         .setPaid(resultSet.getByte(DbColumns.PAID))
-                        .setApprovedBy(resultSet.getString(DbColumns.APPROVED_BY));
+                        .setApprovedBy(resultSet.getString(DbColumns.LOGIN));
                 bookingRequests.add(bookingRequest);
             }
             return bookingRequests;
@@ -135,12 +137,12 @@ public class BookingDao extends Dao {
         }
     }
 
-    public void confirmBookingRequest(int requestId, String adminLogin) throws DaoException {
+    public void confirmBookingRequest(int requestId, int adminId) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(SQL_CONFIRM_BOOKING_REQUEST);
-            preparedStatement.setString(1, adminLogin);
+            preparedStatement.setInt(1, adminId);
             preparedStatement.setInt(2, requestId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -164,12 +166,12 @@ public class BookingDao extends Dao {
         }
     }
 
-    public void declineBookingRequest(int request_id, String adminLogin) throws DaoException {
+    public void declineBookingRequest(int request_id, int adminId) throws DaoException {
         ConnectionProxy connection = ConnectionPool.getInstance().takeConnection();
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement(SQL_DECLINE_BOOKING_REQUEST_BY_REQUEST_ID);
-            preparedStatement.setString(1, adminLogin);
+            preparedStatement.setInt(1, adminId);
             preparedStatement.setInt(2, request_id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

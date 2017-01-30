@@ -2,6 +2,7 @@ package com.savko.entity;
 
 public class Admin {
 
+    private int id;
     private String login;
     private String password;
 
@@ -23,6 +24,15 @@ public class Admin {
         return this;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public Admin setId(int id) {
+        this.id = id;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,15 +40,17 @@ public class Admin {
 
         Admin admin = (Admin) o;
 
+        if (id != admin.id) return false;
         if (login != null ? !login.equals(admin.login) : admin.login != null) return false;
         return password != null ? password.equals(admin.password) : admin.password == null;
+
     }
 
     @Override
     public int hashCode() {
-        int result = login != null ? login.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
-
 }

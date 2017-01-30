@@ -27,9 +27,7 @@ public class AdminLogInCommand implements Command {
         HttpSession session = request.getSession();
         try {
             if (AdminService.getInstance().checkAdmin(login, password)) {
-                Admin admin = new Admin()
-                        .setLogin(login)
-                        .setPassword(password);
+                Admin admin = AdminService.getInstance().takeAdminByLogin(login);
                 session.setAttribute(Attributes.ADMIN, admin);
                 return new ForwardAction(Pages.ADMIN_CONTROL_PANEL);
             } else {

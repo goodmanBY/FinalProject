@@ -2,11 +2,20 @@ package com.savko.service;
 
 import com.savko.dao.AdminDao;
 import com.savko.dao.DaoException;
+import com.savko.entity.Admin;
 
 public class AdminService {
 
     public static AdminService getInstance() {
         return StaticHolder.INSTANCE;
+    }
+
+    public Admin takeAdminByLogin(String login) throws ServiceException {
+        try {
+            return AdminDao.getInstance().takeAdminByLogin(login);
+        } catch (DaoException e) {
+            throw new ServiceException("Unable to take such admin.", e);
+        }
     }
 
     public boolean checkAdmin(String login, String password) throws ServiceException {
